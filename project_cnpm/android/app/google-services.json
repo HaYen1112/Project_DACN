@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "672973814345",
+    "project_id": "ticketbook-5235d",
+    "storage_bucket": "ticketbook-5235d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672973814345:android:526e294bfc7169aa80dd98",
+        "android_client_info": {
+          "package_name": "com.example.project_cnpm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672973814345-h75vubvlcl09487cudl9lbc69ren1kki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project_cnpm",
+            "certificate_hash": "49e2e42b27617cfb34ec221f2e22ac9c9adf754d"
+          }
+        },
+        {
+          "client_id": "672973814345-8fhr1ovtnod2igqaugjpg25h1b2o89tv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwVJhWKkce7_tcM_jvF0yRPqLswAtcUAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672973814345-8fhr1ovtnod2igqaugjpg25h1b2o89tv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
