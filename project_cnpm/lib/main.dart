@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
+import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
@@ -20,9 +21,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage>{
   @override
   Widget build(BuildContext context) => Scaffold(
-    drawer: NaigationDrawerWidget(),
+    drawer: NavigationManageDrawerWidget(),
     appBar: AppBar(
-      title: Text(MyApp.appTitle),
+      title: Text(NavigationManageDrawerWidget.appTitle),
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
   );

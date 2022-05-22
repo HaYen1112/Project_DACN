@@ -11,7 +11,7 @@ class UserPage extends StatelessWidget{
 }): super(key: key);
   @override
   Widget build(BuildContext context) => Scaffold(
-    drawer: NaigationDrawerWidget(),
+    drawer: NavigationDrawerWidget(),
     appBar: AppBar(
       title: Text('Thông tin khách hàng'),
       centerTitle: true,
