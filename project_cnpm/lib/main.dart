@@ -72,7 +72,7 @@ class _MainPageState extends State<MainPage>{
   Widget build(BuildContext context) => Scaffold(
     drawer: NavigationDrawerWidget(),
     appBar: AppBar(
-      title: Text(MyApp.appTitle),
+      title: Text(NavigationDrawerWidget.appTitle),
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
   );
