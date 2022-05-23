@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/trip_manager.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
@@ -105,7 +106,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => MyApp(),
-
+        ));
         break;
     }
   }
