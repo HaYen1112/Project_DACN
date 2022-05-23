@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
-class login extends StatelessWidget{
+class Login extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -14,27 +14,26 @@ class login extends StatelessWidget{
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 140,
+                    height: 10,
                   ),
                   Image.asset('xe.png'),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 40, 0, 6),
-                    child: Text(
-                      "Welcome back!",
-                      style: TextStyle(fontSize: 22, color: Color(0xff333333)),
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 6),
+                    child: Text("Welcome back!",
+                      style: TextStyle(fontSize: 14, color: Color(0xff333333)),
                     ),
                   ),
-                  Text(
-                      "Login to continue using TicketBook",
-                    style: TextStyle(fontSize: 22, color: Color(0xff333333) ),
+                  Text("Login to continue using TicketBook",
+                    style: TextStyle(fontSize: 14, color: Color(0xff333333) ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 145, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
                     child: TextField(
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                       decoration: InputDecoration(
                         labelText: "Email",
                         prefixIcon: Container(
+                          height: 30,
                           width: 50, child: Image.asset("ic_mail.png")),
                         border: OutlineInputBorder(
                           borderSide:
@@ -43,11 +42,12 @@ class login extends StatelessWidget{
                     ),
                   ),
                   TextField(
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    style: TextStyle(fontSize: 14, color: Colors.black),
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: "Password",
                       prefixIcon: Container(
+                        height: 30,
                         width: 50, child: Image.asset("ic_pass.png")),
                       border: OutlineInputBorder(
                         borderSide:
@@ -58,7 +58,7 @@ class login extends StatelessWidget{
                     constraints: BoxConstraints.loose(Size(double.infinity,30)),
                     alignment: AlignmentDirectional.centerEnd,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                       child: Text(
                         "Forgot password?",
                         style: TextStyle(fontSize: 16, color: Color(0xff606470)),
