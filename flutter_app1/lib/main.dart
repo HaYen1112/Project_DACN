@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -54,8 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 7.0),
-            child: Row(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 7.0),
+              child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _actionBtn("Thêm vé"),
