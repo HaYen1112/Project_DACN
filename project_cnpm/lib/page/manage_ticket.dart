@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/add_ticket_ad.dart';
@@ -31,6 +32,7 @@ class ManageTicket extends StatelessWidget {
               ),
             ),
           ),
+<<<<<<< Updated upstream
 
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
@@ -55,6 +57,31 @@ class ManageTicket extends StatelessWidget {
                   )
                   ),
 
+=======
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(child: Padding(padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0))),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                    padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20))
+                ),
+                        child: Text("Thêm vé", style: TextStyle(color: Colors.white, fontSize: 14, height: 0)),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context)=>AddTicketAdmin()
+                          ));
+                        },
+                      )
+                  )
+                  ),
+
+>>>>>>> Stashed changes
                   Expanded(child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
                       child: ElevatedButton(
@@ -64,10 +91,17 @@ class ManageTicket extends StatelessWidget {
                             backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
                             padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20))
                         ),
+<<<<<<< Updated upstream
 
                         child: Text("Xóa vé", style: TextStyle(color: Colors.white, fontSize: 14, height: 0)),
                         onPressed: () {},
 
+=======
+
+                        child: Text("Xóa vé", style: TextStyle(color: Colors.white, fontSize: 14, height: 0)),
+                        onPressed: () {},
+
+>>>>>>> Stashed changes
                       )
                   )
                   ),
