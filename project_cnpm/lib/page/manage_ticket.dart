@@ -1,5 +1,8 @@
+import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/page/add_ticket_ad.dart';
+import 'package:project_cnpm/page/edit_ticket_ad.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 class ManageTicket extends StatefulWidget {
@@ -7,8 +10,8 @@ class ManageTicket extends StatefulWidget {
   State<ManageTicket> createState() => _ManageTicketState();
 }
 class _ManageTicketState extends State<ManageTicket> {
+=======class ManageTicket extends StatelessWidget {
   final controller = TextEditingController();
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,34 +37,71 @@ class _ManageTicketState extends State<ManageTicket> {
               ),
             ),
           ),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 7.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _actionBtn("Thêm vé"),
-                _actionBtn("Xóa vé"),
-                _actionBtn("Cập nhật"),
-              ],
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  
+                  
+                  Expanded(child: Padding(padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0))),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                    padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20))
+                ),
+                        child: Text("Thêm vé", style: TextStyle(color: Colors.white, fontSize: 14, height: 0)),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context)=>AddTicketAdmin()
+                          ));
+                        },
+                      )
+                  )
+                  ),
+
+                  Expanded(child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0))),
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                            padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20))
+                        ),
+                        child: Text("Xóa vé", style: TextStyle(color: Colors.white, fontSize: 14, height: 0)),
+                        onPressed: () {},
+                      )
+                  )
+                  ),
+
+                  Expanded(child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0))),
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                            padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20))
+                        ),
+
+                        child: Text("Cập nhật", style: TextStyle(color: Colors.white, fontSize: 14, height: 0)),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                        builder: (context)=> EditTicketAdmin()
+                        ));
+                        },
+
+                      )
+                  )
+                  )
+                ]
+              ),
             ),
-          ),
         ],
-      ),
-
-    );
-  }
-  Widget _actionBtn(String type){
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-          color: Color.fromARGB(255, 0, 181, 227),
-
-          child: Text("$type", style: TextStyle(color: Colors.white, fontSize: 14, height: 3)),
-          onPressed: (){
-            print("$type");
-          },
-        ),
       ),
     );
   }
