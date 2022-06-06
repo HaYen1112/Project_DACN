@@ -6,7 +6,6 @@ class ManageTicket extends StatefulWidget {
   @override
   State<ManageTicket> createState() => _ManageTicketState();
 }
-
 class _ManageTicketState extends State<ManageTicket> {
   final controller = TextEditingController();
   
