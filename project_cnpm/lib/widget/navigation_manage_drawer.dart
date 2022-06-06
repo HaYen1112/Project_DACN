@@ -7,6 +7,9 @@ import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
 
+
+import '../page/Manager_trip.dart';
+
 class NavigationManageDrawerWidget extends StatelessWidget{
   static const appTitle = 'Quản lý';
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -95,7 +98,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => TripManager(),
+          builder: (context) => managerTrip(),
         ));
         break;
       case 2:
