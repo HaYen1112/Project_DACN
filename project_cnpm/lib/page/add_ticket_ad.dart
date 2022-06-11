@@ -1,7 +1,10 @@
-<<<<<<< Updated upstream
-=======
+
+
 import 'dart:html';
->>>>>>> Stashed changes
+
+
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
@@ -9,8 +12,7 @@ import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 class AddTicketAdmin extends StatelessWidget {
   final controller = TextEditingController();
-<<<<<<< Updated upstream
-=======
+
   List<String> departures = [
     'TP Hồ Chí Minh',
     'Bến Tre',
@@ -50,7 +52,7 @@ class AddTicketAdmin extends StatelessWidget {
   String? price = '100.000';
   String? time = '7:00';
 
->>>>>>> Stashed changes
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +64,7 @@ class AddTicketAdmin extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-<<<<<<< Updated upstream
+
           Container(
             margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
             child: TextField(
@@ -101,7 +103,7 @@ class AddTicketAdmin extends StatelessWidget {
                 ]
             ),
           ),
-=======
+
           Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)),
           Padding(
               padding:
@@ -335,13 +337,17 @@ class AddTicketAdmin extends StatelessWidget {
           //
           //       ]),
           // )
->>>>>>> Stashed changes
+
         ],
       ),
     );
   }
-<<<<<<< Updated upstream
+
 }
-=======
+
+
+
+
 }
->>>>>>> Stashed changes
+
+}
