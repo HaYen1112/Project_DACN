@@ -1,5 +1,8 @@
 
 import 'dart:html';
+
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
@@ -46,8 +49,7 @@ class EditTicketAdmin extends StatelessWidget {
   String? price = '100.000';
 
   // int idTicket = 001;
-
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationManageDrawerWidget(),
@@ -310,6 +312,12 @@ class EditTicketAdmin extends StatelessWidget {
       ),
     );
   }
+
+}
+
+
+
+}
 
 }
 

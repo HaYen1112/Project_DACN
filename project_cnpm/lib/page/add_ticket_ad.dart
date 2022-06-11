@@ -1,4 +1,5 @@
-
+import 'dart:html';
+import 'dart:html';
 import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,6 @@ class AddTicketAdmin extends StatelessWidget {
   String? seat = 'A01';
   String? price = '100.000';
   String? time = '7:00';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -347,4 +347,11 @@ class AddTicketAdmin extends StatelessWidget {
       ),
     );
   }
+ 
+}
+
+
+
+
+}
 }

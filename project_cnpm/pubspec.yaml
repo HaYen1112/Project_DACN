@@ -26,6 +26,7 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+
 dependencies:
   flutter:
     sdk: flutter
@@ -34,6 +35,11 @@ dependencies:
   firebase_analytics: ^9.1.8
   firebase_auth: ^3.3.18
   cloud_firestore: ^3.1.15
+
+
+  hexcolor: ^2.0.4
+  font_awesome_flutter: ^9.1.0
+  otp_text_field: ^1.1.1
 
 
   # The following adds the Cupertino Icons font to your application.
