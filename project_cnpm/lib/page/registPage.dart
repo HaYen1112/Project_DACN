@@ -70,23 +70,26 @@ class _RegisState extends State<Regis> {
                     ),
                   )
               ),
-              TextField(
-                  style: TextStyle(fontSize: 18, color: Colors.black45),
-                  decoration: InputDecoration(labelText: "Password",
-                    prefixIcon:  Container(
-                        width: 50, child: Image.asset("name")
-                    ),
-                    border:  OutlineInputBorder(
-                        borderSide:
-                        BorderSide(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(6))
-                    ),
-                  )
-              ),
-              Padding(padding: const EdgeInsets.fromLTRB(0, 80, 0, 20),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,20,0,20),
                 child: TextField(
                     style: TextStyle(fontSize: 18, color: Colors.black45),
-                    decoration: InputDecoration(labelText: "Name",
+                    decoration: InputDecoration(labelText: "Password",
+                      prefixIcon:  Container(
+                          width: 50, child: Image.asset("name")
+                      ),
+                      border:  OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(6))
+                      ),
+                    )
+                ),
+              ),
+              Padding(padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+                child: TextField(
+                    style: TextStyle(fontSize: 18, color: Colors.black45),
+                    decoration: InputDecoration(labelText: "Email",
                       prefixIcon:  Container(
                           width: 50, child: Image.asset("name")
                       ),

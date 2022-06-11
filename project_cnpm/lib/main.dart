@@ -4,6 +4,7 @@ import 'package:project_cnpm/widget/navigation_drawer.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_cnpm/page/login.dart';
+import 'package:project_cnpm/page/registPage.dart';
 
 
 void main() async{
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
-      home: Login(),
+      home: Regis(),
     );
   }
 }
