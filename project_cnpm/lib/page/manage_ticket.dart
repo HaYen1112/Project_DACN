@@ -105,6 +105,7 @@ class _ManageTicketState extends State<ManageTicket> {
       ),
     );
   }
+
 }
 
   @override
@@ -112,3 +113,6 @@ class _ManageTicketState extends State<ManageTicket> {
     // TODO: implement build
     throw UnimplementedError();
   }
+
+}
+

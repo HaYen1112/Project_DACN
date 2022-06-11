@@ -1,7 +1,8 @@
 
-// ignore_for_file: prefer_const_constructors
+import 'dart:html';
 
 import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
@@ -48,6 +49,7 @@ class EditTicketAdmin extends StatelessWidget {
   String? price = '100.000';
 
   // int idTicket = 001;
+
 
   @override
   Widget build(BuildContext context) {
@@ -313,7 +315,12 @@ class EditTicketAdmin extends StatelessWidget {
     );
   }
 
+
 }
 
 
+
+}
+
+}
 
