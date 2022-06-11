@@ -49,9 +49,7 @@ class EditTicketAdmin extends StatelessWidget {
   String? price = '100.000';
 
   // int idTicket = 001;
-
-
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationManageDrawerWidget(),
@@ -314,7 +312,6 @@ class EditTicketAdmin extends StatelessWidget {
       ),
     );
   }
-
 
 }
 

@@ -1,10 +1,6 @@
-
-
 import 'dart:html';
-
-
 import 'dart:html';
-
+import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
@@ -51,8 +47,6 @@ class AddTicketAdmin extends StatelessWidget {
   String? seat = 'A01';
   String? price = '100.000';
   String? time = '7:00';
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,25 +75,30 @@ class AddTicketAdmin extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(
+                vertical: 0.0, horizontal: 10.0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                        style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0))),
-                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
-                            padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(10))
-                        ),
+                    style: ButtonStyle(shape: MaterialStateProperty.all<
+                        RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0))),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.orangeAccent),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(10))
+                    ),
 
-                        child: Text("Quay lại", style: TextStyle(color: Colors.white, fontSize: 12, height: 0)),
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context)=>ManageTicket()
-                          ));
-                        },
-                      )
+                    child: Text("Quay lại", style: TextStyle(
+                        color: Colors.white, fontSize: 12, height: 0)),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => ManageTicket()
+                      ));
+                    },
+                  )
                 ]
             ),
           ),
@@ -107,151 +106,158 @@ class AddTicketAdmin extends StatelessWidget {
           Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)),
           Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Container(
-                  // margin: EdgeInsets.all(16),
-                  // padding: const EdgeInsets.symmetric(
-                  //     vertical: 4.0, horizontal: 12.0),
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.grey, width: 1),
-                  //     borderRadius: BorderRadius.circular(15)),
-                  // child: DropdownButtonHideUnderline(
+                // margin: EdgeInsets.all(16),
+                // padding: const EdgeInsets.symmetric(
+                //     vertical: 4.0, horizontal: 12.0),
+                // decoration: BoxDecoration(
+                //     border: Border.all(color: Colors.grey, width: 1),
+                //     borderRadius: BorderRadius.circular(15)),
+                // child: DropdownButtonHideUnderline(
 
                   child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                           labelText: "Điểm khởi hành:",
                           enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
+                              BorderSide(color: Colors.grey, width: 0),
                               borderRadius: BorderRadius.circular(15))),
                       value: selectedValue,
                       items: departures
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
+                          .map((item) =>
+                          DropdownMenuItem<String>(
+                            value: item,
+                            child:
+                            Text(item, style: TextStyle(fontSize: 18)),
+                          ))
                           .toList(),
                       onChanged: (item) => selectedValue = item))),
           Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Container(
                   child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                           labelText: "Điểm đến:",
                           enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
+                              BorderSide(color: Colors.grey, width: 0),
                               borderRadius: BorderRadius.circular(15))),
                       value: selectedValue2,
                       items: departures
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
+                          .map((item) =>
+                          DropdownMenuItem<String>(
+                            value: item,
+                            child:
+                            Text(item, style: TextStyle(fontSize: 18)),
+                          ))
                           .toList(),
                       onChanged: (item) => selectedValue2 = item))),
 
           Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Container(
                   child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                           labelText: "Giờ khởi hành:",
                           enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
+                              BorderSide(color: Colors.grey, width: 0),
                               borderRadius: BorderRadius.circular(15))),
                       value: time,
                       items: times
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
+                          .map((item) =>
+                          DropdownMenuItem<String>(
+                            value: item,
+                            child:
+                            Text(item, style: TextStyle(fontSize: 18)),
+                          ))
                           .toList(),
                       onChanged: (item) => time = item))),
 
           Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Container(
                   child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                           labelText: "Loại vé:",
                           enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
+                              BorderSide(color: Colors.grey, width: 0),
                               borderRadius: BorderRadius.circular(15))),
                       value: type,
                       items: types
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
+                          .map((item) =>
+                          DropdownMenuItem<String>(
+                            value: item,
+                            child:
+                            Text(item, style: TextStyle(fontSize: 18)),
+                          ))
                           .toList(),
                       onChanged: (item) => type = item))),
           Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Container(
                   child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                           labelText: "Giá vé:",
                           enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
+                              BorderSide(color: Colors.grey, width: 0),
                               borderRadius: BorderRadius.circular(15))),
                       value: price,
                       items: prices
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
+                          .map((item) =>
+                          DropdownMenuItem<String>(
+                            value: item,
+                            child:
+                            Text(item, style: TextStyle(fontSize: 18)),
+                          ))
                           .toList(),
                       onChanged: (item) => price = item))),
 
           Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Container(
                   child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                           labelText: "Số ghế:",
                           enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
+                              BorderSide(color: Colors.grey, width: 0),
                               borderRadius: BorderRadius.circular(15))),
                       value: seat,
                       items: seats
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
+                          .map((item) =>
+                          DropdownMenuItem<String>(
+                            value: item,
+                            child:
+                            Text(item, style: TextStyle(fontSize: 18)),
+                          ))
                           .toList(),
                       onChanged: (item) => seat = item))),
 
           Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Container(
                   child: TextField(
-                decoration: InputDecoration(
-                    labelText: "Số xe...",
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0),
-                        borderRadius: BorderRadius.circular(15))),
-              ))),
+                    decoration: InputDecoration(
+                        labelText: "Số xe...",
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.grey, width: 0),
+                            borderRadius: BorderRadius.circular(15))),
+                  ))),
 
           Padding(
             padding:
-                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 50.0),
+            const EdgeInsets.symmetric(vertical: 0.0, horizontal: 50.0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -262,13 +268,13 @@ class AddTicketAdmin extends StatelessWidget {
                           child: ElevatedButton(
                             style: ButtonStyle(
                                 shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(30.0))),
+                                        BorderRadius.circular(30.0))),
                                 backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.orangeAccent),
+                                MaterialStateProperty.all<Color>(
+                                    Colors.orangeAccent),
                                 padding: MaterialStateProperty.all<EdgeInsets>(
                                     EdgeInsets.all(20))),
                             child: Text("Hủy",
@@ -290,13 +296,13 @@ class AddTicketAdmin extends StatelessWidget {
                           child: ElevatedButton(
                             style: ButtonStyle(
                                 shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(30.0))),
+                                        BorderRadius.circular(30.0))),
                                 backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.orangeAccent),
+                                MaterialStateProperty.all<Color>(
+                                    Colors.orangeAccent),
                                 padding: MaterialStateProperty.all<EdgeInsets>(
                                     EdgeInsets.all(20))),
                             child: Text("Lưu",
@@ -337,17 +343,15 @@ class AddTicketAdmin extends StatelessWidget {
           //
           //       ]),
           // )
-
         ],
       ),
     );
   }
-
+ 
 }
 
 
 
 
 }
-
 }
