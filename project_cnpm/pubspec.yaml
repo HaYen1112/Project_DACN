@@ -35,12 +35,10 @@ dependencies:
   firebase_analytics: ^9.1.8
   firebase_auth: ^3.3.18
   cloud_firestore: ^3.1.15
-
-
-  hexcolor: ^2.0.4
-  font_awesome_flutter: ^9.1.0
+  hexcolor: ^2.0.7
+  font_awesome_flutter: ^10.1.0
   otp_text_field: ^1.1.1
-
+  flutter_svg: ^0.19.1 #it helps us to use SVG
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -50,6 +48,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

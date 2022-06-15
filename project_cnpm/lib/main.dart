@@ -1,7 +1,9 @@
+// @dart=2.9
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:project_cnpm/page/registration_page.dart';
+import 'package:project_cnpm/page/searchCreen.dart';
 
 
 import 'package:project_cnpm/widget/navigation_drawer.dart';
@@ -20,10 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
-
-      home: RegistrationPage(),
-
-      home: Login(),
+      home: SearchCreen(),
     );
   }
 }

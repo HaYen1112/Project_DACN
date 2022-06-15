@@ -114,5 +114,3 @@ class _ManageTicketState extends State<ManageTicket> {
     throw UnimplementedError();
   }
 
-}
-
