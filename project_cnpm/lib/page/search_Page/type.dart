@@ -6,7 +6,7 @@ class TypeOfTicker extends StatefulWidget {
 }
 
 class _TypeOfTickerState extends State<TypeOfTicker> {
-  int _set = 1;
+  int? _set = 1;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,12 +19,12 @@ class _TypeOfTickerState extends State<TypeOfTicker> {
             width: 250,
             child: ListTile(
               title: const Text("Một chiều"),
-              leading: Radio(
+              leading: Radio<int>(
                 value: 1,
                 groupValue: _set,
                 onChanged: (newValue){
                   setState((){
-                    // _set = newValue;
+                    _set = newValue;
                   });
                 },
               ),
@@ -47,12 +47,12 @@ class _TypeOfTickerState extends State<TypeOfTicker> {
               padding: const EdgeInsets.fromLTRB(40,0,0,0),
               child: ListTile(
                 title: const Text("Khứ hồi"),
-                leading: Radio(
+                leading: Radio<int>(
                   value: 2,
                   groupValue: _set,
                   onChanged: (newValue){
                     setState((){
-                      // _set = newValue;
+                      _set = newValue;
                     });
                   },
                 ),

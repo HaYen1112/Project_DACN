@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 import 'constants.dart';
+
 
 class FeaturedPlants extends StatelessWidget {
   const FeaturedPlants({
@@ -15,11 +15,11 @@ class FeaturedPlants extends StatelessWidget {
       child: Row(
         children: <Widget>[
           FeaturePlantCard(
-            image: "assets/images/nghiduongDanag.jpg",
+            image: 'nghiduongDanag.jpg',
             press: () {},
           ),
           FeaturePlantCard(
-            image: "assets/images/nghiduongDanag.jpg",
+            image: 'nghiduongDanag.jpg',
             press: () {},
           ),
         ],
@@ -29,13 +29,13 @@ class FeaturedPlants extends StatelessWidget {
 }
 
 class FeaturePlantCard extends StatelessWidget {
-
-  final String image;
-  
-
-  const FeaturePlantCard({Key? key, required this.image, required Null Function() press}) : super(key: key);
-
-  get press => null;
+  const FeaturePlantCard({
+    Key? key,
+    this.image,
+    this.press,
+  }) : super(key: key);
+  final String? image;
+  final VoidCallback? press;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class FeaturePlantCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage(image),
+            image: AssetImage(image!),
           ),
         ),
       ),

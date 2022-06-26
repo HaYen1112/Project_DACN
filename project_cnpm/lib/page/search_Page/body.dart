@@ -1,19 +1,17 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/page/componentSearch/headerOfSearch.dart';
-import 'package:project_cnpm/page/componentSearch/recomendsPlants.dart';
-import 'package:project_cnpm/page/componentSearch/titleWithMoreButton.dart';
+import 'package:project_cnpm/page/search_Page/recomend.dart';
+import 'package:project_cnpm/page/search_Page/titleWithMore.dart';
 
-import 'featuredPlants.dart';
+import 'featured.dart';
+import 'header.dart';
+
+
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
-
-
-
   @override
   Widget build(BuildContext context) {
+    // It will provie us total height  and width of our screen
     Size size = MediaQuery.of(context).size;
+    // it enable scrolling on small device
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,6 +27,3 @@ class Body extends StatelessWidget {
     );
   }
 }
-
-
-

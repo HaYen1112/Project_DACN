@@ -1,7 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-class NgayVe extends StatelessWidget {
+class NgayDi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -10,13 +8,13 @@ class NgayVe extends StatelessWidget {
       width: 100,
 
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Positioned(
             left: 0,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 8, 5),
-              child: Text("Ngày về",
+              padding: const EdgeInsets.fromLTRB(8, 0, 0, 5),
+              child: Text("Ngày đi",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15,
@@ -34,7 +32,7 @@ class NgayVe extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 30,
-                        color: Colors.grey,
+                        color: Colors.lightBlue,
                       ),
                     )
                 ),

@@ -1,18 +1,17 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
+
+
 class TitleWithMoreBtn extends StatelessWidget {
-
+  const TitleWithMoreBtn({
+    Key? key,
+    required this.title,
+    required this.press,
+  }) : super(key: key);
   final String title;
-
-  const TitleWithMoreBtn({Key? key, required this.title, required press}) : super(key: key);
-
-  get press => null;
-
-
+  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +25,12 @@ class TitleWithMoreBtn extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.lightGreenAccent,
+            color: Colors.blue,
+            onPressed: press,
             child: Text(
               "More",
               style: TextStyle(color: Colors.white),
             ),
-            onPressed: press,
           ),
         ],
       ),
@@ -41,7 +40,7 @@ class TitleWithMoreBtn extends StatelessWidget {
 
 class TitleWithCustomUnderline extends StatelessWidget {
   const TitleWithCustomUnderline({
-     Key? key,
+    Key? key,
     required this.text,
   }) : super(key: key);
 

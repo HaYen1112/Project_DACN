@@ -17,7 +17,7 @@ class RecomendsPlants extends StatelessWidget {
           Container(
 
             child: RecomendPlantCard(
-              image: "assets/images/nhatrang.jpg",
+              image: 'nhatrang.jpg',
               title: "Sài Gòn",
               country: "Đà Lạt",
               price: 280000,
@@ -34,7 +34,7 @@ class RecomendsPlants extends StatelessWidget {
           Container(
 
             child: RecomendPlantCard(
-              image: "assets/images/nhatrang.jpg",
+              image: 'nhatrang.jpg',
               title: "Sài Gòn",
               country: "Nha Trang",
               price: 235000,
@@ -51,7 +51,7 @@ class RecomendsPlants extends StatelessWidget {
           Container(
 
             child: RecomendPlantCard(
-              image: "assets/images/nhatrang.jpg",
+              image: 'nhatrang.jpg',
               title: "Sài Gòn",
               country: "Đà Nẵng",
               price: 390000,
@@ -65,16 +65,19 @@ class RecomendsPlants extends StatelessWidget {
 }
 
 class RecomendPlantCard extends StatelessWidget {
-  
+  const RecomendPlantCard({
+    Key? key,
+    this.image,
+    this.title,
+    this.country,
+    this.price,
+    this.press,
+  }) : super(key: key);
 
-  final String image, title, country;
-  final int price;
-  // final Function press;
+  final String? image, title, country;
+  final int? price;
+  final VoidCallback? press;
 
-  const RecomendPlantCard({Key? key, required this.image, required this.title, required this.country, required this.price, required Null Function() press,}) : super(key: key);
-
-  get press => null;
- 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -87,7 +90,7 @@ class RecomendPlantCard extends StatelessWidget {
       width: size.width * 0.4,
       child: Column(
         children: <Widget>[
-          Image.asset(image),
+          Image.asset(image!),
           GestureDetector(
             onTap: press,
             child: Container(

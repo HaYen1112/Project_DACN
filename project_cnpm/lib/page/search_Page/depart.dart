@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-class Destinate extends StatefulWidget {
+class Depart extends StatefulWidget {
 
   @override
-  State<Destinate> createState() => _DestinateState();
+  State<Depart> createState() => _DepartState();
 }
 
-class _DestinateState extends State<Destinate> {
+class _DepartState extends State<Depart> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
-  String country_id="";
+  String? _country_id ="TP Hồ Chí Minh";
   List<String> country = [
-    "America",
-    "Brazil",
-    "Canada",
-    "India",
-    "Mongalia",
-    "USA",
-    "China",
-    "Russia",
-    "Germany"
+    "TP Hồ Chí Minh",
+    "Nha Trang",
+    "Đà Lạt",
+    "Vũng Tàu",
+    "Cần Thơ",
+    "Huế",
+    "Đà Nẵng",
+    "Hà Nội",
+    "Hà Giang"
   ];
 
   @override
@@ -31,15 +31,15 @@ class _DestinateState extends State<Destinate> {
       color: Colors.white,
       width: 300,
       padding: EdgeInsets.all(0.5),
-      child: DropdownButton(
+      child: DropdownButton<String>(
         underline: SizedBox(),
         focusColor: Colors.green,
-        value: country_id,
+        value: _country_id,
         isExpanded: true,
-        hint: Text("Chọn điểm kết thúc"),
+        hint: Text("Chọn điểm khởi hành"),
         onChanged: (newValue){
           setState((){
-            // country_id = newValue;
+            _country_id = newValue;
           });
         },
         items: country.map((newValue){

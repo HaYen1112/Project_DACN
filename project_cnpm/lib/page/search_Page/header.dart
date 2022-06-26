@@ -1,20 +1,37 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:project_cnpm/page/componentSearch/typeOfType.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project_cnpm/page/search_Page/type.dart';
 
 import 'constants.dart';
+import 'date/dateDepart.dart';
+import 'date/dateReturn.dart';
 import 'depart.dart';
-import 'destination.dart';
-import 'ngayDi.dart';
-import 'ngayVe.dart';
+import 'destinate.dart';
+
+
+
 class HeaderWithSearchBox extends StatelessWidget {
-   HeaderWithSearchBox({Key? key,  required this.size}) : super(key: key);
-   final Size size;
+  HeaderWithSearchBox({
+    Key? key,
+    required this.size ,
+  }) : super(key: key);
+  VoidCallback? press;
+  final Size size;
 
-  get press => null;
-
+  String? country_id;
+  List<String> country = [
+    "America",
+    "Brazil",
+    "Canada",
+    "India",
+    "Mongalia",
+    "USA",
+    "China",
+    "Russia",
+    "Germany"
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +50,7 @@ class HeaderWithSearchBox extends StatelessWidget {
             decoration: BoxDecoration(
               color: kPrimaryColor,
               image: DecorationImage(
-                image: AssetImage("img.png"),
+                image: AssetImage('bus.png'),
                 fit: BoxFit.cover,
               ),
               boxShadow: [
@@ -49,12 +66,16 @@ class HeaderWithSearchBox extends StatelessWidget {
               // ),
             ),
             child: Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Text(
-                  'TÌM TUYẾN XE'.toUpperCase(),
+                  'TÌM TUYẾN XE',
                   style: TextStyle(
-                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
                   ),
+                  // style: Theme.of(context).textTheme.headline5.copyWith(
+                  //     color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
                 // Image.asset("assets/images/logo.png")
@@ -71,6 +92,7 @@ class HeaderWithSearchBox extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
               height: 108,
 
+
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -85,20 +107,23 @@ class HeaderWithSearchBox extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0.8, 0.8, 0.8, 2),
+                    padding: const EdgeInsets.fromLTRB(10, 0.8, 0.8, 2),
                     child: Container(
-                        width: 350,
+                        width: 320,
                         child: Depart()
                     ),
                   ),
                   Container(
                     color: Colors.grey,
                     height: 1,
-                    width: 350,
+                    width: 320,
                   ),
-                  Container(
-                      width: 350,
-                      child: Destinate()
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10,0,0,0),
+                    child: Container(
+                        width: 320,
+                        child: Destinate()
+                    ),
                   ),
                 ],
               ),
@@ -156,7 +181,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                       Container(
                         height: 60,
                         width: 40,
-                        child: Image.asset("calendar.png"),
+                        child: Image.asset('calendar.png'),
                       ),
                       Expanded(
                         child: Container(
@@ -201,7 +226,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                 child: Container(
                     height: 70,
                     width: 70,
-                    child: Image.asset("vecto.png")),
+                    child: Image.asset('vecto.png')),
               ),
             ),
           ),
@@ -222,7 +247,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                 child: Container(
                     height: 80,
                     width: 80,
-                    child: Image.asset("re.png")),
+                    child: Image.asset('re.png')),
               ),
             ),
           ),
@@ -232,7 +257,7 @@ class HeaderWithSearchBox extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.lightGreenAccent,
+                color: Colors.blue,
                 borderRadius: BorderRadius.circular(20),
               ),
               margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -248,8 +273,8 @@ class HeaderWithSearchBox extends StatelessWidget {
                   child: Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                        child: SvgPicture.asset("search.svg"),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Image.asset('find.png'),
                       ),
                       Text(
                         "Tìm kiếm",
