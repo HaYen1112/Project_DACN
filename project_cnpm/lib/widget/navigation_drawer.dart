@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/page/search_page.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
@@ -18,6 +19,7 @@ class _MainPageState extends State<MainPageCustomer>{
       title: Text(NavigationDrawerWidget.appTitle),
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
+ body: SearchScreen(),
   );
 }
 

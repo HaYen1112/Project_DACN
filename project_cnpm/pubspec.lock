@@ -64,7 +64,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
-<<<<<<< HEAD
   convert:
     dependency: transitive
     description:
@@ -72,8 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-=======
->>>>>>> main
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -101,33 +98,21 @@ packages:
       name: firebase_analytics
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "9.1.10"
-=======
-    version: "9.1.9"
->>>>>>> main
   firebase_analytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_analytics_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "3.1.8"
-=======
-    version: "3.1.7"
->>>>>>> main
   firebase_analytics_web:
     dependency: transitive
     description:
       name: firebase_analytics_web
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "0.4.0+15"
-=======
-    version: "0.4.0+14"
->>>>>>> main
   firebase_auth:
     dependency: "direct main"
     description:
@@ -283,7 +268,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
-<<<<<<< HEAD
   path_drawing:
     dependency: transitive
     description:
@@ -305,8 +289,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
-=======
->>>>>>> main
   plugin_platform_interface:
     dependency: transitive
     description:

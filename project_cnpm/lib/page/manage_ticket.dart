@@ -1,4 +1,4 @@
-import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/add_ticket_ad.dart';
@@ -108,8 +108,3 @@ class _ManageTicketState extends State<ManageTicket> {
 
 }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> main
