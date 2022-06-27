@@ -13,6 +13,15 @@ import 'package:project_cnpm/page/registPage.dart';
 
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: FirebaseOptions (
+      apiKey: "AIzaSyAwVJhWKkce7_tcM_jvF0yRPqLswAtcUAc",
+      appId: "1:672973814345:android:526e294bfc7169aa80dd98",
+      messagingSenderId: "672973814345",
+      projectId: "ticketbook-5235d",
+    ) ,
+  );
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -22,22 +31,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
-      home: TicketDetail(),
+      home: Login(),
     );
   }
 }
 
-class MainPage extends StatefulWidget {
-  @override
-    _MainPageState createState() => _MainPageState();
-}
-class _MainPageState extends State<MainPage>{
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    drawer: NavigationDrawerWidget(),
-    appBar: AppBar(
-      title: Text(NavigationDrawerWidget.appTitle),
-      backgroundColor: Color.fromARGB(255, 248, 178, 29),
-    ),
-  );
-}
+

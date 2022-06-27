@@ -6,9 +6,22 @@ import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
-
-
 import '../page/Manager_trip.dart';
+
+class MainPageManager extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+class _MainPageState extends State<MainPageManager>{
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    drawer: NavigationManageDrawerWidget(),
+    appBar: AppBar(
+      title: Text(NavigationManageDrawerWidget.appTitle),
+      backgroundColor: Color.fromARGB(255, 248, 178, 29),
+    ),
+  );
+}
 
 class NavigationManageDrawerWidget extends StatelessWidget{
   static const appTitle = 'Quản lý';
