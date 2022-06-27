@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:project_cnpm/page/registration_page.dart';
@@ -24,16 +27,50 @@ void main() async{
   );
   runApp(MyApp());
 }
+final navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   static const appTitle = 'TicketBook';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
-      home: Login(),
+      home: MainPage(),
     );
   }
+}
+
+class MainPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    body: StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting){
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }else{
+          if (snapshot.hasError){
+            return Center(
+              child: Text('Dang nhap khong thanh cong'),
+            );
+          }else{
+            if (snapshot.hasData){
+              if (snapshot.data?.email == 'projectticketbook@gmail.com'){
+                return MainPageManager();
+              }else{
+                return MainPageCustomer();
+              }
+            }else{
+              return Login();
+            }
+          }
+        }
+      },
+    ),
+  );
 }
 
 

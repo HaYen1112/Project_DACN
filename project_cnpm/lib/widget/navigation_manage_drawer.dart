@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/trip_manager.dart';
@@ -28,8 +29,9 @@ class NavigationManageDrawerWidget extends StatelessWidget{
   final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
   Widget build(BuildContext context) {
+    final users = FirebaseAuth.instance.currentUser;
     final name = 'Trương Văn Xinh';
-    final email = 'truongxinh425@gmail.com';
+    final email = users?.email;
     final urlImg = './img/hinhnen2.png';
     return Drawer(
       child:Container(
@@ -39,7 +41,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
             buildHeader(
                 urlImage: urlImg,
                 name: name,
-                email: email,
+                email: email!,
                 onClicked: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => UserPage(
                       name: name,
@@ -77,7 +79,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
                   buildMenuItem(
                     text: 'Đăng xuất',
                     icon: Icons.add_to_home_screen,
-                    onClicked: () => selectedItem(context, 3),
+                    onClicked: () => FirebaseAuth.instance.signOut(),
                   ),
                 ],
               ),
@@ -119,11 +121,11 @@ class NavigationManageDrawerWidget extends StatelessWidget{
           builder: (context) => ManageTicket(),
         ));
         break;
-      case 3:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => MyApp(),
-        ));
-        break;
+      // case 3:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => MyApp(),
+      //   ));
+      //   break;
     }
   }
 
