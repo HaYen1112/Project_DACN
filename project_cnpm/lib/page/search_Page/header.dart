@@ -70,7 +70,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                 Text(
                   'TÌM TUYẾN XE',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color.fromRGBO(14, 75, 231, 1.0),
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
