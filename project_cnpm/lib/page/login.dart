@@ -1,8 +1,25 @@
+
+import 'dart:js';
+
+import 'package:path/path.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/DAO/Users.dart';
+import 'package:project_cnpm/main.dart';
+import 'package:project_cnpm/page/registration_page.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
+import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 class Login extends StatelessWidget{
+  final controllerEmail = TextEditingController();
+  final controllerPW = TextEditingController();
+  @override
+  void dispose() {
+    controllerPW.dispose();
+    controllerEmail.dispose();
+  }
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -29,6 +46,7 @@ class Login extends StatelessWidget{
                   Padding(
                       padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
                     child: TextField(
+                      controller: controllerEmail,
                       style: TextStyle(fontSize: 14, color: Colors.black),
                       decoration: InputDecoration(
                         labelText: "Email",
@@ -42,6 +60,7 @@ class Login extends StatelessWidget{
                     ),
                   ),
                   TextField(
+                    controller: controllerPW,
                     style: TextStyle(fontSize: 14, color: Colors.black),
                     obscureText: true,
                     decoration: InputDecoration(
@@ -71,7 +90,18 @@ class Login extends StatelessWidget{
                       width: double.infinity,
                       height: 52,
                       child:RaisedButton(
-                        onPressed: () {},
+                        onPressed: signIn,
+                        //     () {
+                        //   final email = controllerEmail.text;
+                        //   final password = controllerPW.text;
+                        //   checkUser(email: email, password: password);
+                        //   if (email == '1') {
+                        //     Navigator.push(context, MaterialPageRoute(builder: (context) => MainPageCustomer()));
+                        //   }else{
+                        //     Navigator.push(context, MaterialPageRoute(builder: (context) => MainPageManager()));
+                        //   }
+                        // },
+
                         child: Text(
                           "Login",
                           style: TextStyle(color: Colors.white, fontSize: 18)),
@@ -89,9 +119,9 @@ class Login extends StatelessWidget{
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                                 ..onTap = (){
-                                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
+                                   Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
                                 },
-                            text: "Sign up for a new account",
+                            text: " Sign up for a new account",
                             style: TextStyle(
                               color: Color(0xff3277D8), fontSize: 16))
                         ]),
@@ -103,4 +133,29 @@ class Login extends StatelessWidget{
           ),
         );
       }
+
+  // Stream<List<Users>> readUsers() => FirebaseFirestore.instance
+  //     .collection('user')
+  //     .snapshots()
+  //     .map((event) =>
+  //         event.docs.map((doc) => Users.fromJson(doc.data())).toList());
+
+  Future checkUser({required String email, required String password}) async {
+    Stream<List<Users>> docUser = FirebaseFirestore.instance.collection('user')
+        .snapshots()
+        .map((event) => event.docs.map((doc) =>
+      Users.fromJson(doc.data())).toList());
+      docUser.toString();
+  }
+  Future signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: controllerEmail.text.trim(),
+          password: controllerPW.text.trim()
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+    navigatorKey.currentState!.popUntil((route) => true);
+  }
  }
