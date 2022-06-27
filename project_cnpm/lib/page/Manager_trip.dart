@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/page/AddTicket.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 import '../page/manage_ticket.dart';
@@ -30,6 +32,19 @@ class _managerTripState extends State<managerTrip> {
         title: Text('Quản lý chuyến đi'),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 248, 178, 29),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+        onPressed: () => {
+          TextSpan(
+          recognizer: TapGestureRecognizer()
+          ..onTap = (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTicket()));
+          },
+          )
+        },
       ),
       body: SafeArea(
         child: Container(
