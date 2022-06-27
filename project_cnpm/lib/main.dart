@@ -1,11 +1,21 @@
+<<<<<<< HEAD
+// @dart=2.9
+=======
 import 'dart:html';
 
+>>>>>>> main
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:project_cnpm/page/registration_page.dart';
+<<<<<<< HEAD
+import 'package:project_cnpm/page/search_page.dart';
 import 'package:project_cnpm/page/ticketDetail.dart';
+import 'package:project_cnpm/page/user_page.dart';
+=======
+import 'package:project_cnpm/page/ticketDetail.dart';
+>>>>>>> main
 
 
 import 'package:project_cnpm/widget/navigation_drawer.dart';
@@ -36,7 +46,11 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
+<<<<<<< HEAD
+      home: SearchScreen(),
+=======
       home: MainPage(),
+>>>>>>> main
     );
   }
 }

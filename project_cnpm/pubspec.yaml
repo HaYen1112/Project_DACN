@@ -49,6 +49,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
+  flutter_svg: ^0.19.1
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -72,6 +74,14 @@ flutter:
     - xe.png
     - ic_mail.png
     - ic_pass.png
+    - vecto.png
+    - nhatrang.jpg
+    - re.png
+    - search.svg
+    - calendar.png
+    - nghiduongDanag.jpg
+    - bus.png
+    - find.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
