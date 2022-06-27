@@ -108,9 +108,5 @@ class _ManageTicketState extends State<ManageTicket> {
 
 }
 
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
+
 
