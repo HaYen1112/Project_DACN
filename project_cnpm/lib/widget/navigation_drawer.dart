@@ -5,6 +5,22 @@ import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
 
+class MainPageCustomer extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+class _MainPageState extends State<MainPageCustomer>{
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    drawer: NavigationDrawerWidget(),
+    appBar: AppBar(
+      title: Text(NavigationDrawerWidget.appTitle),
+      backgroundColor: Color.fromARGB(255, 248, 178, 29),
+    ),
+  );
+}
+
+
 class NavigationDrawerWidget extends StatelessWidget{
   static const appTitle = 'Ứng dụng đặt vé xe';
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -103,7 +119,7 @@ class NavigationDrawerWidget extends StatelessWidget{
         break;
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ViewTicket(),
+          builder: (context) => MyApp(),
         ));
         break;
     }
