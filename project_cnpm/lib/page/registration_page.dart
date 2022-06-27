@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -81,21 +82,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                         SizedBox(height: 30,),
                         Container(
                           child: TextFormField(
-                            decoration: ThemeHelper().textInputDecoration('First Name', 'Enter your first name'),
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 30,),
-                        Container(
-                          child: TextFormField(
-                            decoration: ThemeHelper().textInputDecoration('Last Name', 'Enter your last name'),
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            decoration: ThemeHelper().textInputDecoration("E-mail address", "Enter your email"),
+                            decoration: ThemeHelper().textInputDecoration('E-mail address', 'Enter your email'),
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
                               if(!(val!.isEmpty) && !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$").hasMatch(val)){
@@ -103,6 +90,13 @@ class _RegistrationPageState extends State<RegistrationPage>{
                               }
                               return null;
                             },
+                          ),
+                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                        ),
+                        SizedBox(height: 30,),
+                        Container(
+                          child: TextFormField(
+                            decoration: ThemeHelper().textInputDecoration('User Name', 'Enter your user name'),
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
@@ -201,6 +195,27 @@ class _RegistrationPageState extends State<RegistrationPage>{
                               }
                             },
                           ),
+                        ),
+                        SizedBox(height: 30.0),
+                        // Text( "Do you have an accout?",  style: TextStyle(color: Colors.grey),),
+                        // Text("Login"),
+                        Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: RichText(
+                              text: TextSpan(
+                                  text: "Do you have an account?",
+                                  style: TextStyle(color: Color(0xff606470), fontSize: 16),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = (){
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                                          },
+                                        text: " Sign up",
+                                        style: TextStyle(
+                                            color: Color(0xff3277D8), fontSize: 16))
+                                  ]),
+                            )
                         ),
                         SizedBox(height: 30.0),
                         Text("Or create account using social media",  style: TextStyle(color: Colors.grey),),

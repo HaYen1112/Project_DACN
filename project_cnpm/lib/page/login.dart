@@ -108,7 +108,7 @@ class Login extends StatelessWidget{
                                 ..onTap = (){
                                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
                                 },
-                            text: "Sign up for a new account",
+                            text: " Sign up for a new account",
                             style: TextStyle(
                               color: Color(0xff3277D8), fontSize: 16))
                         ]),
