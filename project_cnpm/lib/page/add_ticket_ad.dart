@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-import 'dart:html';
->>>>>>> Stashed changes
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
@@ -9,8 +5,8 @@ import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 class AddTicketAdmin extends StatelessWidget {
   final controller = TextEditingController();
-<<<<<<< Updated upstream
-=======
+  int _currentIndex = 0;
+
   List<String> departures = [
     'TP Hồ Chí Minh',
     'Bến Tre',
@@ -50,7 +46,6 @@ class AddTicketAdmin extends StatelessWidget {
   String? price = '100.000';
   String? time = '7:00';
 
->>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,288 +55,333 @@ class AddTicketAdmin extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 248, 178, 29),
       ),
-      body: Column(
-        children: <Widget>[
-<<<<<<< Updated upstream
-          Container(
-            margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-            child: TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: 'Mã Vé',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(color: Colors.grey)
-                  )
+      body: Container(
+        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+        constraints: BoxConstraints.expand(),
+        color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                child: TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.search),
+                      hintText: 'Mã Vé',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: Colors.grey))),
+                ),
               ),
-            ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                        style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0))),
-                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
-                            padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(10))
-                        ),
-
-                        child: Text("Quay lại", style: TextStyle(color: Colors.white, fontSize: 12, height: 0)),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0))),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.orangeAccent),
+                            padding: MaterialStateProperty.all<EdgeInsets>(
+                                EdgeInsets.all(10))),
+                        child: Text("Quay lại",
+                            style: TextStyle(
+                                color: Colors.white, fontSize: 12, height: 0)),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context)=>ManageTicket()
-                          ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ManageTicket()));
                         },
                       )
-                ]
-            ),
+                    ]),
+              ),
+              Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      // margin: EdgeInsets.all(16),
+                      // padding: const EdgeInsets.symmetric(
+                      //     vertical: 4.0, horizontal: 12.0),
+                      // decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.grey, width: 1),
+                      //     borderRadius: BorderRadius.circular(15)),
+                      // child: DropdownButtonHideUnderline(
+
+                      child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                              labelText: "Điểm khởi hành:",
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 0),
+                                  borderRadius: BorderRadius.circular(15))),
+                          value: selectedValue,
+                          items: departures
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(item,
+                                        style: TextStyle(fontSize: 18)),
+                                  ))
+                              .toList(),
+                          onChanged: (item) => selectedValue = item))),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                              labelText: "Điểm đến:",
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 0),
+                                  borderRadius: BorderRadius.circular(15))),
+                          value: selectedValue2,
+                          items: departures
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(item,
+                                        style: TextStyle(fontSize: 18)),
+                                  ))
+                              .toList(),
+                          onChanged: (item) => selectedValue2 = item))),
+
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      child: TextField(
+                        decoration: InputDecoration(
+                            labelText: "Ngày khởi hành...",
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.grey, width: 0),
+                                borderRadius: BorderRadius.circular(15))),
+                      ))),
+
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                              labelText: "Giờ khởi hành:",
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 0),
+                                  borderRadius: BorderRadius.circular(15))),
+                          value: time,
+                          items: times
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(item,
+                                        style: TextStyle(fontSize: 18)),
+                                  ))
+                              .toList(),
+                          onChanged: (item) => time = item))),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                              labelText: "Loại vé:",
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 0),
+                                  borderRadius: BorderRadius.circular(15))),
+                          value: type,
+                          items: types
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(item,
+                                        style: TextStyle(fontSize: 18)),
+                                  ))
+                              .toList(),
+                          onChanged: (item) => type = item))),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                              labelText: "Giá vé:",
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 0),
+                                  borderRadius: BorderRadius.circular(15))),
+                          value: price,
+                          items: prices
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(item,
+                                        style: TextStyle(fontSize: 18)),
+                                  ))
+                              .toList(),
+                          onChanged: (item) => price = item))),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                              labelText: "Số ghế:",
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 0),
+                                  borderRadius: BorderRadius.circular(15))),
+                          value: seat,
+                          items: seats
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(item,
+                                        style: TextStyle(fontSize: 18)),
+                                  ))
+                              .toList(),
+                          onChanged: (item) => seat = item))),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Container(
+                      child: TextField(
+                    decoration: InputDecoration(
+                        labelText: "Số xe...",
+                        enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 0),
+                            borderRadius: BorderRadius.circular(15))),
+                  ))),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 50.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                          child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0, horizontal: 50.0),
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0))),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.orangeAccent),
+                                    padding:
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            EdgeInsets.all(20))),
+                                child: Text("Hủy",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        height: 0)),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ManageTicket()));
+                                },
+                              ))),
+                      Expanded(
+                          child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0, horizontal: 50.0),
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0))),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.orangeAccent),
+                                    padding:
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            EdgeInsets.all(20))),
+                                child: Text("Lưu",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        height: 0)),
+                                onPressed: () {},
+                              )))
+                    ]),
+              )
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+              //   child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         ElevatedButton(
+              //           style: ButtonStyle(
+              //               shape:
+              //                   MaterialStateProperty.all<RoundedRectangleBorder>(
+              //                       RoundedRectangleBorder(
+              //                           borderRadius: BorderRadius.circular(30.0))),
+              //               backgroundColor: MaterialStateProperty.all<Color>(
+              //                   Colors.orangeAccent),
+              //               padding: MaterialStateProperty.all<EdgeInsets>(
+              //                   EdgeInsets.all(10))),
+              //           child: Text("Quay lại",
+              //               style: TextStyle(
+              //                   color: Colors.white, fontSize: 12, height: 0)),
+              //           onPressed: () {
+              //             Navigator.push(
+              //                 context,
+              //                 MaterialPageRoute(
+              //                     builder: (context) => ManageTicket()));
+              //           },
+              //         )
+              //
+              //       ]),
+              // )
+            ],
           ),
-=======
-          Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  // margin: EdgeInsets.all(16),
-                  // padding: const EdgeInsets.symmetric(
-                  //     vertical: 4.0, horizontal: 12.0),
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.grey, width: 1),
-                  //     borderRadius: BorderRadius.circular(15)),
-                  // child: DropdownButtonHideUnderline(
-
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Điểm khởi hành:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: selectedValue,
-                      items: departures
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => selectedValue = item))),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Điểm đến:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: selectedValue2,
-                      items: departures
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => selectedValue2 = item))),
-
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Giờ khởi hành:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: time,
-                      items: times
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => time = item))),
-
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Loại vé:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: type,
-                      items: types
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => type = item))),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Giá vé:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: price,
-                      items: prices
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => price = item))),
-
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Số ghế:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: seat,
-                      items: seats
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => seat = item))),
-
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: TextField(
-                decoration: InputDecoration(
-                    labelText: "Số xe...",
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0),
-                        borderRadius: BorderRadius.circular(15))),
-              ))),
-
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 50.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                      child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 0.0, horizontal: 50.0),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0))),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.orangeAccent),
-                                padding: MaterialStateProperty.all<EdgeInsets>(
-                                    EdgeInsets.all(20))),
-                            child: Text("Hủy",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    height: 0)),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ManageTicket()));
-                            },
-                          ))),
-                  Expanded(
-                      child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 0.0, horizontal: 50.0),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0))),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.orangeAccent),
-                                padding: MaterialStateProperty.all<EdgeInsets>(
-                                    EdgeInsets.all(20))),
-                            child: Text("Lưu",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    height: 0)),
-                            onPressed: () {},
-                          )))
-                ]),
-          ),
-          // Padding(
-          //   padding:
-          //       const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-          //   child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //       children: [
-          //         ElevatedButton(
-          //           style: ButtonStyle(
-          //               shape:
-          //                   MaterialStateProperty.all<RoundedRectangleBorder>(
-          //                       RoundedRectangleBorder(
-          //                           borderRadius: BorderRadius.circular(30.0))),
-          //               backgroundColor: MaterialStateProperty.all<Color>(
-          //                   Colors.orangeAccent),
-          //               padding: MaterialStateProperty.all<EdgeInsets>(
-          //                   EdgeInsets.all(10))),
-          //           child: Text("Quay lại",
-          //               style: TextStyle(
-          //                   color: Colors.white, fontSize: 12, height: 0)),
-          //           onPressed: () {
-          //             Navigator.push(
-          //                 context,
-          //                 MaterialPageRoute(
-          //                     builder: (context) => ManageTicket()));
-          //           },
-          //         )
-          //
-          //       ]),
-          // )
->>>>>>> Stashed changes
-        ],
+        ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      // items: [
+      // BottomNavigationBarItem(
+      // icon: Icon(Icons.home),
+      // title: Text('Home'),
+      // backgroundColor: Colors.amber
+      // ),
+      // BottomNavigationBarItem(
+      // icon: Icon(Icons.keyboard_backspace),
+      // title: Text('Back'),
+      // backgroundColor: Colors.green
+      // ),
+      // // BottomNavigationBarItem(
+      // //    icon: Icon(Icons.home),
+      // //    title: Text('Home'),
+      // //    backgroundColor: Color.blue
+      // //  ),
+      // // BottomNavigationBarItem(
+      // //    icon: Icon(Icons.home),
+      // //    title: Text('Home'),
+      // //    backgroundColor: Color.blue
+      // //  ),
+      // ],
+      // currentIndex: _currentIndex,
+      // onTap: (index){
+      // setState(() {
+      // _currentIndex = index;
+      // });
+      // },
+      // ),
     );
   }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes

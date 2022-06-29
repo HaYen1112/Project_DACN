@@ -1,11 +1,16 @@
-import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/add_ticket_ad.dart';
 import 'package:project_cnpm/page/edit_ticket_ad.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
-class ManageTicket extends StatelessWidget {
+class ManageTicket extends StatefulWidget {
+  @override
+  State<ManageTicket> createState() => _ManageTicketState();
+}
+class _ManageTicketState extends State<ManageTicket> {
+
   final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -100,4 +105,6 @@ class ManageTicket extends StatelessWidget {
       ),
     );
   }
+
 }
+

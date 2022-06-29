@@ -1,17 +1,37 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/page/search_page.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
+
+class MainPageCustomer extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+class _MainPageState extends State<MainPageCustomer>{
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    drawer: NavigationDrawerWidget(),
+    appBar: AppBar(
+      title: Text(NavigationDrawerWidget.appTitle),
+      backgroundColor: Color.fromARGB(255, 248, 178, 29),
+    ),
+ body: SearchScreen(),
+  );
+}
+
 
 class NavigationDrawerWidget extends StatelessWidget{
   static const appTitle = 'Ứng dụng đặt vé xe';
   final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
   Widget build(BuildContext context) {
+    final users = FirebaseAuth.instance.currentUser;
     final name = 'Trương Văn Xinh';
-    final email = 'truongxinh425@gmail.com';
+    final email = users?.email;
     final urlImg = './img/hinhnen2.png';
     return Drawer(
       child:Container(
@@ -21,7 +41,7 @@ class NavigationDrawerWidget extends StatelessWidget{
             buildHeader(
               urlImage: urlImg,
               name: name,
-              email: email,
+              email: email!,
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => UserPage(
                     name: name,
@@ -59,7 +79,7 @@ class NavigationDrawerWidget extends StatelessWidget{
                   buildMenuItem(
                     text: 'Đăng xuất',
                     icon: Icons.add_to_home_screen,
-                    onClicked: () => selectedItem(context, 3),
+                    onClicked: () => FirebaseAuth.instance.signOut(),
                   ),
                 ],
               ),
@@ -101,11 +121,11 @@ class NavigationDrawerWidget extends StatelessWidget{
           builder: (context) => Promotion(),
         ));
         break;
-      case 3:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ViewTicket(),
-        ));
-        break;
+      // case 3:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => MyApp(),
+      //   ));
+      //   break;
     }
   }
 

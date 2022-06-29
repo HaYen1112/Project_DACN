@@ -3,6 +3,4 @@ class TripModel{
    bool isSelected;
 
    TripModel(this.nameTrip, this.date, this.time, this.isSelected);
-
-
 }
