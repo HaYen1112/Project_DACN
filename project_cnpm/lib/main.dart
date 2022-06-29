@@ -8,6 +8,7 @@ import 'package:project_cnpm/page/login.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
 
 
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
