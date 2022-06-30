@@ -71,24 +71,7 @@ class EditTicketAdmin extends StatelessWidget {
                       prefixIcon: const Icon(Icons.search),
                       hintText: 'Mã Vé',
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(color: Colors.grey))),
-                ),
-      body: Column(
-        children: <Widget>[
-
-          Container(
-            margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-            child: TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: 'Mã Vé',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(color: Colors.grey)
-                  )
-              ),
+                          borderRadius: BorderRadius.circular(20),)))),
 
               Padding(
                 padding:
@@ -118,103 +101,6 @@ class EditTicketAdmin extends StatelessWidget {
                       )
                     ]),
               ),
-
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10.0),
-                  child: Text("Mã vé: 001",
-                      style: TextStyle(fontSize: 14, color: Colors.black))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Điểm khởi hành:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: selectedValue,
-                          items: departures
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => selectedValue = item))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Điểm đến:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: selectedValue2,
-                          items: departures
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => selectedValue2 = item))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Loại vé:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: type,
-                          items: types
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => type = item))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Giá vé:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: price,
-                          items: prices
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => price = item))),
-                    child: Text("Quay lại", style: TextStyle(color: Colors.white, fontSize: 12, height: 0)),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context)=>ManageTicket()
-                      ));
-                    },
-                  )
-                ]
-            ),
-          ),
-
           Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -464,11 +350,4 @@ class EditTicketAdmin extends StatelessWidget {
           //
           //       ]),
           // )
-
-        ],
-      ),
-    );
-  }
-
-}
 
