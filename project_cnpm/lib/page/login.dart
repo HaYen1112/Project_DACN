@@ -1,7 +1,4 @@
-
-import 'dart:js';
-
-import 'package:path/path.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,9 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/main.dart';
 import 'package:project_cnpm/page/registration_page.dart';
-import 'package:project_cnpm/widget/navigation_drawer.dart';
-import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
+import 'package:project_cnpm/page/utils.dart';
+
 class Login extends StatelessWidget{
+  final formKey = GlobalKey<FormState>();
   final controllerEmail = TextEditingController();
   final controllerPW = TextEditingController();
   @override
@@ -28,6 +26,8 @@ class Login extends StatelessWidget{
             constraints: BoxConstraints.expand(),
             color: Colors.white,
             child: SingleChildScrollView(
+              child: Form(
+              key: formKey,
               child: Column(
                 children: <Widget>[
                   SizedBox(
@@ -45,8 +45,13 @@ class Login extends StatelessWidget{
                   ),
                   Padding(
                       padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
-                    child: TextField(
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: controllerEmail,
+                      validator: (email) =>
+                      email != null && !EmailValidator.validate(email)
+                      ? 'Email khong hop le!'
+                      :null,
                       style: TextStyle(fontSize: 14, color: Colors.black),
                       decoration: InputDecoration(
                         labelText: "Email",
@@ -59,8 +64,13 @@ class Login extends StatelessWidget{
                           borderRadius: BorderRadius.all(Radius.circular(6)))) ,
                     ),
                   ),
-                  TextField(
+                  TextFormField(
                     controller: controllerPW,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) => value!=null && value.length<6
+                    ? 'Nhap mat khau lon hon hoac bang 6 ky tu'
+                    : null,
                     style: TextStyle(fontSize: 14, color: Colors.black),
                     obscureText: true,
                     decoration: InputDecoration(
@@ -128,7 +138,8 @@ class Login extends StatelessWidget{
                     )
                   )
                 ],
-              )
+              ),
+              ),
             ),
           ),
         );
@@ -148,6 +159,13 @@ class Login extends StatelessWidget{
       docUser.toString();
   }
   Future signIn() async {
+final isValid = formKey.currentState!.validate();
+if (!isValid) return;
+// showDialog(
+//     context: context,
+//     barrierDismissible: false,
+//     builder: (context) => Center(child: CircularProgressIndicator(),)
+// );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: controllerEmail.text.trim(),
@@ -155,6 +173,7 @@ class Login extends StatelessWidget{
       );
     } on FirebaseAuthException catch (e) {
       print(e);
+      Utils.showSnackBar(e.message);
     }
     navigatorKey.currentState!.popUntil((route) => true);
   }
