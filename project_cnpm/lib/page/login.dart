@@ -1,8 +1,23 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/widget/navigation_drawer.dart';
+import 'package:project_cnpm/DAO/Users.dart';
+import 'package:project_cnpm/main.dart';
+import 'package:project_cnpm/page/registration_page.dart';
+import 'package:project_cnpm/page/utils.dart';
+
 class Login extends StatelessWidget{
+  final formKey = GlobalKey<FormState>();
+  final controllerEmail = TextEditingController();
+  final controllerPW = TextEditingController();
+  @override
+  void dispose() {
+    controllerPW.dispose();
+    controllerEmail.dispose();
+  }
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -11,6 +26,8 @@ class Login extends StatelessWidget{
             constraints: BoxConstraints.expand(),
             color: Colors.white,
             child: SingleChildScrollView(
+              child: Form(
+              key: formKey,
               child: Column(
                 children: <Widget>[
                   SizedBox(
@@ -28,7 +45,13 @@ class Login extends StatelessWidget{
                   ),
                   Padding(
                       padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
-                    child: TextField(
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: controllerEmail,
+                      validator: (email) =>
+                      email != null && !EmailValidator.validate(email)
+                      ? 'Email khong hop le!'
+                      :null,
                       style: TextStyle(fontSize: 14, color: Colors.black),
                       decoration: InputDecoration(
                         labelText: "Email",
@@ -41,7 +64,13 @@ class Login extends StatelessWidget{
                           borderRadius: BorderRadius.all(Radius.circular(6)))) ,
                     ),
                   ),
-                  TextField(
+                  TextFormField(
+                    controller: controllerPW,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) => value!=null && value.length<6
+                    ? 'Nhap mat khau lon hon hoac bang 6 ky tu'
+                    : null,
                     style: TextStyle(fontSize: 14, color: Colors.black),
                     obscureText: true,
                     decoration: InputDecoration(
@@ -71,7 +100,18 @@ class Login extends StatelessWidget{
                       width: double.infinity,
                       height: 52,
                       child:RaisedButton(
-                        onPressed: () {},
+                        onPressed: signIn,
+                        //     () {
+                        //   final email = controllerEmail.text;
+                        //   final password = controllerPW.text;
+                        //   checkUser(email: email, password: password);
+                        //   if (email == '1') {
+                        //     Navigator.push(context, MaterialPageRoute(builder: (context) => MainPageCustomer()));
+                        //   }else{
+                        //     Navigator.push(context, MaterialPageRoute(builder: (context) => MainPageManager()));
+                        //   }
+                        // },
+
                         child: Text(
                           "Login",
                           style: TextStyle(color: Colors.white, fontSize: 18)),
@@ -89,18 +129,52 @@ class Login extends StatelessWidget{
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                                 ..onTap = (){
-                                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
+                                   Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
                                 },
-                            text: "Sign up for a new account",
+                            text: " Sign up for a new account",
                             style: TextStyle(
                               color: Color(0xff3277D8), fontSize: 16))
                         ]),
                     )
                   )
                 ],
-              )
+              ),
+              ),
             ),
           ),
         );
       }
+
+  // Stream<List<Users>> readUsers() => FirebaseFirestore.instance
+  //     .collection('user')
+  //     .snapshots()
+  //     .map((event) =>
+  //         event.docs.map((doc) => Users.fromJson(doc.data())).toList());
+
+  Future checkUser({required String email, required String password}) async {
+    Stream<List<Users>> docUser = FirebaseFirestore.instance.collection('user')
+        .snapshots()
+        .map((event) => event.docs.map((doc) =>
+      Users.fromJson(doc.data())).toList());
+      docUser.toString();
+  }
+  Future signIn() async {
+final isValid = formKey.currentState!.validate();
+if (!isValid) return;
+// showDialog(
+//     context: context,
+//     barrierDismissible: false,
+//     builder: (context) => Center(child: CircularProgressIndicator(),)
+// );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: controllerEmail.text.trim(),
+          password: controllerPW.text.trim()
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      Utils.showSnackBar(e.message);
+    }
+    navigatorKey.currentState!.popUntil((route) => true);
+  }
  }
