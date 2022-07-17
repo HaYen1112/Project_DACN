@@ -1,11 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/page/search_page.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
+
+import '../page/verify_email_page.dart';
 
 class MainPageCustomer extends StatefulWidget {
   @override
@@ -29,25 +33,32 @@ class NavigationDrawerWidget extends StatelessWidget{
   final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
   Widget build(BuildContext context) {
-    final users = FirebaseAuth.instance.currentUser;
-    final name = 'Trương Văn Xinh';
-    final email = users?.email;
+    final id = FirebaseAuth.instance.currentUser;
+    final email = id?.email;
     final urlImg = './img/hinhnen2.png';
     return Drawer(
       child:Container(
         color: Color.fromARGB(205, 215, 162, 3),
         child: ListView(
           children: <Widget>[
-            buildHeader(
-              urlImage: urlImg,
-              name: name,
-              email: email!,
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => UserPage(
-                    name: name,
-                    urlImage: urlImg,
-                  )
-              ))
+        FutureBuilder<Users?>(
+                future: readUser(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError){
+                    return Text('Something went wrong!');
+                  }else if (snapshot.hasData){
+                    final user = snapshot.data;
+                    final names = user!.name;
+                    return user == null
+                        ? Center(child: Text('No User'))
+                        :buildHeader(
+                        urlImage: urlImg,
+                        name: names,
+                        email: email!);
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+        }
             ),
             Container(
               padding: padding,
@@ -108,7 +119,7 @@ class NavigationDrawerWidget extends StatelessWidget{
     switch (index){
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => MyApp(),
+          builder: (context) => VerifyEmailPage(),
         ));
         break;
       case 1:
@@ -182,5 +193,15 @@ class NavigationDrawerWidget extends StatelessWidget{
         )
       ),
     );
+  }
+
+  Future<Users?> readUser() async {
+    final id = FirebaseAuth.instance.currentUser;
+    final docUser = FirebaseFirestore.instance.collection('users').doc(id!.email);
+    final snapshot = await docUser.get();
+
+    if(snapshot.exists){
+       return Users.fromJson(snapshot.data()!);
+    }
   }
 }
