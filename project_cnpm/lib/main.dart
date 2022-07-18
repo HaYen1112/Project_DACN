@@ -1,9 +1,8 @@
 // @dart=2.9
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:project_cnpm/page/AddTicket.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
-
 import 'package:project_cnpm/page/Manager_trip.dart';
 import 'package:project_cnpm/page/auth_page.dart';
 import 'package:project_cnpm/page/utils.dart';
@@ -39,9 +38,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
-
       home: managerTrip(),
-
     );
   }
 }

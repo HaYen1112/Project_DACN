@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
@@ -11,10 +10,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/main.dart';
 import 'package:project_cnpm/page/utils.dart';
-
 import '../widget/header_widget.dart';
 import '../widget/theme_helper.dart';
-import 'login.dart';
 
 class RegistrationPage extends StatefulWidget {
   final Function onClickedSignIn;

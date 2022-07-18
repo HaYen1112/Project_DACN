@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -181,15 +180,23 @@ class _LoginState extends State<Login> {
   Future signIn() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-    // showDialog(
-    //     context: context,
-    //     barrierDismissible: false,
-    //     builder: (context) => Center(child: CircularProgressIndicator(),)
-    // );
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(child: CircularProgressIndicator(),)
+    );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: controllerEmail.text.trim(),
           password: controllerPW.text.trim());
+      final userDoc = FirebaseFirestore.instance.collection('users').doc(controllerEmail.text.trim());
+      final snapshot = await userDoc.get();
+      Users user = Users.fromJson(snapshot.data()!);
+      if (user.password != controllerPW.text.trim()) {
+        user.updatePassword(controllerPW.text.trim());
+        userDoc.update(user.toJson());
+      }
+
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);

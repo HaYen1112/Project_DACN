@@ -1,7 +1,7 @@
 
 class Users {
   final String email;
-  final String password;
+  late String password;
   final String phone;
   final String name;
   final String address;
@@ -21,6 +21,9 @@ class Users {
       password: json['password'],
 
   );
+  void updatePassword(String pass){
+        password = pass;
+ }
   Map<String, dynamic> toJson() => {
     'name': name,
     'email': email,
