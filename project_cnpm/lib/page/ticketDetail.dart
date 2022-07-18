@@ -6,7 +6,7 @@ import 'dart:io';
 class TicketDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Color.fromRGBO(42, 106, 238, 1);
+    Color primaryColor = Color.fromARGB(255, 248, 178, 29);
     return Scaffold(
       body: Stack(
         children: [
@@ -361,13 +361,13 @@ class TicketDetail extends StatelessWidget {
                       children: [
                         FlatButton(
                           child: Text("Đặt vé mới", style: TextStyle(fontSize: 20.0),),
-                          color: Colors.redAccent,
+                          color: Color.fromARGB(255, 248, 178, 29),
                           textColor: Colors.white,
                           onPressed: () {},
                         ),
                         FlatButton(
                           child: Text("Hủy vé", style: TextStyle(fontSize: 20.0),),
-                          color: Colors.blueAccent,
+                          color: Colors.grey,
                           textColor: Colors.white,
                           onPressed: () {
                             showDialog(
@@ -376,7 +376,7 @@ class TicketDetail extends StatelessWidget {
                                   title: const Text("Xác nhận hủy vé?"),
                                   content: const Text("Thao tác này sẽ hủy vé đã đặt của bạn."),
                                   actions: [
-                                    TextButton(child: const Text("Hủy"),
+                                    TextButton(child: const Text("Hủy vé"),
                                       onPressed: (){Navigator.of(context).pop();
                                       },
                                     ),
@@ -395,7 +395,6 @@ class TicketDetail extends StatelessWidget {
                                               ],
                                             )
                                         );
-
                                       },
                                     )
                                   ],
