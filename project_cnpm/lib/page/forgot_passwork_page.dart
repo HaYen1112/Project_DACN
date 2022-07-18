@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/page/utils.dart';
 class ForgotPassworkPage extends StatefulWidget{
   @override

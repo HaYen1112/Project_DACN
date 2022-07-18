@@ -24,7 +24,8 @@ class ThemeHelper{
         blurRadius: 20,
         offset: const Offset(0, 5),
       )
-    ]);
+    ],
+    );
   }
 
   BoxDecoration buttonBoxDecoration(BuildContext context, [String color1 = "", String color2 = ""]) {

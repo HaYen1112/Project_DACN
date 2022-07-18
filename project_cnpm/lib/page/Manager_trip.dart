@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/AddTicket.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
-import '../page/manage_ticket.dart';
 import 'Manager_trip_model.dart';
 
 class managerTrip extends StatefulWidget{
@@ -38,13 +36,7 @@ class _managerTripState extends State<managerTrip> {
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
         onPressed: () => {
-          TextSpan(
-          recognizer: TapGestureRecognizer()
-          ..onTap = (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTicket()));
-          },
-          )
-        },
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AddTrip()))        },
       ),
       body: SafeArea(
         child: Container(

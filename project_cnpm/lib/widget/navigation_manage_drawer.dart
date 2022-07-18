@@ -30,7 +30,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final users = FirebaseAuth.instance.currentUser;
-    final name = 'Trương Văn Xinh';
+    final name = 'Ticket Book';
     final email = users?.email;
     final urlImg = './img/hinhnen2.png';
     return Drawer(
@@ -121,11 +121,6 @@ class NavigationManageDrawerWidget extends StatelessWidget{
           builder: (context) => ManageTicket(),
         ));
         break;
-      // case 3:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => MyApp(),
-      //   ));
-      //   break;
     }
   }
 
