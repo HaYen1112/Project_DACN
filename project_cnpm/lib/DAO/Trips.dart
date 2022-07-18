@@ -87,9 +87,6 @@ class Date {
     _ngay = value;
   }
 
-  @override
-  String toString() {
-    return 'Date{_ngay: $_ngay, _thang: $_thang, _nam: $_nam}';
-  }
+ 
 }
 
