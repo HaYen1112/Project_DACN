@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appTitle,
 
-      home: managerTrip(),
+      home: ListTrip(),
 
     );
   }
