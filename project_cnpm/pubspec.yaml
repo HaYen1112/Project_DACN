@@ -28,6 +28,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 
 dependencies:
+  email_validator: ^2.0.1
+  flutter_translate: ^4.0.2
   flutter:
     sdk: flutter
   english_words: ^4.0.0
