@@ -180,11 +180,11 @@ class _LoginState extends State<Login> {
   Future signIn() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => Center(child: CircularProgressIndicator(),)
-    );
+    // showDialog(
+    //     context: context,
+    //     barrierDismissible: false,
+    //     builder: (context) => Center(child: CircularProgressIndicator(),)
+    // );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: controllerEmail.text.trim(),

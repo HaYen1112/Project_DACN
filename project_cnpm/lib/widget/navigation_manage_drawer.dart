@@ -21,6 +21,7 @@ class _MainPageState extends State<MainPageManager>{
       title: Text(NavigationManageDrawerWidget.appTitle),
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
+
   );
 }
 
@@ -79,7 +80,9 @@ class NavigationManageDrawerWidget extends StatelessWidget{
                   buildMenuItem(
                     text: 'Đăng xuất',
                     icon: Icons.add_to_home_screen,
-                    onClicked: () => FirebaseAuth.instance.signOut(),
+                    onClicked: () {FirebaseAuth.instance.signOut();
+                    selectedItem(context, 3);
+                    },
                   ),
                 ],
               ),
@@ -119,6 +122,11 @@ class NavigationManageDrawerWidget extends StatelessWidget{
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ManageTicket(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MainPage(),
         ));
         break;
     }
