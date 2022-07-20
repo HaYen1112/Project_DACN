@@ -154,8 +154,8 @@ const DUMMY_TICKET = const[
   Ticket_book(
       id: '26',
       title: 'B 9',
-      status: 'Trống',
-      color: Colors.greenAccent
+      status: 'Đã đặt',
+      color: Colors.deepOrangeAccent
   ),
   Ticket_book(
       id: '27',
