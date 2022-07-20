@@ -1,6 +1,7 @@
-import 'dart:js';
-import 'package:flutter/material.dart';
+
 class Tickets {
+  late bool isSelect;
+  late String idTicket;
   final String startTime;
   final String endTime;
   final String date;
@@ -13,6 +14,7 @@ class Tickets {
 
 
   Tickets({
+    required this.idTicket,
     required this.startTime,
     required this.endTime,
     required this.date,
@@ -21,9 +23,11 @@ class Tickets {
     required this.price,
     required this.amountOfTime,
     required this.seatLocation,
-    required this.status
+    required this.status,
+    required this.isSelect,
   });
   static Tickets fromJson(Map<String, dynamic> json) => Tickets(
+    idTicket: json['idTicket'],
     startAddress: json['startAddress'],
     endAddress: json['endAddress'],
     date: json['date'],
@@ -33,8 +37,10 @@ class Tickets {
     amountOfTime: json['amountOfTime'],
     status: json['status'],
     seatLocation: json['seatLocation'],
+    isSelect: json['isSelect']
   );
   Map<String, dynamic> toJson() => {
+    'id': idTicket,
     'startAddress': startAddress,
     'endAddress': endAddress,
     'date': date,
@@ -43,7 +49,13 @@ class Tickets {
     'price': price,
     'amountOfTime': amountOfTime,
     'status':status,
-    'seatLocation': seatLocation
-
+    'seatLocation': seatLocation,
+    'isSelect': isSelect
   };
+   void setIdTicket(String id){
+    idTicket =id;
+  }
+  void setIsSelect(bool isSelect) {
+    this.isSelect=isSelect;
+  }
 }

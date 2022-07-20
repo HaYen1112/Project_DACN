@@ -90,7 +90,8 @@ class NavigationDrawerWidget extends StatelessWidget{
                   buildMenuItem(
                     text: 'Đăng xuất',
                     icon: Icons.add_to_home_screen,
-                    onClicked: () => FirebaseAuth.instance.signOut(),
+                    onClicked: () {FirebaseAuth.instance.signOut();
+                    selectedItem(context, 3);},
                   ),
                 ],
               ),
@@ -132,11 +133,11 @@ class NavigationDrawerWidget extends StatelessWidget{
           builder: (context) => Promotion(),
         ));
         break;
-      // case 3:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => MyApp(),
-      //   ));
-      //   break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MainPage(),
+        ));
+        break;
     }
   }
 

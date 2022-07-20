@@ -401,8 +401,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       ),
     );
   }
-
-
   Future register(Users user) async {
     showDialog(
         context: context,

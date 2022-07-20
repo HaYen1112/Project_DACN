@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,17 +11,50 @@ import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import '../widget/header_widget.dart';
 import '../widget/theme_helper.dart';
 
-class AddTrip extends StatefulWidget {
+class EditTrip extends StatefulWidget {
+  String? country_id1;
+  String? country_id2;
+  String? endT;
+  String? idTrip;
+  String? startT;
+  int? amountTicket;
+  int? priceTicket;
+  DateTime date;
+  TimeOfDay? timeS;
+  TimeOfDay? timeE;
+  EditTrip({
+    required this.idTrip,
+    required this.timeS,
+    required this.timeE,
+    required this.amountTicket,
+    required this.priceTicket,
+    required this.endT,
+    required this.startT,
+    required this.country_id1,
+    required this.country_id2,
+    required this.date,
+    Key? key,
+  }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _AddTripState();
+    return EditTripState(
+        amountTicket: amountTicket,
+        country_id1: country_id1,
+        country_id2: country_id2,
+        endT: endT,
+        priceTicket: priceTicket,
+        startT: startT,
+        date: date,
+        timeE: timeE,
+        timeS: timeS,
+        idTrip: idTrip);
   }
 }
 
-class _AddTripState extends State<AddTrip> {
+class EditTripState extends State<EditTrip> {
   final _formKey = GlobalKey<FormState>();
-  TimeOfDay timeS = TimeOfDay(hour: 0, minute: 0);
-  TimeOfDay timeE = TimeOfDay(hour: 0, minute: 0);
+  TimeOfDay? timeS;
+  TimeOfDay? timeE;
   final controllerStartAddress = TextEditingController();
   final controllerEndAddress = TextEditingController();
   final controllerStartTime = TextEditingController();
@@ -36,8 +68,25 @@ class _AddTripState extends State<AddTrip> {
     super.initState();
   }
 
-  String _country_id1 = "TP Hồ Chí Minh";
-  String _country_id2 = "An Giang";
+  String? idTrip;
+  DateTime? date;
+  String? country_id1;
+  String? country_id2;
+  String? endT;
+  String? startT;
+  int? amountTicket;
+  int? priceTicket;
+  EditTripState(
+      {required this.idTrip,
+      required this.timeS,
+      required this.timeE,
+      required this.amountTicket,
+      required this.priceTicket,
+      required this.endT,
+      required this.startT,
+      required this.country_id1,
+      required this.country_id2,
+      required this.date});
   List<String> country = [
     "TP Hồ Chí Minh",
     "Nha Trang",
@@ -50,18 +99,17 @@ class _AddTripState extends State<AddTrip> {
     "Hà Nội",
     "Hà Giang"
   ];
-  DateTime date = DateTime(2022, 7, 26);
   String amountOfTime = '';
   @override
   Widget build(BuildContext context) {
-    final hoursS = timeS.hour.toString().padLeft(2, '0');
-    final minutesS = timeS.minute.toString().padLeft(2, '0');
-    final hoursE = timeE.hour.toString().padLeft(2, '0');
-    final minutesE = timeE.minute.toString().padLeft(2, '0');
+    final hoursS = timeS?.hour.toString().padLeft(2, '0');
+    final minutesS = timeS?.minute.toString().padLeft(2, '0');
+    final hoursE = timeE?.hour.toString().padLeft(2, '0');
+    final minutesE = timeE?.minute.toString().padLeft(2, '0');
     return Scaffold(
-      drawer: NavigationManageDrawerWidget(),
+      //drawer: NavigationManageDrawerWidget(),
       appBar: AppBar(
-        title: Text('Thêm chuyến đi'),
+        title: Text('Sửa chuyến đi'),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 248, 178, 29),
       ),
@@ -106,14 +154,14 @@ class _AddTripState extends State<AddTrip> {
                                   size: 80.0,
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
-                                child: Icon(
-                                  Icons.add_circle,
-                                  color: Colors.grey.shade700,
-                                  size: 25.0,
-                                ),
-                              ),
+                              // Container(
+                              //   padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
+                              //   child: Icon(
+                              //     Icons.add_circle,
+                              //     color: Colors.grey.shade700,
+                              //     size: 25.0,
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
@@ -134,11 +182,11 @@ class _AddTripState extends State<AddTrip> {
                           child: DropdownButton<String>(
                             underline: SizedBox(),
                             style: TextStyle(fontSize: 14, color: Colors.black),
-                            value: _country_id1,
+                            value: country_id1,
                             isExpanded: true,
                             onChanged: (newValue) {
                               setState(() {
-                                this._country_id1 = newValue!;
+                                this.country_id1 = newValue!;
                               });
                             },
                             items: country.map((newValue) {
@@ -169,12 +217,12 @@ class _AddTripState extends State<AddTrip> {
                               fontSize: 14,
                               color: Colors.black,
                             ),
-                            value: _country_id2,
+                            value: country_id2,
                             isExpanded: true,
                             hint: Text('Chọn điểm kết thúc'),
                             onChanged: (newValue) {
                               setState(() {
-                                this._country_id2 = newValue!;
+                                this.country_id2 = newValue!;
                               });
                             },
                             items: country.map((newValue) {
@@ -212,7 +260,7 @@ class _AddTripState extends State<AddTrip> {
                         ElevatedButton(
                             onPressed: () async {
                               TimeOfDay? newTimeS = await showTimePicker(
-                                  context: context, initialTime: timeS);
+                                  context: context, initialTime: timeS!);
                               if (newTimeS == null) return;
                               setState(() {
                                 timeS = newTimeS;
@@ -238,11 +286,11 @@ class _AddTripState extends State<AddTrip> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(6)))),
                             validator: (time) {
-                              if (timeS.hour == timeE.hour) {
-                                if (timeS.minute > timeE.minute)
+                              if (timeS?.hour == timeE?.hour) {
+                                if ((timeS?.minute)! > (timeE?.minute)!)
                                   return "Chọn thời gian đến phải lớn hơn thời gian đi";
                               } else {
-                                if (timeS.hour > timeE.hour)
+                                if ((timeS?.hour)! > (timeE?.hour)!)
                                   return "Chọn thời gian đến phải lớn hơn thời gian đi";
                               }
                             },
@@ -253,7 +301,7 @@ class _AddTripState extends State<AddTrip> {
                         ElevatedButton(
                             onPressed: () async {
                               TimeOfDay? newTimeE = await showTimePicker(
-                                  context: context, initialTime: timeE);
+                                  context: context, initialTime: timeE!);
                               if (newTimeE == null) return;
                               setState(() {
                                 timeE = newTimeE;
@@ -272,8 +320,9 @@ class _AddTripState extends State<AddTrip> {
                             controller: controllerDate,
                             style: TextStyle(fontSize: 14, color: Colors.black),
                             decoration: InputDecoration(
-                                labelText:
-                                    "${date.year}/${date.month}/${date.day}",
+                                // labelText:
+                                hintText:
+                                    "${date?.year}/${date?.month}/${date?.day}",
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color(0xffCED0D2), width: 1),
@@ -287,7 +336,7 @@ class _AddTripState extends State<AddTrip> {
                             onPressed: () async {
                               DateTime? newDate = await showDatePicker(
                                 context: context,
-                                initialDate: date,
+                                initialDate: date!,
                                 firstDate: DateTime(1900),
                                 lastDate: DateTime(2100),
                               );
@@ -304,9 +353,15 @@ class _AddTripState extends State<AddTrip> {
                             controller: controllerQuantity,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
+                            validator: (value) {
+                              if (value != null) {
+                                amountTicket =
+                                    int.parse(controllerQuantity.text);
+                              }
+                            },
                             style: TextStyle(fontSize: 14, color: Colors.black),
                             decoration: InputDecoration(
-                                labelText: "Số lượng vé",
+                                labelText: '${amountTicket}',
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color(0xffCED0D2), width: 1),
@@ -319,11 +374,16 @@ class _AddTripState extends State<AddTrip> {
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
                             controller: controllerprice,
+                            validator: (value) {
+                              if (value != null) {
+                                priceTicket = int.parse(controllerprice.text);
+                              }
+                            },
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             style: TextStyle(fontSize: 14, color: Colors.black),
                             decoration: InputDecoration(
-                                labelText: "Giá vé",
+                                labelText: '${priceTicket}',
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color(0xffCED0D2), width: 1),
@@ -331,41 +391,87 @@ class _AddTripState extends State<AddTrip> {
                                         BorderRadius.all(Radius.circular(6)))),
                           ),
                         ),
-                        Container(
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 30, 0, 40),
-                              child: SizedBox(
-                                  width: double.infinity,
-                                  height: 52,
-                                  child: RaisedButton(
-                                    onPressed: () {
-                                      if(timeS.minute>timeE.minute){
-                                        this.amountOfTime = '${timeE.hour - timeS.hour-1}:${timeE.minute-timeS.minute+60}';
-                                      }else{
-                                        this.amountOfTime = '${timeE.hour - timeS.hour}:${timeE.minute-timeS.minute}';
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(30),
+                              child: ElevatedButton(
+                                  onPressed: () => {
+                                    deleteTrip(idTrip!)
+                                  },
+                                  child: Icon(
+                                    Icons.delete,
+                                    size: 50,
+                                    color: Colors.red,
+                                  )),
+                            ),
+                            Container(
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    late int? h;
+                                    if ((timeE?.hour)! < (timeS?.hour)!) {
+                                      h = ((timeE?.hour)! - (timeS?.hour)!);
+                                      if (h <= 12) {
+                                        h = h + 12;
+                                      } else
+                                        h = h + 24;
+                                    } else {
+                                      h = (timeE?.hour)! - (timeS?.hour)!;
+                                    }
+                                    final int m =
+                                        (timeE?.minute)! - (timeS?.minute)!;
+                                    if ((timeS?.minute)! > (timeE?.minute)!) {
+                                      this.amountOfTime =
+                                      '${h - 1}:${m + 60}';
+                                    } else {
+                                      if (m < 10) {
+                                        this.amountOfTime = '${h}:0${m}';
+                                      } else {
+                                        this.amountOfTime = '${h}:${m}';
                                       }
-                                      final trip = Trips(
-                                          startTime: "$hoursS:$minutesS",
-                                          endTime: "$hoursE:$minutesE",
-                                          date:
-                                              '${date.day}/${date.month}/${date.year}',
-                                          endAddress: this._country_id2,
-                                          startAddress: this._country_id1,
-                                          price:
-                                              int.parse(controllerprice.text),
-                                          quantityStatus: int.parse(
-                                              controllerQuantity.text));
-                                      createTrip(trip, this. amountOfTime);
-                                    },
-                                    child: Text("Add Trip",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 18)),
-                                    color: Colors.amber,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(6))),
-                                  ))),
+                                    }
+                                    final trip = Trips(
+                                      idTrip: idTrip!,
+                                      startTime: "$hoursS:$minutesS",
+                                      endTime: "$hoursE:$minutesE",
+                                      date:
+                                      '${date?.day}/${date?.month}/${date?.year}',
+                                      endAddress: country_id2!,
+                                      startAddress: country_id1!,
+                                      price: priceTicket!,
+                                      // int.parse(controllerprice.text),
+                                      quantityStatus: amountTicket!,
+                                      //int.parse(controllerQuantity.text),
+                                    );
+                                    createTrip(trip, this.amountOfTime);
+                                  },
+                                  child: Icon(
+                                    Icons.save,
+                                    size: 50,
+                                    color: Colors.amberAccent,
+                                  )),
+                            ),
+                          ],
                         ),
+                        // Container(
+                        //   child: Padding(
+                        //       padding: const EdgeInsets.fromLTRB(0, 30, 0, 40),
+                        //       child: SizedBox(
+                        //           width: double.infinity,
+                        //           height: 52,
+                        //           child: RaisedButton(
+                        //
+                        //             child: Text("Lưu chuyến đi",
+                        //                 style: TextStyle(
+                        //                     color: Colors.white, fontSize: 18)),
+                        //             color: Colors.amber,
+                        //             shape: RoundedRectangleBorder(
+                        //                 borderRadius: BorderRadius.all(
+                        //                     Radius.circular(6))),
+                        //           ))),
+                        // ),
                       ],
                     ),
                   ),
@@ -377,21 +483,47 @@ class _AddTripState extends State<AddTrip> {
       ),
     );
   }
-
+  Future deleteTrip(String idTrip) async {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+          child: CircularProgressIndicator(),
+        ));
+    final docTrip = FirebaseFirestore.instance.collection('trips').doc(idTrip);
+    try {
+      for (int i = 1; i <= 36; i++) {
+        final docTicket = FirebaseFirestore.instance
+            .collection('tickets')
+            .doc(docTrip.id + "${i}");
+        await docTicket.delete();
+      }
+      await docTrip.delete();
+    } on FirebaseException catch (e) {
+      print(e);
+      Utils.showSnackBar(e.message);
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  }
   Future createTrip(Trips trip, String amount) async {
     showDialog(
-        barrierDismissible: true,
+        barrierDismissible: false,
         context: context,
-        builder: (context) => Center(child: CircularProgressIndicator(),)
-    );
-    final docTrip = FirebaseFirestore.instance.collection('trips').doc();
+        builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            ));
+    final docTrip =
+        FirebaseFirestore.instance.collection('trips').doc(trip.idTrip);
     final json = trip.toJson();
-    String seat ='A';
+    String seat = 'A';
     try {
-      for(int i= 1; i<= 36; i++){
-        if (i==19) seat='B';
-        final docTicket = FirebaseFirestore.instance.collection('tickets').doc(docTrip.id+"${i}");
+      for (int i = 1; i <= 36; i++) {
+        if (i == 19) seat = 'B';
+        final docTicket = FirebaseFirestore.instance
+            .collection('tickets')
+            .doc(docTrip.id + "${i}");
         final newTicket = Tickets(
+            idTicket: docTicket.id,
             startTime: trip.startTime,
             endTime: trip.endTime,
             date: trip.date,
@@ -400,11 +532,12 @@ class _AddTripState extends State<AddTrip> {
             price: trip.price,
             amountOfTime: amount,
             seatLocation: '${seat}${i}',
-            status: 'Trống');
+            status: 'Trống',
+            isSelect: false);
         final jsons = newTicket.toJson();
-        await docTicket.set(jsons);
+        await docTicket.update(jsons);
       }
-      await docTrip.set(json);
+      await docTrip.update(json);
     } on FirebaseException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
@@ -412,4 +545,3 @@ class _AddTripState extends State<AddTrip> {
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
-
