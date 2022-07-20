@@ -432,12 +432,15 @@ class EditTripState extends State<EditTrip> {
                                         this.amountOfTime = '${h}:${m}';
                                       }
                                     }
+                                    late String days='${date?.day}';; late String month= '0${date?.month}';
+                                    if((date?.day)!<10) days ='0${date?.day}';
+                                    if((date?.month)!<10) month = '0${date?.month}';
                                     final trip = Trips(
                                       idTrip: idTrip!,
                                       startTime: "$hoursS:$minutesS",
                                       endTime: "$hoursE:$minutesE",
                                       date:
-                                      '${date?.day}/${date?.month}/${date?.year}',
+                                      '${days}/${month}/${date?.year}',
                                       endAddress: country_id2!,
                                       startAddress: country_id1!,
                                       price: priceTicket!,
@@ -455,23 +458,6 @@ class EditTripState extends State<EditTrip> {
                             ),
                           ],
                         ),
-                        // Container(
-                        //   child: Padding(
-                        //       padding: const EdgeInsets.fromLTRB(0, 30, 0, 40),
-                        //       child: SizedBox(
-                        //           width: double.infinity,
-                        //           height: 52,
-                        //           child: RaisedButton(
-                        //
-                        //             child: Text("Lưu chuyến đi",
-                        //                 style: TextStyle(
-                        //                     color: Colors.white, fontSize: 18)),
-                        //             color: Colors.amber,
-                        //             shape: RoundedRectangleBorder(
-                        //                 borderRadius: BorderRadius.all(
-                        //                     Radius.circular(6))),
-                        //           ))),
-                        // ),
                       ],
                     ),
                   ),

@@ -357,12 +357,16 @@ class _AddTripState extends State<AddTrip> {
                                           this.amountOfTime = '${h}:${m}';
                                         }
                                       }
+
+                                      late String days='${date.day}';; late String month= '0${date.month}';
+                                      if(date.day<10) days ='0${date.day}';
+                                      if(date.month<10) month = '0${date.month}';
                                       final trip = Trips(
                                            idTrip:"",
                                           startTime: "$hoursS:$minutesS",
                                           endTime: "$hoursE:$minutesE",
                                           date:
-                                              '${date.day}/${date.month}/${date.year}',
+                                              '${days}/${month}/${date.year}',
                                           endAddress: this._country_id2,
                                           startAddress: this._country_id1,
                                           price:

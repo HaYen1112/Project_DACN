@@ -107,8 +107,8 @@ class _managerTripState extends State<managerTrip> {
                                       int.parse(trip.startTime.substring(3)),
                                 ),
                                 date: DateTime(
-                                    int.parse(trip.date.substring(5)),
-                                    int.parse(trip.date.substring(3, 4)),
+                                    int.parse(trip.date.substring(6)),
+                                    int.parse(trip.date.substring(3, 5)),
                                     int.parse(trip.date.substring(0, 2))),
                               ))),
                   child: Icon(
