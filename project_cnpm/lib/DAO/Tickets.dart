@@ -27,7 +27,7 @@ class Tickets {
     required this.isSelect,
   });
   static Tickets fromJson(Map<String, dynamic> json) => Tickets(
-    idTicket: json['idTicket'],
+    idTicket: json['id'],
     startAddress: json['startAddress'],
     endAddress: json['endAddress'],
     date: json['date'],
