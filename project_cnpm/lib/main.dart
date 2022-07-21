@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
-      home: managerTrip(),
+      home: MainPage(),
     );
   }
 }
