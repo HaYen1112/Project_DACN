@@ -126,13 +126,13 @@ class RecomendPlantCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  // Spacer(),
                   Text(
-                    '\$$price',
+                    '    $price Đồng',
                     style: Theme.of(context)
                         .textTheme
                         .button
-                        ?.copyWith(color: kPrimaryColor),
+                        ?.copyWith(color: Colors.red),
                   )
                 ],
               ),
