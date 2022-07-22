@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../TicketBook.dart';
 import 'constants.dart';
 
 
@@ -92,7 +93,10 @@ class RecomendPlantCard extends StatelessWidget {
         children: <Widget>[
           Image.asset(image!),
           GestureDetector(
-            onTap: press,
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                  TicketBook('KjH86emQrhP5vwjtjG4u')));
+            },
             child: Container(
               padding: EdgeInsets.all(kDefaultPadding / 2),
               decoration: BoxDecoration(
@@ -126,13 +130,13 @@ class RecomendPlantCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  // Spacer(),
                   Text(
-                    '\$$price',
+                    '    $price Đồng',
                     style: Theme.of(context)
                         .textTheme
                         .button
-                        ?.copyWith(color: kPrimaryColor),
+                        ?.copyWith(color: Colors.red),
                   )
                 ],
               ),

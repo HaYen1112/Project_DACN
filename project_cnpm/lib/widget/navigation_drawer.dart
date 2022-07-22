@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Users.dart';
+import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/page/search_page.dart';
+import 'package:project_cnpm/page/ticket_detail.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
@@ -117,6 +119,7 @@ class NavigationDrawerWidget extends StatelessWidget{
   }
   void selectedItem(BuildContext context, int index){
     Navigator.of(context).pop();
+    TicketBook.listId=[];
     switch (index){
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
