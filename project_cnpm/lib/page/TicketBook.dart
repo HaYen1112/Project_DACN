@@ -14,16 +14,29 @@ import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import '../DAO/Trips.dart';
 import '../widget/navigation_drawer.dart';
 
+import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
+
+import '../DAO/Trips.dart';
+
+
 
 
 class TicketBook extends StatelessWidget {
   final String idTrip;
   late String statuss = '';
+
   static late List<String> listId = [];
   TicketBook(this.idTrip);
   @override
   Widget build(BuildContext context) => Scaffold(
       drawer: NavigationDrawerWidget(),
+
+
+  TicketBook(this.idTrip);
+  @override
+  Widget build(BuildContext context) => Scaffold(
+      drawer: NavigationManageDrawerWidget(),
+
       appBar: AppBar(
         title: Text('Đặt vé'),
         centerTitle: true,
@@ -33,6 +46,7 @@ class TicketBook extends StatelessWidget {
       GridView(
         padding: const EdgeInsets.all(25),
         children: [
+
           ElevatedButton(
               onPressed: () {
                 print(listId.toString());
@@ -44,6 +58,9 @@ class TicketBook extends StatelessWidget {
               ),
 
               child: Text('Đặt vé')),
+
+          Text(''),
+
           Text(''),
           for (int i = 0; i <= 36; i++)
             StreamBuilder<Tickets>(
@@ -67,6 +84,7 @@ class TicketBook extends StatelessWidget {
             crossAxisSpacing: 20,
             mainAxisSpacing: 20),
       ));
+
   MaterialStateProperty<Color> getColor(Color color, Color color1){
     final getColors = (Set<MaterialState> state){
       if ((state.contains(MaterialState.pressed))){
@@ -87,10 +105,15 @@ class TicketBook extends StatelessWidget {
     };
     return MaterialStateProperty.resolveWith((getBorder));
   }
+
+
+
   Stream<Tickets> readTicket(String idTicket) => FirebaseFirestore.instance
       .collection('tickets')
       .doc(idTicket)
       .snapshots()
       .map((event) => Tickets.fromJson(event.data()!));
+
+
 
 }

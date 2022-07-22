@@ -38,7 +38,11 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
+
       home: MainPage(),
+
+     
+
     );
   }
 }
