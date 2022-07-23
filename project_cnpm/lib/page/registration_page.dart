@@ -401,6 +401,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       ),
     );
   }
+
   Future register(Users user) async {
     showDialog(
         context: context,
@@ -416,8 +417,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
       await docUser.set(json);
     } on FirebaseAuthException catch (e) {
       print(e);
-      Utils.showSnackBar(e.message);
+
+      // Utils.showSnackBar(e.message);
+
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
+

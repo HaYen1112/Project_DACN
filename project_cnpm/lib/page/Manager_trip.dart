@@ -33,7 +33,9 @@ class _managerTripState extends State<managerTrip> {
               context, MaterialPageRoute(builder: (context) => AddTrip()))
         },
       ),
+
       body: StreamBuilder<Iterable<Trips>>(
+
         stream: readTrips(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
