@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../DAO/Tickets.dart';
 import '../TicketBook.dart';
+import '../utils.dart';
 import 'constants.dart';
 
 
@@ -66,7 +69,8 @@ class RecomendsPlants extends StatelessWidget {
 }
 
 class RecomendPlantCard extends StatelessWidget {
-  const RecomendPlantCard({
+  static late int seatCount=0;
+  RecomendPlantCard({
     Key? key,
     this.image,
     this.title,
@@ -78,7 +82,7 @@ class RecomendPlantCard extends StatelessWidget {
   final String? image, title, country;
   final int? price;
   final VoidCallback? press;
-
+  static late List<String> listId = [];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -145,5 +149,25 @@ class RecomendPlantCard extends StatelessWidget {
         ],
       ),
     );
+  }
+  static Future addSeat() async {
+    listId =[];
+    try {
+      for (int i = 1; i <= 36; i++) {
+        final docTicket =
+        FirebaseFirestore.instance.collection('tickets').doc('KjH86emQrhP5vwjtjG4u'+'$i');
+        final snapshot = await docTicket.get();
+        Tickets ticket = Tickets.fromJson(snapshot.data()!);
+        if (ticket.status == 'Đã chọn') {
+          listId.add(ticket.seatLocation);
+        }
+      }
+        seatCount= listId.length;
+      print(listId);
+      print(seatCount);
+    } on FirebaseException catch (e) {
+      print(e);
+      Utils.showSnackBar(e.message);
+    }
   }
 }

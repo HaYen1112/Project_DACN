@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
+import 'package:project_cnpm/page/search_Page/recomend.dart';
 
 import '../DAO/Users.dart';
 import '../widget/navigation_drawer.dart';
@@ -11,10 +12,8 @@ import '../widget/navigation_drawer.dart';
 class CheckoutTicket extends StatelessWidget {
   final String idTrips;
    CheckoutTicket(this.idTrips);
-   late int seatCount=0;
   @override
   Widget build(BuildContext context) {
-    seatCount=TicketBook.listId.length;
     Color primaryColor = Color.fromARGB(255, 248, 178, 29);
     return Scaffold(
       appBar: AppBar(
@@ -84,7 +83,7 @@ class CheckoutTicket extends StatelessWidget {
                               final endAddress = trip.endAddress;
                               final startAddress = trip.startAddress;
                               final idDetail =trip.idTrip;
-                              final int price = trip.price*seatCount;
+                              final int price = trip.price*(RecomendPlantCard.seatCount);
                               return trip == null
                                   ? Center(child: Text('No Detail'))
                                   :  ListView(
@@ -254,7 +253,7 @@ class CheckoutTicket extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "${seatCount}",
+                                              "${RecomendPlantCard.seatCount}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
@@ -270,7 +269,7 @@ class CheckoutTicket extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              "${TicketBook.listId.toString()}",
+                                              "${RecomendPlantCard.listId.toString()}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
