@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_cnpm/DAO/Users.dart';
-import 'package:project_cnpm/page/add_ticket_ad.dart';
-import 'package:project_cnpm/page/edit_ticket_ad.dart';
+import 'package:project_cnpm/page/add_user_admin.dart';
+import 'package:project_cnpm/page/edit_user_admin.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 class ManageTicket extends StatefulWidget {
