@@ -1,10 +1,8 @@
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'dart:js';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -13,7 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/main.dart';
-import 'package:project_cnpm/page/manage_ticket.dart';
+import 'package:project_cnpm/page/manager_users.dart';
 import 'package:project_cnpm/page/utils.dart';
 import '../widget/header_widget.dart';
 import '../widget/theme_helper.dart';
@@ -242,7 +240,9 @@ class _AddUserPageState extends State<AddUserPage> {
                                     state.errorText ?? '',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      color: Theme.of(context).errorColor,
+                                      color: Theme
+                                          .of(context)
+                                          .errorColor,
                                       fontSize: 12,
                                     ),
                                   ),
@@ -302,6 +302,7 @@ class _AddUserPageState extends State<AddUserPage> {
       ),
 
     );
+
   }
   Future register(Users user) async {
     final docUser = FirebaseFirestore.instance.collection('users').doc(user.email);
@@ -315,13 +316,11 @@ class _AddUserPageState extends State<AddUserPage> {
       // print(e);
       // Utils.showSnackBar(e.message);
     }
-     FirebaseAuth.instance.signInWithEmailAndPassword(email: 'projectticketbook@gmail.com', password: '123456');
+    FirebaseAuth.instance.signInWithEmailAndPassword(email: 'projectticketbook@gmail.com', password: '123456');
     // navigatorKey.currentState!.popUntil((route) => route.isFirst);
     Navigator.push(context, MaterialPageRoute(
         builder: (context)=>ManageTicket()
     ));
   }
-
-    
 }
 
