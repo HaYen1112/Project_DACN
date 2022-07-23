@@ -7,7 +7,7 @@ class Tickets {
   final String date;
   final String startAddress;
   final String endAddress;
-  final String status;
+  late String status;
   final int price;
   final String seatLocation;
   final String amountOfTime;
@@ -57,5 +57,9 @@ class Tickets {
   }
   void setIsSelect(bool isSelect) {
     this.isSelect=isSelect;
+  }
+
+  void updateStatus(String status) {
+     this.status =status;
   }
 }
