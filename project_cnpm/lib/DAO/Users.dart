@@ -1,23 +1,36 @@
 
 class Users {
   final String email;
-  final String password;
-  final int rule;
+  late String password;
+  final String phone;
+  final String name;
+  final String address;
 
   Users({
+    required this.name,
     required this.email,
+    required this.phone,
+    required this.address,
     required this.password,
-    required this.rule,
 });
-  static Users fromJson(Map<String, dynamic> json) => Users(
+ static Users fromJson(Map<String, dynamic> json) => Users(
+      name: json['name'],
       email: json['email'],
+      phone: json['phone'],
+      address: json['address'],
       password: json['password'],
-      rule: json['rule'],
+
   );
+  void updatePassword(String pass){
+        password = pass;
+ }
   Map<String, dynamic> toJson() => {
+    'name': name,
     'email': email,
+    'phone': phone,
+    'address': address,
     'password': password,
-    'rule': rule,
+
   };
 
 }

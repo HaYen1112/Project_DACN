@@ -1,29 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/page/AddTicket.dart';
+import 'package:project_cnpm/page/add_trip_manager.dart';
+import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
-import '../page/manage_ticket.dart';
+import '../DAO/Trips.dart';
 import 'Manager_trip_model.dart';
+import 'edit_trip_manager.dart';
 
-class managerTrip extends StatefulWidget{
+class managerTrip extends StatefulWidget {
   @override
   _managerTripState createState() => _managerTripState();
-
 }
 
 class _managerTripState extends State<managerTrip> {
- List<TripModel> tripmodel = [
-   TripModel("Đà Lạt - Tp Hồ Chí Minh", "5/6/2022","10:30 AM", false),
-   TripModel("Tp Hồ Chí Minh - Vĩnh Long", "5/6/2022","6:30 AM", false),
-   TripModel("Hà Nội - Bình Định", "5/6/2022","7:30 AM", false),
-   TripModel("Vĩnh Long - Vũng Tàu", "5/6/2022","8:30 AM", false),
-   TripModel("Tp Hồ Chí Minh - Hậu Giang ", "5/6/2022","5:30 PM", false),
-   TripModel("Bến tre - Tp Hồ Chí Minh", "5/6/2022","7:00 AM", false),
- ];
- List<TripModel> selectedTrip = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,20 +26,16 @@ class _managerTripState extends State<managerTrip> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.amberAccent,
         foregroundColor: Colors.white,
         onPressed: () => {
-          TextSpan(
-          recognizer: TapGestureRecognizer()
-          ..onTap = (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTicket()));
-          },
-          )
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddTrip()))
         },
       ),
 
-      body:
-      StreamBuilder<Iterable<Trips>>(
+      body: StreamBuilder<Iterable<Trips>>(
+
         stream: readTrips(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -64,45 +51,79 @@ class _managerTripState extends State<managerTrip> {
     );
   }
 
- Widget ContactItem(
-     String nameTrip, String date, String time, bool isSelected, int index) {
-   return ListTile(
-     leading: CircleAvatar(
-       backgroundColor: Colors.green[700],
-       child: Icon(
-         Icons.person_outline_outlined,
-         color: Colors.white,
-       ),
-     ),
-     title: Text(
-       nameTrip,
-       style: TextStyle(
-         fontWeight: FontWeight.w500,
-       ),
-     ),
-     
-     subtitle: Text(date),
-     trailing: isSelected
-         ? Icon(
-       Icons.check_circle,
-       color: Colors.green[700],
-     )
-         : Icon(
-       Icons.check_circle_outline,
-       color: Colors.grey,
-     ),
+  bool isSelect = false;
+  Widget buildTrip(Trips trip) => ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.amberAccent,
+          child: Icon(
+            Icons.car_repair,
+            color: Colors.white,
+          ),
+        ),
+        title: Text(
+          '${trip.startAddress} - ${trip.endAddress}',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 5,
+            ),
+            Text('Ngày khởi hành: ${trip.date}',
+                style: TextStyle(color: Colors.black)),
+            SizedBox(
+              height: 5,
+            ),
+            Text('Thời gian khởi hành: ${trip.startTime}',
+                style: TextStyle(color: Colors.black)),
+            SizedBox(height: 5),
+            Text('Giá vé: ${trip.price} Đồng',
+                style: TextStyle(color: Colors.black)),
+            SizedBox(height: 5),
+            Text('Số lượng vé: ${trip.quantityStatus}',
+                style: TextStyle(color: Colors.black)),
+            SizedBox(height: 20),
+          ],
+        ),
+        trailing: ElevatedButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditTrip(
+                                amountTicket: trip.quantityStatus,
+                                country_id1: trip.startAddress,
+                                country_id2: trip.endAddress,
+                                endT: trip.endTime,
+                                priceTicket: trip.price,
+                                startT: trip.startTime,
+                                idTrip: trip.idTrip,
+                                timeE: TimeOfDay(
+                                  hour: int.parse(trip.endTime.substring(0, 2)),
+                                  minute: int.parse(trip.endTime.substring(3)),
+                                ),
+                                timeS: TimeOfDay(
+                                  hour:
+                                      int.parse(trip.startTime.substring(0, 2)),
+                                  minute:
+                                      int.parse(trip.startTime.substring(3)),
+                                ),
+                                date: DateTime(
+                                    int.parse(trip.date.substring(6)),
+                                    int.parse(trip.date.substring(3, 5)),
+                                    int.parse(trip.date.substring(0, 2))),
+                              ))),
+                  child: Icon(
+                    Icons.edit,
+                    color: Colors.amberAccent,
+                  )),
+        onTap: () {},
+        hoverColor: Colors.black12,
+        dense: true,
+      );
 
-     onTap: () {
-       setState(() {
-         tripmodel[index].isSelected = !tripmodel[index].isSelected;
-         if (tripmodel[index].isSelected == true) {
-           selectedTrip.add(TripModel(nameTrip, date, time, true));
-         } else if (tripmodel[index].isSelected == false) {
-           selectedTrip
-               .removeWhere((element) => element.nameTrip == tripmodel[index].nameTrip);
-         }
-       });
-     },
-   );
- }
+  Stream<Iterable<Trips>> readTrips() => FirebaseFirestore.instance
+      .collection('trips')
+      .snapshots()
+      .map((event) => event.docs.map((doc) => Trips.fromJson(doc.data())));
 }

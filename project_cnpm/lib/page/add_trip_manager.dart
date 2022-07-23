@@ -35,6 +35,7 @@ class _AddTripState extends State<AddTrip> {
   void initState() {
     super.initState();
   }
+
   String _country_id1 = "TP Hồ Chí Minh";
   String _country_id2 = "An Giang";
   List<String> country = [

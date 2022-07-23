@@ -21,6 +21,7 @@ class _MainPageState extends State<MainPageManager>{
       title: Text(NavigationManageDrawerWidget.appTitle),
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
+
   );
 }
 
@@ -30,7 +31,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final users = FirebaseAuth.instance.currentUser;
-    final name = 'Trương Văn Xinh';
+    final name = 'Ticket Book';
     final email = users?.email;
     final urlImg = './img/hinhnen2.png';
     return Drawer(
@@ -79,7 +80,9 @@ class NavigationManageDrawerWidget extends StatelessWidget{
                   buildMenuItem(
                     text: 'Đăng xuất',
                     icon: Icons.add_to_home_screen,
-                    onClicked: () => FirebaseAuth.instance.signOut(),
+                    onClicked: () {FirebaseAuth.instance.signOut();
+                    selectedItem(context, 3);
+                    },
                   ),
                 ],
               ),
@@ -108,7 +111,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
     switch (index){
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => MyApp(),
+          builder: (context) => MainPageManager(),
         ));
         break;
       case 1:
@@ -121,11 +124,11 @@ class NavigationManageDrawerWidget extends StatelessWidget{
           builder: (context) => ManageTicket(),
         ));
         break;
-      // case 3:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => MyApp(),
-      //   ));
-      //   break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MainPage(),
+        ));
+        break;
     }
   }
 

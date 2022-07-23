@@ -9,7 +9,6 @@ class Depart extends StatefulWidget {
 class _DepartState extends State<Depart> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
   String? _country_id ="TP Hồ Chí Minh";
