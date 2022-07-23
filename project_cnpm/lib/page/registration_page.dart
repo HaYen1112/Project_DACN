@@ -294,4 +294,24 @@ class _RegistrationPageState extends State<RegistrationPage>{
     );
   }
 
+  Future register(Users user) async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(child: CircularProgressIndicator(),)
+    );
+    final docUser = FirebaseFirestore.instance.collection('users').doc(user.email);
+    final json = user.toJson();
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: controllerEmail.text.trim(),
+          password: controllerPW.text.trim());
+      await docUser.set(json);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      // Utils.showSnackBar(e.message);
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  }
 }
+

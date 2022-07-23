@@ -1,474 +1,300 @@
-
-import 'dart:html';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:project_cnpm/DAO/Users.dart';
+import 'package:project_cnpm/main.dart';
 import 'package:project_cnpm/page/manage_ticket.dart';
-import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
+import 'package:project_cnpm/page/utils.dart';
+import '../widget/header_widget.dart';
+import '../widget/theme_helper.dart';
 
-class EditTicketAdmin extends StatelessWidget {
-  final controller = TextEditingController();
+class EditUserPage extends StatefulWidget {
+  String? idUser;
 
-  List<String> departures = [
-    'TP Hồ Chí Minh',
-    'Bến Tre',
-    'Cần Thơ',
-    'Vĩnh Long',
-    'Đồng Tháp',
-    'Long An',
-    'Tiền Giang'
-  ];
-  List<String> types = ['1 chiều', '2 chiều', 'Hàng ký gởi'];
-  List<String> seats = [
-    'A01',
-    'A02',
-    'A03',
-    'A04',
-    'A05',
-    'A06',
-    'A07',
-    'A08',
-    'A09'
-  ];
-  List<String> prices = [
-    '100.000',
-    '200.000',
-    '300.000',
-    '400.000',
-    '500.000',
-    '600.000',
-    '700.000'
-  ];
+  EditUserPage({required this.idUser});
 
-  String? selectedValue = 'TP Hồ Chí Minh';
-  String? selectedValue2 = 'Bến Tre';
-  String? type = '2 chiều';
-  String? seat = 'A01';
-  String? price = '100.000';
+  @override
+  State<StatefulWidget> createState() {
+    return _EditUserPageState(idUser: idUser);
+  }
+}
 
-  // int idTicket = 001;
-
+class _EditUserPageState extends State<EditUserPage> {
+  String? idUser;
+  _EditUserPageState({required this.idUser});
+  final _formKey = GlobalKey<FormState>();
+  bool checkedValue = false;
+  bool checkboxValue = false;
+  final controllerEmail = TextEditingController();
+  final controllerPW = TextEditingController();
+  final controllerUserName = TextEditingController();
+  final controllerPhoneNumber = TextEditingController();
+  final controllerAddress = TextEditingController();
+  late String? name;
+  late String? address;
+  late String? phone;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationManageDrawerWidget(),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Cập nhật vé'),
+        title: Text('Cập nhật tài khoản'),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 248, 178, 29),
       ),
-      body: Container(
-        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-        constraints: BoxConstraints.expand(),
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                child: TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.search),
-                      hintText: 'Mã Vé',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(color: Colors.grey))),
-                ),
-      body: Column(
-        children: <Widget>[
 
-          Container(
-            margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-            child: TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: 'Mã Vé',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(color: Colors.grey)
-                  )
-              ),
-
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0))),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.orangeAccent),
-                            padding: MaterialStateProperty.all<EdgeInsets>(
-                                EdgeInsets.all(10))),
-                        child: Text("Quay lại",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 12, height: 0)),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ManageTicket()));
-                        },
-                      )
-                    ]),
-              ),
-
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10.0),
-                  child: Text("Mã vé: 001",
-                      style: TextStyle(fontSize: 14, color: Colors.black))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Điểm khởi hành:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: selectedValue,
-                          items: departures
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => selectedValue = item))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Điểm đến:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: selectedValue2,
-                          items: departures
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => selectedValue2 = item))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Loại vé:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: type,
-                          items: types
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => type = item))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Giá vé:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: price,
-                          items: prices
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => price = item))),
-                    child: Text("Quay lại", style: TextStyle(color: Colors.white, fontSize: 12, height: 0)),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context)=>ManageTicket()
-                      ));
-                    },
-                  )
-                ]
-            ),
-          ),
-
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-              child: Text("Mã vé: 001",
-                  style: TextStyle(fontSize: 14, color: Colors.black))),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Điểm khởi hành:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: selectedValue,
-                      items: departures
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => selectedValue = item))),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Điểm đến:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: selectedValue2,
-                      items: departures
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => selectedValue2 = item))),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Loại vé:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: type,
-                      items: types
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => type = item))),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Container(
-                  child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                          labelText: "Giá vé:",
-                          enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 0),
-                              borderRadius: BorderRadius.circular(15))),
-                      value: price,
-                      items: prices
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child:
-                                    Text(item, style: TextStyle(fontSize: 18)),
-                              ))
-                          .toList(),
-                      onChanged: (item) => price = item))),
-
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                              labelText: "Số ghế:",
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                  borderRadius: BorderRadius.circular(15))),
-                          value: seat,
-                          items: seats
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(item,
-                                        style: TextStyle(fontSize: 18)),
-                                  ))
-                              .toList(),
-                          onChanged: (item) => seat = item))),
-
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Container(
-                      child: TextField(
-                              decoration: InputDecoration(
-                                  labelText: "71C2",
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.grey, width: 0),
-                                      borderRadius: BorderRadius.circular(15))),
-                            )
-                  )
-              ) ,
-
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 50.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                          child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 0.0, horizontal: 50.0),
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0))),
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.orangeAccent),
+      body: SingleChildScrollView(
+        child: StreamBuilder<Users>(
+          stream: readUsers(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final users = snapshot.data!;
+              name = users.name;
+              address = users.address;
+              phone = users.phone;
+              return Stack(
+                children: [
+                  Container(
+                    height: 80,
+                    child:
+                        HeaderWidget(80, false, Icons.person_add_alt_1_rounded),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        border: Border.all(
+                                            width: 5, color: Colors.white),
+                                        color: Colors.amber,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 20,
+                                            offset: const Offset(5, 5),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Icon(
+                                        Icons.person,
+                                        color: Colors.grey.shade300,
+                                        size: 80.0,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 80, 0, 0),
+                                      child: Icon(
+                                        Icons.add_circle,
+                                        color: Colors.grey.shade700,
+                                        size: 25.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 30),
+                              Container(
+                                child: TextFormField(
+                                  controller: controllerUserName,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                  validator: (user) {
+                                    if (user?.length == 0) {
+                                      return "Vui lòng nhập Tên của bạn!";
+                                    }
+                                  },
+                                  decoration: InputDecoration(
+                                      labelText: "${users.name}",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Color(0xffCED0D2),
+                                              width: 1),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(6)))),
+                                ),
+                                decoration:
+                                    ThemeHelper().inputBoxDecorationShaddow(),
+                              ),
+                              SizedBox(height: 20),
+                              Container(
+                                decoration:
+                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                child: TextFormField(
+                                  controller: controllerEmail,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                  decoration: InputDecoration(
+                                      enabled: false,
+                                      labelText: "${users.email}",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Color(0xffCED0D2),
+                                              width: 1),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(6)))),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (email) {
+                                    if (email?.length == 0) {
+                                      return "Vui lòng nhập email!";
+                                    } else {
+                                      if (!EmailValidator.validate(email!)) {
+                                        return "Email không hợp lệ";
+                                      }
+                                    }
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: 20.0),
+                              Container(
+                                decoration:
+                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                child: TextFormField(
+                                  controller: controllerPhoneNumber,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                  decoration: InputDecoration(
+                                      labelText: "${users.phone}",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Color(0xffCED0D2),
+                                              width: 1),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(6)))),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (val) {
+                                    String pattern =
+                                        r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                                    RegExp regExp = new RegExp(pattern);
+                                    if (val!.length == 0) {
+                                      return 'Vui lòng nhập số điện thoại!';
+                                    } else if (!regExp.hasMatch(val)) {
+                                      return 'Số điện thoại không hợp lệ';
+                                    }
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: 30),
+                              Container(
+                                child: TextFormField(
+                                  controller: controllerAddress,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                  validator: (val) {
+                                    if (val?.length == 0) {
+                                      return "Vui lòng nhập địa chỉ!";
+                                    }
+                                  },
+                                  decoration: InputDecoration(
+                                      labelText: "${users.address}",
+                                      hintText: address,
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Color(0xffCED0D2),
+                                              width: 1),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(6)))),
+                                ),
+                                decoration:
+                                    ThemeHelper().inputBoxDecorationShaddow(),
+                              ),
+                              Container(
+                                child: Padding(
                                     padding:
-                                        MaterialStateProperty.all<EdgeInsets>(
-                                            EdgeInsets.all(20))),
-                                child: Text("Hủy",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        height: 0)),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ManageTicket()));
-                                },
-                              ))),
-                      Expanded(
-                          child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 0.0, horizontal: 50.0),
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0))),
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.orangeAccent),
-                                    padding:
-                                        MaterialStateProperty.all<EdgeInsets>(
-                                            EdgeInsets.all(20))),
-                                child: Text("Lưu",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        height: 0)),
-                                onPressed: () {},
-                              )))
-                    ]),
-              ),
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-              //   child: Row(
-              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //       children: [
-              //         ElevatedButton(
-              //           style: ButtonStyle(
-              //               shape:
-              //                   MaterialStateProperty.all<RoundedRectangleBorder>(
-              //                       RoundedRectangleBorder(
-              //                           borderRadius: BorderRadius.circular(30.0))),
-              //               backgroundColor: MaterialStateProperty.all<Color>(
-              //                   Colors.orangeAccent),
-              //               padding: MaterialStateProperty.all<EdgeInsets>(
-              //                   EdgeInsets.all(10))),
-              //           child: Text("Quay lại",
-              //               style: TextStyle(
-              //                   color: Colors.white, fontSize: 12, height: 0)),
-              //           onPressed: () {
-              //             Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(
-              //                     builder: (context) => ManageTicket()));
-              //           },
-              //         )
-              //
-              //       ]),
-              // )
-            ],
-          ),
+                                        const EdgeInsets.fromLTRB(0, 30, 0, 40),
+                                    child: SizedBox(
+                                        width: double.infinity,
+                                        height: 52,
+                                        child: RaisedButton(
+                                          onPressed: () {
+                                            final user = Users(
+                                                name: (controllerUserName
+                                                            .text !=
+                                                        ''
+                                                    ? controllerUserName.text
+                                                    : '${users.name}'),
+                                                email: users.email,
+                                                phone: controllerPhoneNumber
+                                                            .text !=
+                                                        ''
+                                                    ? controllerPhoneNumber.text
+                                                    : users.phone,
+                                                address:
+                                                    controllerAddress.text != ''
+                                                        ? controllerAddress.text
+                                                        : users.address,
+                                                password:
+                                                    users.password.toString());
+                                            update(user);
+                                          },
+                                          child: Text("Cập nhật",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18)),
+                                          color: Colors.amber,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(6))),
+                                        ))),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
         ),
       ),
     );
   }
-}
-          // Padding(
-          //   padding:
-          //       const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-          //   child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //       children: [
-          //         ElevatedButton(
-          //           style: ButtonStyle(
-          //               shape:
-          //                   MaterialStateProperty.all<RoundedRectangleBorder>(
-          //                       RoundedRectangleBorder(
-          //                           borderRadius: BorderRadius.circular(30.0))),
-          //               backgroundColor: MaterialStateProperty.all<Color>(
-          //                   Colors.orangeAccent),
-          //               padding: MaterialStateProperty.all<EdgeInsets>(
-          //                   EdgeInsets.all(10))),
-          //           child: Text("Quay lại",
-          //               style: TextStyle(
-          //                   color: Colors.white, fontSize: 12, height: 0)),
-          //           onPressed: () {
-          //             Navigator.push(
-          //                 context,
-          //                 MaterialPageRoute(
-          //                     builder: (context) => ManageTicket()));
-          //           },
-          //         )
-          //
-          //       ]),
-          // )
 
-        ],
-      ),
-    );
+
+
+  Future update(Users user) async {
+    final docUser =
+        FirebaseFirestore.instance.collection('users').doc(user.email);
+    final json = user.toJson();
+    try {
+      // await docUser.update(json);
+      await docUser.update(json);
+    } on FirebaseAuthException catch (e) {
+      // print(e);
+      // Utils.showSnackBar(e.message);
+    }
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ManageTicket()));
   }
 
+  Stream<Users> readUsers() => FirebaseFirestore.instance
+      .collection('users')
+      .doc(idUser)
+      .snapshots()
+      .map((event) => Users.fromJson(event.data()!));
 }
 

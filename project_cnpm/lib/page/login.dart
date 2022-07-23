@@ -155,6 +155,9 @@ class Login extends StatelessWidget{
       );
     } on FirebaseAuthException catch (e) {
       print(e);
+
+      // Utils.showSnackBar(e.message);
+
     }
     navigatorKey.currentState!.popUntil((route) => true);
   }

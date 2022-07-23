@@ -46,49 +46,20 @@ class _managerTripState extends State<managerTrip> {
           )
         },
       ),
-      body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                    itemCount: tripmodel.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      // return item
-                      return ContactItem(
-                        tripmodel[index].nameTrip,
-                        tripmodel[index].date,
-                        tripmodel[index].time,
-                        tripmodel[index].isSelected,
-                        index,
-                      );
-                    }),
-              ),
-              selectedTrip.length > 0 ? Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 10,
-                ),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: RaisedButton(
-                    color: Colors.green[700],
-                    child: Text(
-                      "Delete (${selectedTrip.length})",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                    onPressed: () {
-                      print("Delete List Lenght: ${selectedTrip.length}");
-                    },
-                  ),
-                ),
-              ): Container(),
-            ],
-          ),
-        ),
+
+      body:
+      StreamBuilder<Iterable<Trips>>(
+        stream: readTrips(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final trips = snapshot.data!;
+            return ListView(
+              children: trips.map(buildTrip).toList(),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
