@@ -198,7 +198,11 @@ class _LoginState extends State<Login> {
 
     } on FirebaseAuthException catch (e) {
       print(e);
-      Utils.showSnackBar(e.message);
+
+
+      // Utils.showSnackBar(e.message);
+
+
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
