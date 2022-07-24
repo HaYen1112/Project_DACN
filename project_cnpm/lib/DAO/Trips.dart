@@ -1,92 +1,46 @@
 
 
 class Trips {
-  late String _idTrip;
-  late String _diemKH;
-  late String _diemKT;
-  late Date _date;
-  late String _tgKH;
-  late String _tgKT;
-  late String _tongTgChuyenDi;
-  late String _bienSo;
 
-  Trips(this._idTrip, this._diemKH, this._diemKT, this._date, this._tgKH,
-      this._tgKT, this._tongTgChuyenDi, this._bienSo);
-
-  String get idTrip => _idTrip;
-
-  set idTrip(String value) {
-    _idTrip = value;
-  }
-
-  String get diemKH => _diemKH;
-
-  String get bienSo => _bienSo;
-
-  set bienSo(String value) {
-    _bienSo = value;
-  }
-
-  String get tgKT => _tgKT;
-
-  set tgKT(String value) {
-    _tgKT = value;
-  }
-
-  String get tgKH => _tgKH;
-
-  set tgKH(String value) {
-    _tgKH = value;
-  }
-
-  Date get date => _date;
-
-  set date(Date value) {
-    _date = value;
-  }
-
-  String get diemKT => _diemKT;
-
-  set diemKT(String value) {
-    _diemKT = value;
-  }
-
-  set diemKH(String value) {
-    _diemKH = value;
-  }
-
-  @override
-  String toString() {
-    return 'Trips{_idTrip: $_idTrip, _diemKH: $_diemKH, _diemKT: $_diemKT,'
-        ' _date: $_date, _tgKH: $_tgKH, _tgKT: $_tgKT, _tongTgChuyenDi: $_tongTgChuyenDi, _bienSo: $_bienSo}';
+  late String idTrip;
+  final String startTime;
+  final String endTime;
+  final String date;
+  final String startAddress;
+  final String endAddress;
+  final int quantityStatus;
+  final int price;
+  Trips({
+    required this.idTrip,
+    required this.startTime,
+    required this.endTime,
+    required this.date,
+    required this.endAddress,
+    required this.startAddress,
+    required this.price,
+    required this.quantityStatus,
+  });
+  static Trips fromJson(Map<String, dynamic> json) => Trips(
+      idTrip: json['idTrip'],
+      startAddress: json['startAddress'],
+      endAddress: json['endAddress'],
+      date: json['date'],
+      startTime: json['startTime'],
+      endTime: json['endTime'],
+      price: json['price'],
+      quantityStatus: json['quantityStatus'],
+  );
+  Map<String, dynamic> toJson() => {
+        'idTrip': idTrip,
+        'startAddress': startAddress,
+        'endAddress': endAddress,
+        'date': date,
+        'startTime': startTime,
+        'endTime': endTime,
+        'price': price,
+        'quantityStatus': quantityStatus,
+      };
+  void setIdTrip(String id) {
+    idTrip = id;
   }
 }
-
-class Date {
-  late int _ngay;
-  late int _thang;
-  late int _nam;
-
-  Date(this._ngay, this._thang, this._nam);
-
-  int get nam => _nam;
-
-  set nam(int value) {
-    _nam = value;
-  }
-
-  int get thang => _thang;
-
-  set thang(int value) {
-    _thang = value;
-  }
-
-  int get ngay => _ngay;
-
-  set ngay(int value) {
-    _ngay = value;
-  }
-
- 
-}
-

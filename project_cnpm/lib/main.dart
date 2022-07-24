@@ -1,19 +1,18 @@
 // @dart=2.9
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:project_cnpm/page/add_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
-
 import 'package:project_cnpm/page/Manager_trip.dart';
 import 'package:project_cnpm/page/auth_page.dart';
 import 'package:project_cnpm/page/utils.dart';
 import 'package:project_cnpm/page/verify_email_page.dart';
-
+import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_cnpm/page/login.dart';
-import 'package:project_cnpm/page/manage_ticket.dart';
+import 'package:project_cnpm/page/manager_users.dart';
 
 
 
@@ -40,7 +39,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appTitle,
 
-      home: ListTrip(),
+      home: MainPage(),
+
 
     );
   }

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/trip_manager.dart';
-import 'package:project_cnpm/page/manage_ticket.dart';
+import 'package:project_cnpm/page/manager_users.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
@@ -21,6 +21,7 @@ class _MainPageState extends State<MainPageManager>{
       title: Text(NavigationManageDrawerWidget.appTitle),
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
+
   );
 }
 
@@ -30,7 +31,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final users = FirebaseAuth.instance.currentUser;
-    final name = 'Trương Văn Xinh';
+    final name = 'Ticket Book';
     final email = users?.email;
     final urlImg = './img/hinhnen2.png';
     return Drawer(
@@ -79,7 +80,9 @@ class NavigationManageDrawerWidget extends StatelessWidget{
                   buildMenuItem(
                     text: 'Đăng xuất',
                     icon: Icons.add_to_home_screen,
-                    onClicked: () => FirebaseAuth.instance.signOut(),
+                    onClicked: () {FirebaseAuth.instance.signOut();
+                    selectedItem(context, 3);
+                    },
                   ),
                 ],
               ),
@@ -121,11 +124,11 @@ class NavigationManageDrawerWidget extends StatelessWidget{
           builder: (context) => ManageTicket(),
         ));
         break;
-      // case 3:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => MyApp(),
-      //   ));
-      //   break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MainPage(),
+        ));
+        break;
     }
   }
 

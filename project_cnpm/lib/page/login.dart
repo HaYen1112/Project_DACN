@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:email_validator/email_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -190,9 +188,21 @@ class _LoginState extends State<Login> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: controllerEmail.text.trim(),
           password: controllerPW.text.trim());
+      final userDoc = FirebaseFirestore.instance.collection('users').doc(controllerEmail.text.trim());
+      final snapshot = await userDoc.get();
+      Users user = Users.fromJson(snapshot.data()!);
+      if (user.password != controllerPW.text.trim()) {
+        user.updatePassword(controllerPW.text.trim());
+        userDoc.update(user.toJson());
+      }
+
     } on FirebaseAuthException catch (e) {
       print(e);
-      Utils.showSnackBar(e.message);
+
+
+      // Utils.showSnackBar(e.message);
+
+
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }

@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Users.dart';
+import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/page/search_page.dart';
+import 'package:project_cnpm/page/ticket_detail.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
@@ -90,7 +92,8 @@ class NavigationDrawerWidget extends StatelessWidget{
                   buildMenuItem(
                     text: 'Đăng xuất',
                     icon: Icons.add_to_home_screen,
-                    onClicked: () => FirebaseAuth.instance.signOut(),
+                    onClicked: () {FirebaseAuth.instance.signOut();
+                    selectedItem(context, 3);},
                   ),
                 ],
               ),
@@ -132,11 +135,11 @@ class NavigationDrawerWidget extends StatelessWidget{
           builder: (context) => Promotion(),
         ));
         break;
-      // case 3:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => MyApp(),
-      //   ));
-      //   break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MainPage(),
+        ));
+        break;
     }
   }
 

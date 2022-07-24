@@ -107,14 +107,6 @@ class AddTicketAdmin extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 20.0),
                   child: Container(
-                      // margin: EdgeInsets.all(16),
-                      // padding: const EdgeInsets.symmetric(
-                      //     vertical: 4.0, horizontal: 12.0),
-                      // decoration: BoxDecoration(
-                      //     border: Border.all(color: Colors.grey, width: 1),
-                      //     borderRadius: BorderRadius.circular(15)),
-                      // child: DropdownButtonHideUnderline(
-
                       child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
                               labelText: "Điểm khởi hành:",
@@ -319,98 +311,10 @@ class AddTicketAdmin extends StatelessWidget {
                               )))
                     ]),
               )
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-              //   child: Row(
-              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //       children: [
-              //         ElevatedButton(
-              //           style: ButtonStyle(
-              //               shape:
-              //                   MaterialStateProperty.all<RoundedRectangleBorder>(
-              //                       RoundedRectangleBorder(
-              //                           borderRadius: BorderRadius.circular(30.0))),
-              //               backgroundColor: MaterialStateProperty.all<Color>(
-              //                   Colors.orangeAccent),
-              //               padding: MaterialStateProperty.all<EdgeInsets>(
-              //                   EdgeInsets.all(10))),
-              //           child: Text("Quay lại",
-              //               style: TextStyle(
-              //                   color: Colors.white, fontSize: 12, height: 0)),
-              //           onPressed: () {
-              //             Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(
-              //                     builder: (context) => ManageTicket()));
-              //           },
-              //         )
-              //
-              //       ]),
-              // )
+
             ],
           ),
         ),
-
-          // Padding(
-          //   padding:
-          //       const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-          //   child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //       children: [
-          //         ElevatedButton(
-          //           style: ButtonStyle(
-          //               shape:
-          //                   MaterialStateProperty.all<RoundedRectangleBorder>(
-          //                       RoundedRectangleBorder(
-          //                           borderRadius: BorderRadius.circular(30.0))),
-          //               backgroundColor: MaterialStateProperty.all<Color>(
-          //                   Colors.orangeAccent),
-          //               padding: MaterialStateProperty.all<EdgeInsets>(
-          //                   EdgeInsets.all(10))),
-          //           child: Text("Quay lại",
-          //               style: TextStyle(
-          //                   color: Colors.white, fontSize: 12, height: 0)),
-          //           onPressed: () {
-          //             Navigator.push(
-          //                 context,
-          //                 MaterialPageRoute(
-          //                     builder: (context) => ManageTicket()));
-          //           },
-          //         )
-          //
-          //       ]),
-          // )
-      // bottomNavigationBar: BottomNavigationBar(
-      // items: [
-      // BottomNavigationBarItem(
-      // icon: Icon(Icons.home),
-      // title: Text('Home'),
-      // backgroundColor: Colors.amber
-      // ),
-      // BottomNavigationBarItem(
-      // icon: Icon(Icons.keyboard_backspace),
-      // title: Text('Back'),
-      // backgroundColor: Colors.green
-      // ),
-      // // BottomNavigationBarItem(
-      // //    icon: Icon(Icons.home),
-      // //    title: Text('Home'),
-      // //    backgroundColor: Color.blue
-      // //  ),
-      // // BottomNavigationBarItem(
-      // //    icon: Icon(Icons.home),
-      // //    title: Text('Home'),
-      // //    backgroundColor: Color.blue
-      // //  ),
-      // ],
-      // currentIndex: _currentIndex,
-      // onTap: (index){
-      // setState(() {
-      // _currentIndex = index;
-      // });
-      // },
-      // ),
     ),
     );
   }

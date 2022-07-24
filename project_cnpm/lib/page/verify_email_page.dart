@@ -86,7 +86,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       await Future.delayed(Duration(seconds: 5));
       setState(() => canResendEmail=true);
     } catch (e) {
-      Utils.showSnackBar(e.toString());
+
+     // Utils.showSnackBar(e.toString());
+
     }
   }
 }
