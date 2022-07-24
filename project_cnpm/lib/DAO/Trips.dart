@@ -1,5 +1,7 @@
 
+
 class Trips {
+
   late String idTrip;
   final String startTime;
   final String endTime;
