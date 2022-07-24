@@ -1,10 +1,14 @@
 // @dart=2.9
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:project_cnpm/page/add_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
 import 'package:project_cnpm/page/Manager_trip.dart';
 import 'package:project_cnpm/page/auth_page.dart';
+import 'package:project_cnpm/page/payment/home_pay.dart';
+import 'package:project_cnpm/page/search_page.dart';
+import 'package:project_cnpm/page/search_result.dart';
 import 'package:project_cnpm/page/utils.dart';
 import 'package:project_cnpm/page/verify_email_page.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
@@ -18,6 +22,9 @@ import 'package:project_cnpm/page/manager_users.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+  'pk_test_51LOMtdBf9wZUjG9r4nlrkRBEdw7fPWhiNTpPFbtuGORLvFPTPhWPkwDNZoIUGFcbgif7no7dkusSjBbmCcshFvTG001wslebXC'; // Replace with your publishable key
+
   await Firebase.initializeApp(
     options: FirebaseOptions (
       apiKey: "AIzaSyAwVJhWKkce7_tcM_jvF0yRPqLswAtcUAc",
@@ -38,11 +45,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
-
-      home: MainPage(),
-
-     
-
+      home: HomePage(),
     );
   }
 }

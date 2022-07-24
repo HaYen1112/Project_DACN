@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
-import 'package:project_cnpm/DAO/Users.dart';
+import 'package:project_cnpm/page/ticket_detail.dart';
 
-import '../page/TicketBook.dart';
-import '../page/search_Page/recomend.dart';
 import '../page/utils.dart';
 
 class TicketBook_item extends StatelessWidget {
@@ -28,26 +26,27 @@ class TicketBook_item extends StatelessWidget {
     return Container(
       child: ElevatedButton(
           onPressed: () {
+            print(idTicket+"");
+            print(idTicket.substring(0,20)+"");
             if (status == 'Trống') {
               updateTicket(idTicket, 'Đã chọn');
             }
             if (status == 'Đã chọn') {
               updateTicket(idTicket, 'Trống');
             }
-            RecomendPlantCard.addSeat();
           },
           style: ButtonStyle(
             backgroundColor: getColor(color, color1),
             side: getBorder(Colors.black12, color),
           ),
-          child: Text('$title \n$status')),
+          child: Text('$title',style: TextStyle(fontSize: 9,fontWeight: FontWeight.bold),)),
     );
   }
 
   late bool isSelect = true;
   Future updateTicket(String idTicket, String status) async {
     final docTicket =
-        FirebaseFirestore.instance.collection('tickets').doc(idTicket);
+        FirebaseFirestore.instance.collection('tickets').doc(idTicket.trim());
     final snapshot = await docTicket.get();
     Tickets ticket = Tickets.fromJson(snapshot.data()!);
     ticket.updateStatus(status);
@@ -57,6 +56,7 @@ class TicketBook_item extends StatelessWidget {
       print(e);
       Utils.showSnackBar(e.message);
     }
+    CheckoutTicket.addSeat(idTicket.substring(0,20));
   }
 
   MaterialStateProperty<Color> getColor(Color color, Color color1) {
