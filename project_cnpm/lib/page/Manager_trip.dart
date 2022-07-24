@@ -35,7 +35,6 @@ class _managerTripState extends State<managerTrip> {
       ),
 
       body: StreamBuilder<Iterable<Trips>>(
-
         stream: readTrips(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -53,7 +52,7 @@ class _managerTripState extends State<managerTrip> {
 
   bool isSelect = false;
   Widget buildTrip(Trips trip) => ListTile(
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
           backgroundColor: Colors.amberAccent,
           child: Icon(
             Icons.car_repair,
@@ -67,12 +66,12 @@ class _managerTripState extends State<managerTrip> {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text('Ngày khởi hành: ${trip.date}',
                 style: TextStyle(color: Colors.black)),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text('Thời gian khởi hành: ${trip.startTime}',
@@ -113,7 +112,7 @@ class _managerTripState extends State<managerTrip> {
                                     int.parse(trip.date.substring(3, 5)),
                                     int.parse(trip.date.substring(0, 2))),
                               ))),
-                  child: Icon(
+                  child: const Icon(
                     Icons.edit,
                     color: Colors.amberAccent,
                   )),
@@ -126,4 +125,7 @@ class _managerTripState extends State<managerTrip> {
       .collection('trips')
       .snapshots()
       .map((event) => event.docs.map((doc) => Trips.fromJson(doc.data())));
+
+
+
 }

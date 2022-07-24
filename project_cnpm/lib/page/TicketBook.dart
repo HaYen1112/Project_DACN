@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
 
-import 'dart:html';
->>>>>>> 5981f3d749dda354493fe34ad2974f9b654254c0
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
