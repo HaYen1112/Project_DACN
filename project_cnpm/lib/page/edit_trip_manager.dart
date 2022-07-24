@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/main.dart';
+import 'package:project_cnpm/page/Manager_trip.dart';
 import 'package:project_cnpm/page/utils.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import '../widget/header_widget.dart';
@@ -528,6 +529,7 @@ class EditTripState extends State<EditTrip> {
       print(e);
       Utils.showSnackBar(e.message);
     }
-    navigatorKey.currentState!.popUntil((route) => route.hasActiveRouteBelow);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => managerTrip()));
   }
 }
