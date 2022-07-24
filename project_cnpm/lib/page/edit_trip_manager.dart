@@ -528,6 +528,6 @@ class EditTripState extends State<EditTrip> {
       print(e);
       Utils.showSnackBar(e.message);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.popUntil((route) => route.hasActiveRouteBelow);
   }
 }
