@@ -70,7 +70,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Quản lý vé',
+                    text: 'Quản lý tài khoản',
                     icon: Icons.list,
                     onClicked: () => selectedItem(context, 2),
                   ),
