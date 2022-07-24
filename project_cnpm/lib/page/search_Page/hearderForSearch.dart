@@ -7,6 +7,7 @@ import 'package:project_cnpm/page/edit_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
 import 'package:project_cnpm/page/registPage.dart';
 import 'package:project_cnpm/page/search_Page/type.dart';
+import 'package:intl/intl.dart';
 
 import '../../DAO/Trips.dart';
 import 'constants.dart';
@@ -39,6 +40,9 @@ class _HeaderState extends State<Header> {
   static set diemXuatPhat(String value) {
     _diemXuatPhat = value;
   }
+  static set diemKetThuc(String value) {
+    _diemKetThuc = value;
+  }
   static String get diemXuatPhat => _diemXuatPhat;
   static String _diemXuatPhat ="TP Hồ Chí Minh";
   static String _diemKetThuc ="Hà Nội";
@@ -53,7 +57,7 @@ class _HeaderState extends State<Header> {
     "Hà Nội",
     "Hà Giang"
   ];
-
+  DateTime date = DateTime(2022, 7, 26);
   @override
   Widget build(BuildContext context) {
 
@@ -114,8 +118,6 @@ class _HeaderState extends State<Header> {
               margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
               padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
               height: 108,
-
-
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -146,7 +148,6 @@ class _HeaderState extends State<Header> {
                             onChanged: (newValue){
                               setState((){
                                 _diemXuatPhat = newValue!;
-                                diemXuatPhat;
                                 // temp = newValue!;
                               });
                             },
@@ -308,7 +309,21 @@ class _HeaderState extends State<Header> {
                                       ),
                                     ),
                                   ),
-                                  Container(
+                                  FlatButton(
+                                      onPressed: () async  {
+                                        DateTime? newDate = await showDatePicker(
+                                          context: context,
+                                          initialDate: date,
+                                          firstDate: DateTime(1900),
+                                          lastDate: DateTime(2100),
+                                        );
+                                        if (newDate == null) return;
+                                        setState(() {
+                                          date = newDate;
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
@@ -317,25 +332,12 @@ class _HeaderState extends State<Header> {
                                             alignment: Alignment.center,
                                             width: 20,
                                             height: 30,
-                                            child: DropdownButton<int>(
-                                              underline: SizedBox(),
-                                              icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
-                                              value: _ngayDi,
-                                              onChanged: (newValue){
-                                                setState((){
-                                                  _ngayDi = newValue!;
-                                                });
-                                              },
-                                              items: ds1.map((newValue){
-                                                return DropdownMenuItem(
-                                                  value: newValue,
-                                                  child: Text(newValue.toString(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontSize:30,
-                                                    ),),
-                                                );
-                                              }).toList(),
+                                            child:
+                                            Text("${date.day}",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 30,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -344,25 +346,11 @@ class _HeaderState extends State<Header> {
                                             Container(
                                               height: 15,
                                               alignment: Alignment.centerLeft,
-                                              child: DropdownButton<int>(
-                                                underline: SizedBox(),
-                                                icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
-                                                value: _thangDi,
-                                                onChanged: (newValue){
-                                                  setState((){
-                                                    _thangDi = newValue!;
-                                                  });
-                                                },
-                                                items: dsThang.map((newValue){
-                                                  return DropdownMenuItem(
-                                                    value: newValue,
-                                                    child: Text("TH"+newValue.toString(),
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                        fontSize: 17,
-                                                      ),),
-                                                  );
-                                                }).toList(),
+                                              child:Text("TH${date.month}",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontSize: 17,
+                                                ),
                                               ),
                                             ),
                                             Padding(
@@ -370,25 +358,11 @@ class _HeaderState extends State<Header> {
                                               child: Container(
                                                 alignment: Alignment.centerLeft,
                                                 height: 15,
-                                                child: DropdownButton<int>(
-                                                  underline: SizedBox(),
-                                                  icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
-                                                  value: _namDi,
-                                                  onChanged: (newValue){
-                                                    setState((){
-                                                      _namDi = newValue!;
-                                                    });
-                                                  },
-                                                  items: dsNam.map((newValue){
-                                                    return DropdownMenuItem(
-                                                      value: newValue,
-                                                      child: Text(newValue.toString(),
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                        ),),
-                                                    );
-                                                  }).toList(),
+                                                child: Text("${date.year}",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -396,7 +370,7 @@ class _HeaderState extends State<Header> {
                                         ))
                                       ],
                                     ),
-                                  )
+                                  )),
                                 ],
                               ),
                             ),
@@ -408,7 +382,6 @@ class _HeaderState extends State<Header> {
                           color: Colors.white,
                           height: 60,
                           width: 250,
-
                         ),
                       ),
                       Container(
@@ -442,7 +415,7 @@ class _HeaderState extends State<Header> {
                                     left: 0,
                                     child: Padding(
                                       padding: EdgeInsets.fromLTRB(8, 0, 0, 5),
-                                      child: Text("Ngày đi",
+                                      child: Text("Ngày về",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                             fontSize: 15,
@@ -451,95 +424,72 @@ class _HeaderState extends State<Header> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            width: 20,
-                                            height: 30,
-                                            child: DropdownButton<int>(
-                                              underline: SizedBox(),
-                                              icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
-                                              value: _ngayVe,
-                                              onChanged: (newValue){
-                                                setState((){
-                                                  _ngayVe = newValue!;
-                                                });
-                                              },
-                                              items: ds1.map((newValue){
-                                                return DropdownMenuItem(
-                                                  value: newValue,
-                                                  child: Text(newValue.toString(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontSize:30,
-                                                    ),),
-                                                );
-                                              }).toList(),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(child: Column(
-                                          children: [
-                                            Container(
-                                              height: 15,
-                                              alignment: Alignment.centerLeft,
-                                              child: DropdownButton<int>(
-                                                underline: SizedBox(),
-                                                icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
-                                                value: _thangVe,
-                                                onChanged: (newValue){
-                                                  setState((){
-                                                    _thangVe = newValue!;
-                                                  });
-                                                },
-                                                items: dsThang.map((newValue){
-                                                  return DropdownMenuItem(
-                                                    value: newValue,
-                                                    child: Text("TH"+newValue.toString(),
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                        fontSize: 17,
-                                                      ),),
-                                                  );
-                                                }).toList(),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                  FlatButton(
+                                      onPressed: () async  {
+                                        DateTime? newDate = await showDatePicker(
+                                          context: context,
+                                          initialDate: date,
+                                          firstDate: DateTime(1900),
+                                          lastDate: DateTime(2100),
+                                        );
+                                        if (newDate == null) return;
+                                        setState(() {
+                                          date = newDate;
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Expanded(
                                               child: Container(
-                                                alignment: Alignment.centerLeft,
-                                                height: 15,
-                                                child: DropdownButton<int>(
-                                                  underline: SizedBox(),
-                                                  icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
-                                                  value: _namVe,
-                                                  onChanged: (newValue){
-                                                    setState((){
-                                                      _namVe = newValue!;
-                                                    });
-                                                  },
-                                                  items: dsNam.map((newValue){
-                                                    return DropdownMenuItem(
-                                                      value: newValue,
-                                                      child: Text(newValue.toString(),
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                        ),),
-                                                    );
-                                                  }).toList(),
+
+                                                alignment: Alignment.center,
+                                                width: 20,
+                                                height: 30,
+                                                child:
+                                                Text("${date.day}",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 30,
+                                                    color: Colors.grey
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                            Expanded(child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 15,
+                                                  alignment: Alignment.centerLeft,
+                                                  child:Text("TH${date.month}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                                  child: Container(
+                                                    alignment: Alignment.centerLeft,
+                                                    height: 15,
+                                                    child: Text("${date.year}",
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ))
                                           ],
-                                        ))
-                                      ],
-                                    ),
-                                  )
+                                        ),
+                                      )),
                                 ],
                               ),
                             ),
@@ -591,11 +541,16 @@ class _HeaderState extends State<Header> {
 
                   child: FlatButton(
                     onPressed: () {
+                      setState(() {
+                        String temp = _diemXuatPhat;
+                        _diemXuatPhat = _diemKetThuc;
+                        _diemKetThuc = temp;
+                      });
 
                     },
                     child: Container(
-                        height: 80,
-                        width: 80,
+                        height: 50,
+                        width: 50,
                         child: Image.asset('re.png')),
 
                   )
@@ -622,12 +577,16 @@ class _HeaderState extends State<Header> {
                   ),
                   color: Colors.amber,
                   onPressed: (){
+                    var formatter = new DateFormat('dd/MM/yyyy');
+                    String formattedDate = formatter.format(date);
+                    print(formattedDate);
                     Navigator.push(
                         this.context,
                         MaterialPageRoute(
                             builder: (context) => ListTrip(
                                 diemBatDau: _diemXuatPhat,
-                                diemKetThuc: _diemKetThuc, ngayDi: _ngayDi, thangDi: _thangDi, namDi: _namDi,)
+                                diemKetThuc: _diemKetThuc, date: formattedDate )
+                                // +'/'+date.toString().substring(6,2)+'/'+date.toString().substring(0,4))
                         ));
                   },
                   child: Row(
@@ -732,6 +691,7 @@ class _HeaderState extends State<Header> {
       .collection('trips')
       .snapshots()
       .map((event) => event.docs.map((doc) => Trips.fromJson(doc.data())));
+
 
 
 

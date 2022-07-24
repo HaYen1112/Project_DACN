@@ -6,25 +6,24 @@ import 'package:project_cnpm/DAO/Trips.dart';
 import '../widget/item_Ticket.dart';
 import 'edit_trip_manager.dart';
 class ListTrip extends StatefulWidget {
-  ListTrip({Key? key, required this.diemBatDau, required this.diemKetThuc,required this.ngayDi,required this.thangDi, required this.namDi}) : super(key: key);
+  ListTrip({Key? key, required this.diemBatDau, required this.diemKetThuc,required this.date}) : super(key: key);
   String? diemBatDau;
   String? diemKetThuc;
-  int ngayDi;
-  int thangDi;
-  int namDi;
+  String date;
+  // int ngayDi;
+  // int thangDi;
+  // int namDi;
 
 
   @override
-  State<ListTrip> createState() => _ListTripState(diemBatDau!, diemKetThuc!,ngayDi, thangDi, namDi);
+  State<ListTrip> createState() => _ListTripState(diemBatDau!, diemKetThuc!,date);
 }
 
 class _ListTripState extends State<ListTrip> {
-  _ListTripState(this.diemBatDau, this.diemKetThuc, this.ngayDi, this.thangDi, this.namDi);
+  _ListTripState(this.diemBatDau, this.diemKetThuc, this.date);
   String diemBatDau;
   String diemKetThuc;
-  int ngayDi;
-  int thangDi;
-  int namDi;
+  String date;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +64,7 @@ class _ListTripState extends State<ListTrip> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text("12 Sep - 15 Sep",
+                        Text("$date",
                             style: TextStyle(color: Colors.white,fontSize: 15)),
                         Text("1 Adult - Economy",
                             style: TextStyle(color: Colors.white,fontSize: 15))
@@ -110,6 +109,7 @@ class _ListTripState extends State<ListTrip> {
                               final trips = snapshot.data!;
                               return ListView(
                                 children: trips.map(buildItemTrip).toList(),
+
                               );
                             } else {
                               return Center(child: CircularProgressIndicator());
@@ -129,15 +129,20 @@ class _ListTripState extends State<ListTrip> {
     );
   }
   bool isSelect = false;
-  int? count;
+  int _count=0;
+
+
+  int get count => _count;
+
+
+  set count(int value) {
+    _count = value;
+  }
 
   Widget buildItemTrip(Trips trip){
-int count1 =0;
-    if((diemBatDau==trip.startAddress)&& (diemKetThuc==trip.endAddress)){
+    int count1= 0;
+    if((diemBatDau==trip.startAddress)&& (diemKetThuc==trip.endAddress)&&(date== trip.date)){
       count1++;
-      count = count1;
-      print(count);
-
     return  Padding(
       padding: EdgeInsets.only(left: 16,right: 16,top: 8,bottom: 8),
       child: Column(
@@ -354,6 +359,10 @@ int count1 =0;
       .collection('trips')
       .snapshots()
       .map((event) => event.docs.map((doc) => Trips.fromJson(doc.data())));
+
+
+
+
 }
 
 

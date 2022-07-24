@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 
 dependencies:
+  intl: ^0.17.0
   email_validator: ^2.0.1
   flutter_translate: ^4.0.2
   datetime_picker_formfield: ^2.0.0
@@ -47,10 +48,12 @@ dependencies:
   otp_text_field: ^1.1.1
 
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   grouped_list: ^3.5.0
+
 
 dev_dependencies:
   flutter_test:
