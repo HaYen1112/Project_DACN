@@ -3,7 +3,7 @@ import 'package:project_cnpm/page/search_Page/recomend.dart';
 import 'package:project_cnpm/page/search_Page/titleWithMore.dart';
 
 import 'featured.dart';
-import 'header.dart';
+import 'hearderForSearch.dart';
 
 
 class Body extends StatelessWidget {
@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          HeaderWithSearchBox(size: size),
+          Header(size: size),
           TitleWithMoreBtn(title: "Tuyến phổ biến", press: () {}),
           RecomendsPlants(),
           TitleWithMoreBtn(title: "Điểm đến phổ biến", press: () {}),
