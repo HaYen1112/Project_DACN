@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/page/listTripPage.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 class TripManager extends StatelessWidget{
   @override
@@ -10,5 +11,6 @@ class TripManager extends StatelessWidget{
       centerTitle: true,
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
+    body: ListTrip(),
   );
 }

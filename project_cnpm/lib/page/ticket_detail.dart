@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/page/search_Page/recomend.dart';
+import 'package:project_cnpm/page/utils.dart';
 
 import '../DAO/Users.dart';
 import '../widget/navigation_drawer.dart';
@@ -14,6 +16,7 @@ class CheckoutTicket extends StatelessWidget {
    CheckoutTicket(this.idTrips);
   @override
   Widget build(BuildContext context) {
+    addSeat(idTrips);
     Color primaryColor = Color.fromARGB(255, 248, 178, 29);
     return Scaffold(
       appBar: AppBar(
@@ -83,7 +86,7 @@ class CheckoutTicket extends StatelessWidget {
                               final endAddress = trip.endAddress;
                               final startAddress = trip.startAddress;
                               final idDetail =trip.idTrip;
-                              final int price = trip.price*(RecomendPlantCard.seatCount);
+                              final int price = trip.price*(seatCount);
                               return trip == null
                                   ? Center(child: Text('No Detail'))
                                   :  ListView(
@@ -253,7 +256,7 @@ class CheckoutTicket extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "${RecomendPlantCard.seatCount}",
+                                              "${seatCount}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
@@ -269,7 +272,7 @@ class CheckoutTicket extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              "${RecomendPlantCard.listId.toString()}",
+                                              "${listId.toString()+""}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
@@ -309,7 +312,7 @@ class CheckoutTicket extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              "${idDetail}DETAIL",
+                                              "${idDetail.substring(0,6)}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
@@ -463,6 +466,29 @@ class CheckoutTicket extends StatelessWidget {
         ],
       ),
     );
+
+  }
+  static late int seatCount=0;
+  static late List<String> listId = [];
+  static Future addSeat(String id) async {
+    late List<String> listIds = [];
+    try {
+      for (int i = 1; i <= 36; i++) {
+        final docTicket =
+        FirebaseFirestore.instance.collection('tickets').doc(id+'$i');
+        final snapshot = await docTicket.get();
+        Tickets ticket = Tickets.fromJson(snapshot.data()!);
+        if (ticket.status == 'Đã chọn') {
+          listIds.add(ticket.seatLocation+"");
+        }
+      }
+      seatCount= listIds.length;
+      listId =listIds;
+
+    } on FirebaseException catch (e) {
+      print(e);
+      Utils.showSnackBar(e.message);
+    }
   }
    Future<Users?> readUser() async {
      final id = FirebaseAuth.instance.currentUser;
@@ -480,3 +506,4 @@ class CheckoutTicket extends StatelessWidget {
     }
   }
 }
+
