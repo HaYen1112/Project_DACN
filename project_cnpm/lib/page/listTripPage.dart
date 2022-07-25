@@ -30,7 +30,6 @@ class _ListTripState extends State<ListTrip> {
       body: Container(
         color: Colors.blue,
         child: SingleChildScrollView(
-
             child: Stack(
               children: <Widget>[
                 Container(
