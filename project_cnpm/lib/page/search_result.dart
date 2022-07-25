@@ -12,7 +12,9 @@ class TripManager extends StatelessWidget{
       backgroundColor: Color.fromARGB(255, 248, 178, 29),
     ),
 
+
      // body: ListTrip(),
+
 
   );
 }

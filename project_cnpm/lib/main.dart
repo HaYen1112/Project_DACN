@@ -6,14 +6,12 @@ import 'package:project_cnpm/page/add_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
 import 'package:project_cnpm/page/Manager_trip.dart';
 import 'package:project_cnpm/page/auth_page.dart';
-
-import 'package:project_cnpm/page/payment/home_pay.dart';
 import 'package:project_cnpm/page/search_page.dart';
-import 'package:project_cnpm/page/search_result.dart';
-
 import 'package:project_cnpm/page/utils.dart';
 import 'package:project_cnpm/page/verify_email_page.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
+import 'package:project_cnpm/page/viewTicketBooked.dart';
+import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import 'package:firebase_core/firebase_core.dart';

@@ -376,7 +376,7 @@ class TicketDetail extends StatelessWidget {
                                   title: const Text("Xác nhận hủy vé?"),
                                   content: const Text("Thao tác này sẽ hủy vé đã đặt của bạn."),
                                   actions: [
-                                    TextButton(child: const Text("Hủy vé"),
+                                    TextButton(child: const Text("Hủy"),
                                       onPressed: (){Navigator.of(context).pop();
                                       },
                                     ),
