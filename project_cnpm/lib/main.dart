@@ -19,6 +19,7 @@ import 'package:project_cnpm/page/manager_users.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: FirebaseOptions (
       apiKey: "AIzaSyAwVJhWKkce7_tcM_jvF0yRPqLswAtcUAc",
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
       title: appTitle,
 
       home: ListTrip(),
+
+      home: SearchScreen(),
 
 
 
