@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/DAO/Trips.dart';
 
 import '../../DAO/Tickets.dart';
 import '../TicketBook.dart';
@@ -7,95 +8,46 @@ import '../utils.dart';
 import 'constants.dart';
 
 
-class RecomendsPlants extends StatelessWidget {
-  const RecomendsPlants({
-    Key? key,
-  }) : super(key: key);
+
+class ListTripHOT extends StatefulWidget {
+  const ListTripHOT({Key? key}) : super(key: key);
 
   @override
+  State<ListTripHOT> createState() => _ListTripHOTState();
+}
+
+class _ListTripHOTState extends State<ListTripHOT> {
+  @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: <Widget>[
-          Container(
-
-            child: RecomendPlantCard(
-              image: 'nhatrang.jpg',
-              title: "Sài Gòn",
-              country: "Đà Lạt",
-              price: 280000,
-              press: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => DetailsScreen(),
-                //   ),
-                // );
-              },
-            ),
-          ),
-          Container(
-
-            child: RecomendPlantCard(
-              image: 'nhatrang.jpg',
-              title: "Sài Gòn",
-              country: "Nha Trang",
-              price: 235000,
-              press: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => DetailsScreen(),
-                //   ),
-                // );
-              },
-            ),
-          ),
-          Container(
-
-            child: RecomendPlantCard(
-              image: 'nhatrang.jpg',
-              title: "Sài Gòn",
-              country: "Đà Nẵng",
-              price: 390000,
-              press: () {},
-            ),
-          ),
-        ],
+      child: StreamBuilder<Iterable<Trips>>(
+        stream: readTrips(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final trips = snapshot.data!;
+            return Row(
+              children: trips.map(buildItemTrip).toList(),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
-}
-
-class RecomendPlantCard extends StatelessWidget {
-
-  RecomendPlantCard({
-    Key? key,
-    this.image,
-    this.title,
-    this.country,
-    this.price,
-    this.press,
-  }) : super(key: key);
-
-  final String? image, title, country;
-  final int? price;
-  final VoidCallback? press;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+  Widget buildItemTrip(Trips trip){
     return Container(
       margin: EdgeInsets.only(
         left: kDefaultPadding,
         top: kDefaultPadding / 2,
         bottom: kDefaultPadding * 2.5,
       ),
-      width: size.width * 0.4,
+      width: 200,
       child: Column(
         children: <Widget>[
-          Image.asset(image!),
+          Image.asset('nhatrang.jpg'),
           GestureDetector(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>
@@ -119,28 +71,41 @@ class RecomendPlantCard extends StatelessWidget {
               ),
               child: Row(
                 children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: "$title\n".toUpperCase(),
-                            style: Theme.of(context).textTheme.button),
-                        TextSpan(
-                          text: "$country".toUpperCase(),
-                          style: TextStyle(
-                            color: kPrimaryColor.withOpacity(0.5),
-                          ),
-                        ),
-                      ],
+                  Column(
+                    children: [
+                    Container(
+                      height: 20,
+                      width: 100,
+                      child: Text('${trip.startAddress}'.toUpperCase(),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                       ),
+                        textAlign: TextAlign.left,
+                      ),
                     ),
+                      Container(
+                        height: 20,
+                        width: 100,
+                        child: Text('${trip.endAddress}'.toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                          ),
+                          textAlign: TextAlign.left,
+
+                        ),
+                      ),
+                    ],
                   ),
-                  // Spacer(),
+
                   Text(
-                    '    $price Đồng',
+                    '${trip.price} VNĐ',
                     style: Theme.of(context)
                         .textTheme
                         .button
                         ?.copyWith(color: Colors.red),
+                    textAlign: TextAlign.end,
                   )
                 ],
               ),
@@ -150,4 +115,11 @@ class RecomendPlantCard extends StatelessWidget {
       ),
     );
   }
+  Stream<Iterable<Trips>> readTrips() => FirebaseFirestore.instance
+      .collection('trips')
+      .snapshots()
+      .map((event) => event.docs.map((doc) => Trips.fromJson(doc.data())));
+
+
 }
+
