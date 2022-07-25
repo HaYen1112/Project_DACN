@@ -380,5 +380,8 @@ class _ListTripState extends State<ListTrip> {
 
 
 }
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> main
