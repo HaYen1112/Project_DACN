@@ -5,12 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/viewTicketDetail.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
-<<<<<<< HEAD:project_cnpm/lib/page/viewTicketBooked/view_ticketbook.dart
-=======
-import '../DAO/Trips.dart';
-
-
->>>>>>> main:project_cnpm/lib/page/view_ticketbook.dart
 class ViewTicket extends StatefulWidget {
   final String idViewTicket;
   const ViewTicket( this.idViewTicket);
