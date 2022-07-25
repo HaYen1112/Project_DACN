@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 
 dependencies:
+
   email_validator: ^2.0.1
   flutter_translate: ^4.0.2
   datetime_picker_formfield: ^2.0.0
@@ -55,6 +56,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
 
   flutter_svg: ^0.19.1
