@@ -14,7 +14,7 @@ import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
 import 'package:project_cnpm/page/login_register_forgotpassword/verify_email_page.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/page/viewTicketBooked.dart';
-import 'package:project_cnpm/page/view_ticketbook.dart';
+import 'package:project_cnpm/page/viewTicketBooked/view_ticketbook.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,9 +45,13 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
+<<<<<<< HEAD
+      home: MainPage(),
+=======
 
       home: MainPage(),
 
+>>>>>>> main
     );
   }
 }
