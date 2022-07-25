@@ -136,7 +136,7 @@ class RecomendPlantCard extends StatelessWidget {
                   ),
                   // Spacer(),
                   Text(
-                    '    $price Đồng',
+                    '    $price VND',
                     style: Theme.of(context)
                         .textTheme
                         .button

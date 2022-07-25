@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_braintree/flutter_braintree.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
@@ -433,7 +434,24 @@ class CheckoutTicket extends StatelessWidget {
                           child: Text("Thanh toán", style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),),
                           color: Color.fromARGB(255, 248, 178, 29),
                           textColor: Colors.white,
-                          onPressed: () {},
+                          onPressed: () async {
+                            var request = BraintreeDropInRequest(
+                              // chèn key paypal
+                                tokenizationKey: 'sandbox_243r7pxg_y5rkw4rg4cpz4rz3',
+                                collectDeviceData: true,
+                                paypalRequest: BraintreePayPalRequest(
+                                  amount: '10.00',
+                                  displayName: 'Ha Yen',
+                                ),
+                                cardEnabled: true
+                            );
+                            BraintreeDropInResult? result =
+                                await BraintreeDropIn.start(request);
+                            if(result != null) {
+                              print(result.paymentMethodNonce.description);
+                              print(result.paymentMethodNonce.nonce);
+                            }
+                          },
                         ),
 
                       ],
