@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.project_cnpm">
    <application
         android:label="project_cnpm"
         android:name="${applicationName}"
+       tools:replace="android:label"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -30,10 +32,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+       <activity android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
+           android:launchMode="singleTask">
+           <intent-filter>
+               <action android:name="android.intent.action.VIEW" />
+               <category android:name="android.intent.category.DEFAULT" />
+               <category android:name="android.intent.category.BROWSABLE" />
+               <data android:scheme="${applicationId}.braintree" />
+           </intent-filter>
+       </activity>
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+<!--       <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true"/>-->
     </application>
 </manifest>

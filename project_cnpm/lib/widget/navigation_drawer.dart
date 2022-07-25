@@ -11,7 +11,7 @@ import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
 
-import '../page/verify_email_page.dart';
+import '../page/login_register_forgotpassword/verify_email_page.dart';
 
 class MainPageCustomer extends StatefulWidget {
   @override

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/page/utils.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
 
 class VerifyEmailPage extends StatefulWidget {

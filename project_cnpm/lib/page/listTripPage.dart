@@ -6,7 +6,7 @@ import 'package:project_cnpm/page/search_page.dart';
 
 import '../widget/item_Ticket.dart';
 import 'TicketBook.dart';
-import 'edit_trip_manager.dart';
+import 'edit_ticket_ad.dart';
 class ListTrip extends StatefulWidget {
   ListTrip({Key? key, required this.diemBatDau, required this.diemKetThuc,required this.date}) : super(key: key);
   String? diemBatDau;
@@ -380,3 +380,8 @@ class _ListTripState extends State<ListTrip> {
 
 
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main

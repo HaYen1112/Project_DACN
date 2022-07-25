@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/page/ticket_detail.dart';
 
-import '../page/utils.dart';
+import '../page/login_register_forgotpassword/utils.dart';
 
 class TicketBook_item extends StatelessWidget {
   late String title;

@@ -68,8 +68,4 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:30.0.1')
-    implementation 'com.stripe:stripe-java:20.77.0'
-    implementation 'com.android.volley:volley:1.1.0'
-    implementation 'com.stripe:stripe-android:20.6.2'
-    implementation 'com.stripe:stripecardscan:20.6.2'
 }
