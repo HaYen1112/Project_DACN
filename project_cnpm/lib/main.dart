@@ -18,7 +18,7 @@ import 'package:project_cnpm/page/viewTicketBooked/view_ticketbook.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project_cnpm/page/manager_users.dart';
+import 'package:project_cnpm/page/manager_users/manager_user.dart';
 
 
 

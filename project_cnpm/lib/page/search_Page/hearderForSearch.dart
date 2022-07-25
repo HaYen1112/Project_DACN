@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
@@ -7,7 +6,6 @@ import 'package:intl/intl.dart';
 import '../../DAO/Trips.dart';
 import '../manager_trips/edit_trip_manager.dart';
 import 'constants.dart';
-
 
 class Header extends StatefulWidget {
   const Header({Key? k, required this.size}) : super(key: k);
@@ -18,29 +16,30 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
-  int _ngayDi =1;
-  int _thangDi =1;
-  int _namDi =2022;
-  int _ngayVe =1;
-  int _thangVe =1;
-  int _namVe =2022;
+  int _ngayDi = 1;
+  int _thangDi = 1;
+  int _namDi = 2022;
+  int _ngayVe = 1;
+  int _thangVe = 1;
+  int _namVe = 2022;
   int _set = 1;
   var ds1 = [for (var i = 1; i <= 31; i++) i];
   var dsThang = [for (var i = 1; i <= 12; i++) i];
   var dsNam = [for (var i = 2022; i <= 2030; i++) i];
-
 
   int get set => _set;
 
   static set diemXuatPhat(String value) {
     _diemXuatPhat = value;
   }
+
   static set diemKetThuc(String value) {
     _diemKetThuc = value;
   }
+
   static String get diemXuatPhat => _diemXuatPhat;
-  static String _diemXuatPhat ="TP Hồ Chí Minh";
-  static String _diemKetThuc ="Hà Nội";
+  static String _diemXuatPhat = "TP Hồ Chí Minh";
+  static String _diemKetThuc = "Hà Nội";
   List<String> country = [
     "TP Hồ Chí Minh",
     "Nha Trang",
@@ -55,7 +54,6 @@ class _HeaderState extends State<Header> {
   DateTime date = DateTime(2022, 7, 26);
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
       // It will cover 20% of our total height
@@ -68,7 +66,7 @@ class _HeaderState extends State<Header> {
               right: kDefaultPadding,
               bottom: 50 + kDefaultPadding,
             ),
-            height: 200 ,
+            height: 200,
             decoration: BoxDecoration(
               color: kPrimaryColor,
               image: DecorationImage(
@@ -129,7 +127,7 @@ class _HeaderState extends State<Header> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 0.8, 0.8, 2),
                     child: Container(
-                        width: 320,
+                        width: 270,
                         child: Container(
                           color: Colors.white,
                           width: 300,
@@ -140,31 +138,30 @@ class _HeaderState extends State<Header> {
                             value: _diemXuatPhat,
                             isExpanded: true,
                             hint: Text("Chọn điểm khởi hành"),
-                            onChanged: (newValue){
-                              setState((){
+                            onChanged: (newValue) {
+                              setState(() {
                                 _diemXuatPhat = newValue!;
                                 // temp = newValue!;
                               });
                             },
-                            items: country.map((newValue){
+                            items: country.map((newValue) {
                               return DropdownMenuItem(
                                 value: newValue,
                                 child: Text(newValue),
                               );
                             }).toList(),
                           ),
-                        )
-                    ),
+                        )),
                   ),
                   Container(
                     color: Colors.grey,
                     height: 1,
-                    width: 320,
+                    width: 270,
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10,0,0,0),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                     child: Container(
-                        width: 320,
+                        width: 270,
                         child: Container(
                           color: Colors.white,
                           width: 300,
@@ -175,21 +172,19 @@ class _HeaderState extends State<Header> {
                             value: _diemKetThuc,
                             isExpanded: true,
                             hint: Text("Chọn điểm kết thúc"),
-                            onChanged: (newValue){
-                              setState((){
+                            onChanged: (newValue) {
+                              setState(() {
                                 _diemKetThuc = newValue!;
-
                               });
                             },
-                            items: country.map((newValue){
+                            items: country.map((newValue) {
                               return DropdownMenuItem(
                                 value: newValue,
                                 child: Text(newValue),
                               );
                             }).toList(),
                           ),
-                        )
-                    ),
+                        )),
                   ),
                 ],
               ),
@@ -203,7 +198,7 @@ class _HeaderState extends State<Header> {
               alignment: Alignment.center,
               margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
               padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              height: 108,
+              height: 130,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -230,8 +225,8 @@ class _HeaderState extends State<Header> {
                             leading: Radio<int>(
                               value: 1,
                               groupValue: _set,
-                              onChanged: (newValue){
-                                setState((){
+                              onChanged: (newValue) {
+                                setState(() {
                                   _set = newValue!;
                                 });
                               },
@@ -244,22 +239,22 @@ class _HeaderState extends State<Header> {
                         height: 40,
                         width: 1,
                       ),
-
                       Expanded(
                         child: Container(
                           color: Colors.white,
                           height: 40,
-                          width: 250,
-
+                          width: 300,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(40,0,0,0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: ListTile(
-                              title: const Text("Khứ hồi"),
+                              title: const Text(
+                                "Khứ hồi",
+                              ),
                               leading: Radio<int>(
                                 value: 2,
                                 groupValue: _set,
-                                onChanged: (newValue){
-                                  setState((){
+                                onChanged: (newValue) {
+                                  setState(() {
                                     _set = newValue!;
                                   });
                                 },
@@ -276,7 +271,6 @@ class _HeaderState extends State<Header> {
                   ),
                   Row(
                     children: <Widget>[
-
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
@@ -287,7 +281,6 @@ class _HeaderState extends State<Header> {
                             child: Container(
                               height: 100,
                               width: 100,
-
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -295,18 +288,18 @@ class _HeaderState extends State<Header> {
                                     left: 0,
                                     child: Padding(
                                       padding: EdgeInsets.fromLTRB(8, 0, 0, 5),
-                                      child: Text("Ngày đi",
+                                      child: Text(
+                                        "Ngày đi",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.grey
-                                        ),
+                                            fontSize: 15, color: Colors.grey),
                                       ),
                                     ),
                                   ),
                                   FlatButton(
-                                      onPressed: () async  {
-                                        DateTime? newDate = await showDatePicker(
+                                      onPressed: () async {
+                                        DateTime? newDate =
+                                            await showDatePicker(
                                           context: context,
                                           initialDate: date,
                                           firstDate: DateTime(1900),
@@ -318,54 +311,64 @@ class _HeaderState extends State<Header> {
                                         });
                                       },
                                       child: Container(
-                                        color: Colors.transparent,
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            width: 20,
-                                            height: 30,
-                                            child:
-                                            Text("${date.day}",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 30,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(child: Column(
-                                          children: [
-                                            Container(
-                                              height: 15,
-                                              alignment: Alignment.centerLeft,
-                                              child:Text("TH${date.month}",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 17,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                        width: 200,
+                                        color: Colors.amber,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Expanded(
                                               child: Container(
-                                                alignment: Alignment.centerLeft,
-                                                height: 15,
-                                                child: Text("${date.year}",
+                                                alignment: Alignment.center,
+                                                width: 200,
+                                                height: 50,
+                                                child: Text(
+                                                  "${date.day}",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 20,
                                                   ),
                                                 ),
                                               ),
                                             ),
+                                            Expanded(
+                                                child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 15,
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    "TH${date.month}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 4, 0, 0),
+                                                  child: Container(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    height: 15,
+                                                    child: Text(
+                                                      "${date.year}",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ))
                                           ],
-                                        ))
-                                      ],
-                                    ),
-                                  )),
+                                        ),
+                                      )),
                                 ],
                               ),
                             ),
@@ -389,7 +392,6 @@ class _HeaderState extends State<Header> {
                           color: Colors.white,
                           height: 60,
                           width: 250,
-
                         ),
                       ),
                       Expanded(
@@ -402,7 +404,6 @@ class _HeaderState extends State<Header> {
                             child: Container(
                               height: 100,
                               width: 100,
-
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -410,18 +411,18 @@ class _HeaderState extends State<Header> {
                                     left: 0,
                                     child: Padding(
                                       padding: EdgeInsets.fromLTRB(8, 0, 0, 5),
-                                      child: Text("Ngày về",
+                                      child: Text(
+                                        "Ngày về",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.grey
-                                        ),
+                                            fontSize: 15, color: Colors.grey),
                                       ),
                                     ),
                                   ),
                                   FlatButton(
-                                      onPressed: () async  {
-                                        DateTime? newDate = await showDatePicker(
+                                      onPressed: () async {
+                                        DateTime? newDate =
+                                            await showDatePicker(
                                           context: context,
                                           initialDate: date,
                                           firstDate: DateTime(1900),
@@ -435,30 +436,32 @@ class _HeaderState extends State<Header> {
                                       child: Container(
                                         color: Colors.transparent,
                                         child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Expanded(
                                               child: Container(
-
                                                 alignment: Alignment.center,
                                                 width: 20,
                                                 height: 30,
-                                                child:
-                                                Text("${date.day}",
+                                                child: Text(
+                                                  "${date.day}",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                    fontSize: 30,
-                                                    color: Colors.grey
-                                                  ),
+                                                      fontSize: 30,
+                                                      color: Colors.grey),
                                                 ),
                                               ),
                                             ),
-                                            Expanded(child: Column(
+                                            Expanded(
+                                                child: Column(
                                               children: [
                                                 Container(
                                                   height: 15,
-                                                  alignment: Alignment.centerLeft,
-                                                  child:Text("TH${date.month}",
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    "TH${date.month}",
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontSize: 17,
@@ -467,12 +470,17 @@ class _HeaderState extends State<Header> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 4, 0, 0),
                                                   child: Container(
-                                                    alignment: Alignment.centerLeft,
+                                                    alignment:
+                                                        Alignment.centerLeft,
                                                     height: 15,
-                                                    child: Text("${date.year}",
-                                                      textAlign: TextAlign.center,
+                                                    child: Text(
+                                                      "${date.year}",
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: Colors.grey,
@@ -497,7 +505,6 @@ class _HeaderState extends State<Header> {
               ),
             ),
           ),
-
           Positioned(
             top: 150,
             left: -8,
@@ -511,11 +518,9 @@ class _HeaderState extends State<Header> {
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child:Container(
+              child: Container(
                 child: Container(
-                    height: 70,
-                    width: 70,
-                    child: Image.asset('vecto.png')),
+                    height: 70, width: 70, child: Image.asset('vecto.png')),
               ),
             ),
           ),
@@ -532,25 +537,18 @@ class _HeaderState extends State<Header> {
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child:Container(
-
+              child: Container(
                   child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        String temp = _diemXuatPhat;
-                        _diemXuatPhat = _diemKetThuc;
-                        _diemKetThuc = temp;
-                      });
-
-                    },
-                    child: Container(
-                        height: 50,
-                        width: 50,
-                        child: Image.asset('re.png')),
-
-                  )
-              ),
-
+                onPressed: () {
+                  setState(() {
+                    String temp = _diemXuatPhat;
+                    _diemXuatPhat = _diemKetThuc;
+                    _diemKetThuc = temp;
+                  });
+                },
+                child: Container(
+                    height: 50, width: 50, child: Image.asset('re.png')),
+              )),
             ),
           ),
           Positioned(
@@ -565,13 +563,13 @@ class _HeaderState extends State<Header> {
               margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
               padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
               height: 40,
-              child:Container(
+              child: Container(
                 child: FlatButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                   color: Colors.amber,
-                  onPressed: (){
+                  onPressed: () {
                     var formatter = new DateFormat('dd/MM/yyyy');
                     String formattedDate = formatter.format(date);
                     print(formattedDate);
@@ -580,9 +578,10 @@ class _HeaderState extends State<Header> {
                         MaterialPageRoute(
                             builder: (context) => ListTrip(
                                 diemBatDau: _diemXuatPhat,
-                                diemKetThuc: _diemKetThuc, date: formattedDate )
-                                // +'/'+date.toString().substring(6,2)+'/'+date.toString().substring(0,4))
-                        ));
+                                diemKetThuc: _diemKetThuc,
+                                date: formattedDate)
+                            // +'/'+date.toString().substring(6,2)+'/'+date.toString().substring(0,4))
+                            ));
                   },
                   child: Row(
                     children: [
@@ -594,9 +593,7 @@ class _HeaderState extends State<Header> {
                         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Text(
                           "Tìm kiếm",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white),
+                          style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
                     ],
@@ -605,89 +602,82 @@ class _HeaderState extends State<Header> {
               ),
             ),
           ),
-
         ],
       ),
     );
-
   }
+
   bool isSelect = false;
   Widget buildTrip(Trips trip) => ListTile(
-    leading: const CircleAvatar(
-      backgroundColor: Colors.amberAccent,
-      child: Icon(
-        Icons.car_repair,
-        color: Colors.white,
-      ),
-    ),
-    title: Text(
-      '${trip.startAddress} - ${trip.endAddress}',
-      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-    ),
-    subtitle: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 5,
+        leading: const CircleAvatar(
+          backgroundColor: Colors.amberAccent,
+          child: Icon(
+            Icons.car_repair,
+            color: Colors.white,
+          ),
         ),
-        Text('Ngày khởi hành: ${trip.date}',
-            style: TextStyle(color: Colors.black)),
-        const SizedBox(
-          height: 5,
+        title: Text(
+          '${trip.startAddress} - ${trip.endAddress}',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        Text('Thời gian khởi hành: ${trip.startTime}',
-            style: TextStyle(color: Colors.black)),
-        SizedBox(height: 5),
-        Text('Giá vé: ${trip.price} Đồng',
-            style: TextStyle(color: Colors.black)),
-        SizedBox(height: 5),
-        Text('Số lượng vé: ${trip.quantityStatus}',
-            style: TextStyle(color: Colors.black)),
-        SizedBox(height: 20),
-      ],
-    ),
-    trailing: ElevatedButton(
-        onPressed: () => Navigator.push(
-            this.context,
-            MaterialPageRoute(
-                builder: (context) => EditTrip(
-                  amountTicket: trip.quantityStatus,
-                  country_id1: trip.startAddress,
-                  country_id2: trip.endAddress,
-                  endT: trip.endTime,
-                  priceTicket: trip.price,
-                  startT: trip.startTime,
-                  idTrip: trip.idTrip,
-                  timeE: TimeOfDay(
-                    hour: int.parse(trip.endTime.substring(0, 2)),
-                    minute: int.parse(trip.endTime.substring(3)),
-                  ),
-                  timeS: TimeOfDay(
-                    hour:
-                    int.parse(trip.startTime.substring(0, 2)),
-                    minute:
-                    int.parse(trip.startTime.substring(3)),
-                  ),
-                  date: DateTime(
-                      int.parse(trip.date.substring(6)),
-                      int.parse(trip.date.substring(3, 5)),
-                      int.parse(trip.date.substring(0, 2))),
-                ))),
-        child: const Icon(
-          Icons.edit,
-          color: Colors.amberAccent,
-        )),
-    onTap: () {},
-    hoverColor: Colors.black12,
-    dense: true,
-  );
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 5,
+            ),
+            Text('Ngày khởi hành: ${trip.date}',
+                style: TextStyle(color: Colors.black)),
+            const SizedBox(
+              height: 5,
+            ),
+            Text('Thời gian khởi hành: ${trip.startTime}',
+                style: TextStyle(color: Colors.black)),
+            SizedBox(height: 5),
+            Text('Giá vé: ${trip.price} Đồng',
+                style: TextStyle(color: Colors.black)),
+            SizedBox(height: 5),
+            Text('Số lượng vé: ${trip.quantityStatus}',
+                style: TextStyle(color: Colors.black)),
+            SizedBox(height: 20),
+          ],
+        ),
+        trailing: ElevatedButton(
+            onPressed: () => Navigator.push(
+                this.context,
+                MaterialPageRoute(
+                    builder: (context) => EditTrip(
+                          amountTicket: trip.quantityStatus,
+                          country_id1: trip.startAddress,
+                          country_id2: trip.endAddress,
+                          endT: trip.endTime,
+                          priceTicket: trip.price,
+                          startT: trip.startTime,
+                          idTrip: trip.idTrip,
+                          timeE: TimeOfDay(
+                            hour: int.parse(trip.endTime.substring(0, 2)),
+                            minute: int.parse(trip.endTime.substring(3)),
+                          ),
+                          timeS: TimeOfDay(
+                            hour: int.parse(trip.startTime.substring(0, 2)),
+                            minute: int.parse(trip.startTime.substring(3)),
+                          ),
+                          date: DateTime(
+                              int.parse(trip.date.substring(6)),
+                              int.parse(trip.date.substring(3, 5)),
+                              int.parse(trip.date.substring(0, 2))),
+                        ))),
+            child: const Icon(
+              Icons.edit,
+              color: Colors.amberAccent,
+            )),
+        onTap: () {},
+        hoverColor: Colors.black12,
+        dense: true,
+      );
 
   Stream<Iterable<Trips>> readTrips() => FirebaseFirestore.instance
       .collection('trips')
       .snapshots()
       .map((event) => event.docs.map((doc) => Trips.fromJson(doc.data())));
-
-
-
-
 }
