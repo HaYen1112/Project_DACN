@@ -2,17 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
+import 'package:project_cnpm/page/search_page.dart';
 
 import '../widget/item_Ticket.dart';
+import 'TicketBook.dart';
 import 'edit_trip_manager.dart';
 class ListTrip extends StatefulWidget {
   ListTrip({Key? key, required this.diemBatDau, required this.diemKetThuc,required this.date}) : super(key: key);
   String? diemBatDau;
   String? diemKetThuc;
   String date;
-  // int ngayDi;
-  // int thangDi;
-  // int namDi;
 
 
   @override
@@ -27,103 +26,118 @@ class _ListTripState extends State<ListTrip> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.blue,
-      child: SingleChildScrollView(
-        child: SafeArea(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 30),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('bus.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.keyboard_backspace, color: Colors.white,size: 25),
-                        SizedBox(width: 20),
-                        Text('$diemBatDau', style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.bold)),
-                        // SizedBox(width: 10),
-                         Icon(Icons.swap_horiz,color: Colors.white,size: 25),
-                        SizedBox(width: 10),
-                        Text("$diemKetThuc",
-                            style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.bold)),
+    return Scaffold(
+      body: Container(
+        color: Colors.blue,
+        child: SingleChildScrollView(
 
-
-                      ],
-                    ),
-                    SizedBox(height: 13),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("$date",
-                            style: TextStyle(color: Colors.white,fontSize: 15)),
-                        Text("1 Adult - Economy",
-                            style: TextStyle(color: Colors.white,fontSize: 15))
-                      ],
-                    )
-                  ],
-                ),
-              ),
-
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 30),
                   decoration: BoxDecoration(
-                      color: Color(0xFFFf6f5fb),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30)
-                      )
+                    // color: Colors.amber,
+                    image: DecorationImage(
+                      image: AssetImage('bus.png'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   width: MediaQuery.of(context).size.width,
-                  height: 600,
+                  height: MediaQuery.of(context).size.height,
                   child: Column(
                     children: <Widget>[
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text('$count Search Result',
-                              style: TextStyle(fontSize: 20)),
-                          Icon(Icons.filter_list, color: Colors.black,size: 25)
+                          Container(
+                            width: 50,
+                            child: FlatButton(
+                                onPressed: ()=>{
+                                Navigator.push(
+                                this.context,
+                                MaterialPageRoute(
+                                builder: (context) => SearchScreen(),))
+                              }
+                            , child: Container(
+                              width: 50,
+                                child: Icon(Icons.keyboard_backspace, color: Colors.black,size: 25))),
+                          ),
+
+                          Text('$diemBatDau', style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
+                          // SizedBox(width: 10),
+                           Icon(Icons.swap_horiz,color: Colors.black,size: 25),
+                          SizedBox(width: 10),
+                          Text("$diemKetThuc",
+                              style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
+
+
                         ],
                       ),
-
-                      SizedBox(height: 15),
-
-                      Container(
-                        height: 480,
-                        child: StreamBuilder<Iterable<Trips>>(
-                          stream: readTrips(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              final trips = snapshot.data!;
-                              return ListView(
-                                children: trips.map(buildItemTrip).toList(),
-
-                              );
-                            } else {
-                              return Center(child: CircularProgressIndicator());
-                            }
-                          },
-                        ),
+                      SizedBox(height: 13),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text("$date",
+                              style: TextStyle(color: Colors.black,fontSize: 15)),
+                          Text("1 Adult - Economy",
+                              style: TextStyle(color: Colors.black,fontSize: 15))
+                        ],
                       )
                     ],
                   ),
                 ),
-              )
 
-            ],
-          ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                    decoration: BoxDecoration(
+                        color: Color(0xFFFf6f5fb),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30)
+                        )
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height-100,
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text('$count Search Result',
+                                style: TextStyle(fontSize: 20)),
+                            Icon(Icons.filter_list, color: Colors.black,size: 25)
+                          ],
+                        ),
+
+                        SizedBox(height: 15),
+
+                        Container(
+                          height: 380,
+                          child: StreamBuilder<Iterable<Trips>>(
+                            stream: readTrips(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final trips = snapshot.data!;
+                                return ListView(
+                                  children: trips.map(buildItemTrip).toList(),
+
+                                );
+                              } else {
+                                return Center(child: CircularProgressIndicator());
+                              }
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+
+              ],
+            ),
+
         ),
       ),
     );
@@ -326,7 +340,10 @@ class _ListTripState extends State<ListTrip> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
                       child: FlatButton(
-                          onPressed: ()=>{},
+                          onPressed: ()=>{
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                          TicketBook(trip.idTrip))),
+                          },
                           child: Text("Đặt vé",
                             textAlign: TextAlign.center,
                             style: TextStyle(
