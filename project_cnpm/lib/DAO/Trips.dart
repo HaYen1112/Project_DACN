@@ -1,5 +1,7 @@
 
 
+import 'package:flutter/material.dart';
+
 class Trips {
 
   late String idTrip;
@@ -43,4 +45,6 @@ class Trips {
   void setIdTrip(String id) {
     idTrip = id;
   }
+
+
 }
