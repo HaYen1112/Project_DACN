@@ -100,7 +100,9 @@ class _ListTripHOTState extends State<ListTripHOT> {
                   ),
 
                   Text(
+       
                     '${trip.price} VNĐ',
+
                     style: Theme.of(context)
                         .textTheme
                         .button

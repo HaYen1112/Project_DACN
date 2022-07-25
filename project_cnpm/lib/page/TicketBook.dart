@@ -1,4 +1,5 @@
 
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class TicketBook extends StatelessWidget {
                           ],
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 6,
+                                  crossAxisCount: 4,
                                   childAspectRatio: 3 / 2,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 20),
