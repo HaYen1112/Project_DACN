@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/page/manager_users.dart';
+import 'package:project_cnpm/page/manager_users/manager_user.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
@@ -120,7 +120,7 @@ class NavigationManageDrawerWidget extends StatelessWidget{
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ManageTicket(),
+          builder: (context) => ManageUser(),
         ));
         break;
       case 3:

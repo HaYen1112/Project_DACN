@@ -11,10 +11,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/main.dart';
-import 'package:project_cnpm/page/manager_users.dart';
+import 'package:project_cnpm/page/manager_users/manager_user.dart';
 import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
-import '../widget/header_widget.dart';
-import '../widget/theme_helper.dart';
+import '../../widget/header_widget.dart';
+import '../../widget/theme_helper.dart';
 
 class AddUserPage extends StatefulWidget {
   @override
@@ -275,7 +275,7 @@ class _AddUserPageState extends State<AddUserPage> {
                                           password: controllerPW.text
                                       );
                                       if (_formKey.currentState!.validate()) {
-                                        register(user);
+                                        addUser(user);
                                       }
                                     },
                                     child: Text("Thêm tài khoản",
@@ -304,7 +304,7 @@ class _AddUserPageState extends State<AddUserPage> {
     );
 
   }
-  Future register(Users user) async {
+  Future addUser(Users user) async {
     final docUser = FirebaseFirestore.instance.collection('users').doc(user.email);
     final json = user.toJson();
     try {
@@ -319,7 +319,7 @@ class _AddUserPageState extends State<AddUserPage> {
     FirebaseAuth.instance.signInWithEmailAndPassword(email: 'projectticketbook@gmail.com', password: '123456');
     // navigatorKey.currentState!.popUntil((route) => route.isFirst);
     Navigator.push(context, MaterialPageRoute(
-        builder: (context)=>ManageTicket()
+        builder: (context)=>ManageUser()
     ));
   }
 }
