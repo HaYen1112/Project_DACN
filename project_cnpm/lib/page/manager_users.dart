@@ -116,9 +116,9 @@ class _ManageTicketState extends State<ManageTicket> {
                   showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                            title: const Text("Xác nhận hủy vé?"),
+                            title: const Text("Xác nhận xóa tài khoản?"),
                             content: const Text(
-                                "Thao tác này sẽ hủy vé đã đặt của bạn."),
+                                "Thao tác này sẽ xóa tài khoản đã chọn."),
                             actions: [
                               TextButton(
                                 child: const Text("Hủy"),

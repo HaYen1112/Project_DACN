@@ -14,11 +14,13 @@ class PaymentController extends GetxController {
       if (paymentIntentData != null) {
         await Stripe.instance.initPaymentSheet(
             paymentSheetParameters: SetupPaymentSheetParameters(
+
              //  applePay: true,
               // googlePay: PaymentSheetGooglePay,
               style: ThemeMode.dark,
               // testEnv: true,
               // merchantCountryCode: 'US',
+
               merchantDisplayName: 'Prospects',
               customerId: paymentIntentData!['customer'],
               paymentIntentClientSecret: paymentIntentData!['client_secret'],
@@ -63,7 +65,7 @@ class PaymentController extends GetxController {
           Uri.parse('https://api.stripe.com/v1/customers'),
           body: body,
           headers: {
-            'Authorization': 'sk_test_51LOMtdBf9wZUjG9rEtnBSA05emHYjl8myCipjMpFpGFPbU0jl2SenTR3fxGP97XsHuzujabkyV6zIz3c56ME4dU50089TRraE6',
+            'Authorization': 'Bearer Your Stripe Secret Key',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
       return jsonDecode(response.body);
