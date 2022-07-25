@@ -4,16 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/viewTicketDetail.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
-
-import '../DAO/Trips.dart';
-
-
 class ViewTicket extends StatefulWidget {
+  final String idViewTicket;
+  const ViewTicket( this.idViewTicket);
   @override
-  _ViewTicketState createState() => _ViewTicketState();
+  _ViewTicketState createState() => _ViewTicketState(idViewTicket);
 }
-
 class _ViewTicketState extends State<ViewTicket> {
+  final String? idViewTicket;
+   _ViewTicketState(this.idViewTicket);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,6 @@ class _ViewTicketState extends State<ViewTicket> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 248, 178, 29),
       ),
-
       body: StreamBuilder<Iterable<ViewTicketDetail>>(
         stream: readTrips(),
         builder: (context, snapshot) {
@@ -39,7 +38,6 @@ class _ViewTicketState extends State<ViewTicket> {
       ),
     );
   }
-
   bool isSelect = false;
   Widget buildTrip(ViewTicketDetail view) => ListTile(
     leading: const CircleAvatar(
@@ -80,7 +78,7 @@ class _ViewTicketState extends State<ViewTicket> {
         Text('Ghi chú: ${view.note}',
             style: TextStyle(color: Colors.black)),
         SizedBox(height: 5),
-        Text('Tổng tiền thanh toán: ${view.priceTotal} Đồng',
+        Text('Tổng tiền thanh toán: ${view.priceTotal} VND',
             style: TextStyle(color: Colors.black)),
         SizedBox(height: 5),
         Text('Số lượng vé: ${view.seatTotal}',
@@ -109,7 +107,7 @@ class _ViewTicketState extends State<ViewTicket> {
                   ),
                   TextButton(child: const Text("Xác nhận"),
                     onPressed: (){
-                      deleteTicket('KXx2g4uUV6V6IlkVk0qs');
+                      deleteTicket(idViewTicket!);
                       showDialog(
                           context: context,
                           builder: (context)=>AlertDialog(
@@ -118,8 +116,7 @@ class _ViewTicketState extends State<ViewTicket> {
                             actions: [
                               TextButton(child: const Text("Ok"),
                                 onPressed: (){
-                                  Navigator.push(
-                                      context, MaterialPageRoute(builder: (context) => ViewTicket()));
+                                  Navigator.of(context).pop();
                                 },
                               ),
                             ],
@@ -131,7 +128,7 @@ class _ViewTicketState extends State<ViewTicket> {
               )
           );
         },
-        child: Icon(
+        child: const Icon(
           Icons.delete,
           color: Colors.red,
           size: 25,
@@ -140,19 +137,17 @@ class _ViewTicketState extends State<ViewTicket> {
     hoverColor: Colors.black12,
     dense: true,
   );
+  // lấy dữ liệu từ firebase
   Stream<Iterable<ViewTicketDetail>> readTrips() => FirebaseFirestore.instance
       .collection('viewTicketBooked')
       .snapshots()
       .map((event) => event.docs.map((doc) => ViewTicketDetail.fromJson(doc.data())));
-
+  // xóa vé đã đặt
   Future deleteTicket(String idViewTicket) async {
     final docTicket=FirebaseFirestore.instance.collection('viewTicketBooked').doc(idViewTicket);
     try {
      await docTicket.delete();
-    } on FirebaseException catch (e) {
-      // print(e);
-      //  Utils.showSnackBar(e.message);
-    }
+    // ignore: empty_catches
+    } on FirebaseException catch (e) {}
   }
-
 }
