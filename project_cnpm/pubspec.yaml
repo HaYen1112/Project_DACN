@@ -20,6 +20,7 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.16.2 <3.0.0"
 
+
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -29,8 +30,10 @@ environment:
 
 dependencies:
   email_validator: ^2.0.1
+  google_fonts: ^2.2.0
   flutter_translate: ^4.0.2
   datetime_picker_formfield: ^2.0.0
+  flutter_svg: ^0.19.0
   flutter_stripe: ^4.0.0
   flutter_html: ^3.0.0-alpha.2
   http: ^0.13.4
