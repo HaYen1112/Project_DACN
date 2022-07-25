@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/page/search_page.dart';
 
 import '../widget/item_Ticket.dart';
 import 'TicketBook.dart';
-import 'edit_trip_manager.dart';
-
+import 'edit_ticket_ad.dart';
 class ListTrip extends StatefulWidget {
   ListTrip({Key? key, required this.diemBatDau, required this.diemKetThuc,required this.date}) : super(key: key);
   String? diemBatDau;
@@ -26,14 +26,10 @@ class _ListTripState extends State<ListTrip> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         color: Colors.blue,
         child: SingleChildScrollView(
-
-        child: SafeArea(
-
           child: Stack(
             children: <Widget>[
               Container(
@@ -46,7 +42,7 @@ class _ListTripState extends State<ListTrip> {
                   ),
                 ),
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height+50,
+                height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -126,64 +122,24 @@ class _ListTripState extends State<ListTrip> {
                               return ListView(
                                 children: trips.map(buildItemTrip).toList(),
 
-
-                Positioned(
-                  bottom: 0,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                    decoration: BoxDecoration(
-                        color: Color(0xFFFf6f5fb),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30)
-                        )
-                    ),
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height-100,
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text('$count Search Result',
-                                style: TextStyle(fontSize: 20)),
-                            Icon(Icons.filter_list, color: Colors.black,size: 25)
-                          ],
+                              );
+                            } else {
+                              return Center(child: CircularProgressIndicator());
+                            }
+                          },
                         ),
-
-                        SizedBox(height: 15),
-
-                        Container(
-                          height: 380,
-                          child: StreamBuilder<Iterable<Trips>>(
-                            stream: readTrips(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                final trips = snapshot.data!;
-                                return ListView(
-                                  children: trips.map(buildItemTrip).toList(),
-
-                                );
-                              } else {
-                                return Center(child: CircularProgressIndicator());
-                              }
-                            },
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                )
-
-              ],
-            ),
+                ),
+              )
 
             ],
           ),
 
         ),
       ),
-    ));
+    );
   }
   bool isSelect = false;
   int _count=0;
@@ -364,30 +320,8 @@ class _ListTripState extends State<ListTrip> {
                   Container(
                     padding:EdgeInsets.all(8),
                     decoration: BoxDecoration(
-
                         color: Colors.amber.shade50,
                         borderRadius: BorderRadius.circular(20)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
-                      child: FlatButton(
-                          onPressed: ()=>{
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                          TicketBook(trip.idTrip))),
-                          },
-                          child: Text("Đặt vé",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),)),
-                      // child: Text("Đặt vé",
-                      // textAlign: TextAlign.center,
-                      // style: TextStyle(
-                      //   fontSize: 18,
-                      //   color: Colors.white,
-                      // ),
-                      // ),
                     ),
                     child: Icon(Icons.flight_land,color:Colors.amber),
                   ),
@@ -446,3 +380,5 @@ class _ListTripState extends State<ListTrip> {
 
 
 }
+
+

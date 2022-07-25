@@ -6,7 +6,7 @@ import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
-import '../page/Manager_trip.dart';
+import '../page/manager_trips/Manager_trip.dart';
 
 class MainPageManager extends StatefulWidget {
   @override
