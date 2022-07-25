@@ -1,13 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD:project_cnpm/lib/page/Manager_trip.dart
-import 'package:project_cnpm/page/add_trip_manager.dart';
-import 'package:project_cnpm/page/viewTicketBooked/view_ticketbook.dart';
-=======
 import 'package:project_cnpm/page/manager_trips/add_trip_manager.dart';
-import 'package:project_cnpm/page/view_ticketbook.dart';
->>>>>>> main:project_cnpm/lib/page/manager_trips/Manager_trip.dart
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 import '../../DAO/Trips.dart';
