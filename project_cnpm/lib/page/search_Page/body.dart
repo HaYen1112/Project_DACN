@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
         children: <Widget>[
           Header(size: size),
           TitleWithMoreBtn(title: "Tuyến phổ biến", press: () {}),
-          RecomendsPlants(),
+          ListTripHOT(),
           TitleWithMoreBtn(title: "Điểm đến phổ biến", press: () {}),
           FeaturedPlants(),
 
