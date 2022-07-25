@@ -74,61 +74,6 @@ class _ListTripState extends State<ListTrip> {
               ),
 
 
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 30),
-                  decoration: BoxDecoration(
-                    // color: Colors.amber,
-                    image: DecorationImage(
-                      image: AssetImage('bus.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            width: 50,
-                            child: FlatButton(
-                                onPressed: ()=>{
-                                Navigator.push(
-                                this.context,
-                                MaterialPageRoute(
-                                builder: (context) => SearchScreen(),))
-                              }
-                            , child: Container(
-                              width: 50,
-                                child: Icon(Icons.keyboard_backspace, color: Colors.black,size: 25))),
-                          ),
-
-                          Text('$diemBatDau', style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
-                          // SizedBox(width: 10),
-                           Icon(Icons.swap_horiz,color: Colors.black,size: 25),
-                          SizedBox(width: 10),
-                          Text("$diemKetThuc",
-                              style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
-
-
-                        ],
-                      ),
-                      SizedBox(height: 13),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text("$date",
-                              style: TextStyle(color: Colors.black,fontSize: 15)),
-                          Text("1 Adult - Economy",
-                              style: TextStyle(color: Colors.black,fontSize: 15))
-                        ],
-                      )
-                    ],
-                  ),
-                ),
 
                 Positioned(
                   bottom: 0,
@@ -183,7 +128,7 @@ class _ListTripState extends State<ListTrip> {
 
         ),
       ),
-    );
+    ));
   }
   bool isSelect = false;
   int _count=0;

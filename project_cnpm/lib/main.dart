@@ -44,16 +44,8 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: appTitle,
-<<<<<<< HEAD
+
       home: MainPage(),
-=======
-
-      home: SearchScreen(),
->>>>>>> main
-
-
-
-
     );
   }
 }
