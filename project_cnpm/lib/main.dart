@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appTitle,
 
-      home: MainPage(),
+      home: SearchScreen(),
 
 
 
