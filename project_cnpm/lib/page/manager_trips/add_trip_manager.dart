@@ -359,7 +359,7 @@ class _AddTripState extends State<AddTrip> {
                                         }
                                       }
 
-                                      late String days='${date.day}';; late String month= '0${date.month}';
+                                      late String days='${date.day}';; late String month= '${date.month}';
                                       if(date.day<10) days ='0${date.day}';
                                       if(date.month<10) month = '0${date.month}';
                                       final trip = Trips(
