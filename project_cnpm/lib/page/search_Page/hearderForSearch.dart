@@ -2,17 +2,13 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_cnpm/page/edit_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
-import 'package:project_cnpm/page/registPage.dart';
-import 'package:project_cnpm/page/search_Page/type.dart';
 import 'package:intl/intl.dart';
 
 import '../../DAO/Trips.dart';
 import 'constants.dart';
-import 'depart.dart';
-import 'destinate.dart';
+
 
 class Header extends StatefulWidget {
   const Header({Key? k, required this.size}) : super(key: k);
