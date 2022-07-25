@@ -24,8 +24,6 @@ import 'package:project_cnpm/page/manager_users.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  // Stripe.publishableKey =
-  // 'pk_test_51LOMtdBf9wZUjG9r4nlrkRBEdw7fPWhiNTpPFbtuGORLvFPTPhWPkwDNZoIUGFcbgif7no7dkusSjBbmCcshFvTG001wslebXC'; // Replace with your publishable key
 
   await Firebase.initializeApp(
     options: FirebaseOptions (
@@ -48,8 +46,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appTitle,
 
+      home: SearchScreen(),
 
       home: SearchScreen(),
+
 
 
     );
