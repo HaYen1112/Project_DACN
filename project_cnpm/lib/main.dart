@@ -6,11 +6,6 @@ import 'package:project_cnpm/page/add_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
 import 'package:project_cnpm/page/Manager_trip.dart';
 import 'package:project_cnpm/page/auth_page.dart';
-
-import 'package:project_cnpm/page/payment/home_pay.dart';
-import 'package:project_cnpm/page/search_page.dart';
-import 'package:project_cnpm/page/search_result.dart';
-
 import 'package:project_cnpm/page/utils.dart';
 import 'package:project_cnpm/page/verify_email_page.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
@@ -46,7 +41,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appTitle,
 
-      home: SearchScreen(),
+      home: ListTrip(),
 
       home: SearchScreen(),
 

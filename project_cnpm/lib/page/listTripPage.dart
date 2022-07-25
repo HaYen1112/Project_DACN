@@ -55,8 +55,6 @@ class _ListTripState extends State<ListTrip> {
                         SizedBox(width: 10),
                         Text("$diemKetThuc",
                             style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.bold)),
-
-
                       ],
                     ),
                     SizedBox(height: 13),
