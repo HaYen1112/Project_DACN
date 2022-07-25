@@ -6,8 +6,7 @@ import 'package:project_cnpm/DAO/viewTicketDetail.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
 import '../DAO/Trips.dart';
-import 'Manager_trip_model.dart';
-import 'edit_trip_manager.dart';
+
 
 class ViewTicket extends StatefulWidget {
   @override

@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/page/login.dart';
-import 'package:project_cnpm/page/registration_page.dart';
+
+import 'package:project_cnpm/page/login_register_forgotpassword/registration_page.dart';
+
+import 'login.dart';
 
 class AuthuPage extends StatefulWidget{
   @override
