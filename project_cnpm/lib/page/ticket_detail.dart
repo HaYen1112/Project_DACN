@@ -7,7 +7,7 @@ import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/page/search_Page/recomend.dart';
-import 'package:project_cnpm/page/utils.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
 
 import '../DAO/Users.dart';
 import '../widget/navigation_drawer.dart';

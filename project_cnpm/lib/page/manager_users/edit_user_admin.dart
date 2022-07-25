@@ -8,10 +8,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/main.dart';
-import 'package:project_cnpm/page/manager_users.dart';
-import 'package:project_cnpm/page/utils.dart';
-import '../widget/header_widget.dart';
-import '../widget/theme_helper.dart';
+import 'package:project_cnpm/page/manager_users/manager_user.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
+import '../../widget/header_widget.dart';
+import '../../widget/theme_helper.dart';
 
 class EditUserPage extends StatefulWidget {
   String? idUser;
@@ -62,7 +62,7 @@ class _EditUserPageState extends State<EditUserPage> {
                   Container(
                     height: 80,
                     child:
-                        HeaderWidget(80, false, Icons.person_add_alt_1_rounded),
+                    HeaderWidget(80, false, Icons.person_add_alt_1_rounded),
                   ),
                   Container(
                     margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
@@ -81,7 +81,7 @@ class _EditUserPageState extends State<EditUserPage> {
                                       padding: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         borderRadius:
-                                            BorderRadius.circular(100),
+                                        BorderRadius.circular(100),
                                         border: Border.all(
                                             width: 5, color: Colors.white),
                                         color: Colors.amber,
@@ -101,7 +101,7 @@ class _EditUserPageState extends State<EditUserPage> {
                                     ),
                                     Container(
                                       padding:
-                                          EdgeInsets.fromLTRB(80, 80, 0, 0),
+                                      EdgeInsets.fromLTRB(80, 80, 0, 0),
                                       child: Icon(
                                         Icons.add_circle,
                                         color: Colors.grey.shade700,
@@ -132,12 +132,12 @@ class _EditUserPageState extends State<EditUserPage> {
                                               Radius.circular(6)))),
                                 ),
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                ThemeHelper().inputBoxDecorationShaddow(),
                               ),
                               SizedBox(height: 20),
                               Container(
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                ThemeHelper().inputBoxDecorationShaddow(),
                                 child: TextFormField(
                                   controller: controllerEmail,
                                   style: TextStyle(
@@ -152,7 +152,7 @@ class _EditUserPageState extends State<EditUserPage> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(6)))),
                                   autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
+                                  AutovalidateMode.onUserInteraction,
                                   validator: (email) {
                                     if (email?.length == 0) {
                                       return "Vui lòng nhập email!";
@@ -167,7 +167,7 @@ class _EditUserPageState extends State<EditUserPage> {
                               SizedBox(height: 20.0),
                               Container(
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                ThemeHelper().inputBoxDecorationShaddow(),
                                 child: TextFormField(
                                   controller: controllerPhoneNumber,
                                   style: TextStyle(
@@ -181,7 +181,7 @@ class _EditUserPageState extends State<EditUserPage> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(6)))),
                                   autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
+                                  AutovalidateMode.onUserInteraction,
                                   validator: (val) {
                                     String pattern =
                                         r'(^(?:[+0]9)?[0-9]{10,12}$)';
@@ -216,12 +216,12 @@ class _EditUserPageState extends State<EditUserPage> {
                                               Radius.circular(6)))),
                                 ),
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                ThemeHelper().inputBoxDecorationShaddow(),
                               ),
                               Container(
                                 child: Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(0, 30, 0, 40),
+                                    const EdgeInsets.fromLTRB(0, 30, 0, 40),
                                     child: SizedBox(
                                         width: double.infinity,
                                         height: 52,
@@ -229,22 +229,22 @@ class _EditUserPageState extends State<EditUserPage> {
                                           onPressed: () {
                                             final user = Users(
                                                 name: (controllerUserName
-                                                            .text !=
-                                                        ''
+                                                    .text !=
+                                                    ''
                                                     ? controllerUserName.text
                                                     : '${users.name}'),
                                                 email: users.email,
                                                 phone: controllerPhoneNumber
-                                                            .text !=
-                                                        ''
+                                                    .text !=
+                                                    ''
                                                     ? controllerPhoneNumber.text
                                                     : users.phone,
                                                 address:
-                                                    controllerAddress.text != ''
-                                                        ? controllerAddress.text
-                                                        : users.address,
+                                                controllerAddress.text != ''
+                                                    ? controllerAddress.text
+                                                    : users.address,
                                                 password:
-                                                    users.password.toString());
+                                                users.password.toString());
                                             update(user);
                                           },
                                           child: Text("Cập nhật",
@@ -278,7 +278,7 @@ class _EditUserPageState extends State<EditUserPage> {
 
   Future update(Users user) async {
     final docUser =
-        FirebaseFirestore.instance.collection('users').doc(user.email);
+    FirebaseFirestore.instance.collection('users').doc(user.email);
     final json = user.toJson();
     try {
       // await docUser.update(json);
@@ -288,7 +288,7 @@ class _EditUserPageState extends State<EditUserPage> {
       // Utils.showSnackBar(e.message);
     }
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ManageTicket()));
+        context, MaterialPageRoute(builder: (context) => ManageUser()));
   }
 
   Stream<Users> readUsers() => FirebaseFirestore.instance

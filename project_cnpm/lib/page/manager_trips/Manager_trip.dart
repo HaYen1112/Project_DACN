@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/page/add_trip_manager.dart';
-import 'package:project_cnpm/page/view_ticketbook.dart';
+
+import 'package:project_cnpm/page/viewTicketBooked/view_ticketbook.dart';
+
+import 'package:project_cnpm/page/manager_trips/add_trip_manager.dart';
+
+
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 
-import '../DAO/Trips.dart';
-import 'Manager_trip_model.dart';
+import '../../DAO/Trips.dart';
 import 'edit_trip_manager.dart';
 
 class managerTrip extends StatefulWidget {
@@ -33,16 +36,18 @@ class _managerTripState extends State<managerTrip> {
               context, MaterialPageRoute(builder: (context) => AddTrip()))
         },
       ),
-
+// đọc dữ liệu chuyến đi thành danh sách
       body: StreamBuilder<Iterable<Trips>>(
         stream: readTrips(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final trips = snapshot.data!;
             return ListView(
+              // xuất ra danh sách chuyến đi
               children: trips.map(buildTrip).toList(),
             );
           } else {
+            // hiển thị (xuay tròn)
             return Center(child: CircularProgressIndicator());
           }
         },
@@ -51,6 +56,7 @@ class _managerTripState extends State<managerTrip> {
   }
 
   bool isSelect = false;
+  // 1 chuyến đi
   Widget buildTrip(Trips trip) => ListTile(
         leading: const CircleAvatar(
           backgroundColor: Colors.amberAccent,
@@ -85,6 +91,7 @@ class _managerTripState extends State<managerTrip> {
             SizedBox(height: 20),
           ],
         ),
+        // nút edit
         trailing: ElevatedButton(
                   onPressed: () => Navigator.push(
                       context,

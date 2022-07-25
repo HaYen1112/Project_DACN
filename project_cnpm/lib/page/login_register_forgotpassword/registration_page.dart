@@ -2,8 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -11,19 +9,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/main.dart';
-import 'package:project_cnpm/page/manager_users.dart';
-import 'package:project_cnpm/page/utils.dart';
-import '../widget/header_widget.dart';
-import '../widget/theme_helper.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
+import '../../widget/header_widget.dart';
+import '../../widget/theme_helper.dart';
 
-class AddUserPage extends StatefulWidget {
+class RegistrationPage extends StatefulWidget {
+  final Function onClickedSignIn;
+  const RegistrationPage({
+    Key? key,
+    required this.onClickedSignIn,
+  }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _AddUserPageState();
+    return _RegistrationPageState();
   }
 }
 
-class _AddUserPageState extends State<AddUserPage> {
+class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
   bool checkedValue = false;
   bool checkboxValue = false;
@@ -37,12 +39,6 @@ class _AddUserPageState extends State<AddUserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Thêm tài khoản'),
-        centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 248, 178, 29),
-      ),
-
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -68,7 +64,7 @@ class _AddUserPageState extends State<AddUserPage> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   border:
-                                  Border.all(width: 5, color: Colors.white),
+                                      Border.all(width: 5, color: Colors.white),
                                   color: Colors.amber,
                                   boxShadow: [
                                     BoxShadow(
@@ -110,7 +106,7 @@ class _AddUserPageState extends State<AddUserPage> {
                                     borderSide: BorderSide(
                                         color: Color(0xffCED0D2), width: 1),
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(6)))),
+                                        BorderRadius.all(Radius.circular(6)))),
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
@@ -126,9 +122,9 @@ class _AddUserPageState extends State<AddUserPage> {
                                     borderSide: BorderSide(
                                         color: Color(0xffCED0D2), width: 1),
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(6)))),
+                                        BorderRadius.all(Radius.circular(6)))),
                             autovalidateMode:
-                            AutovalidateMode.onUserInteraction,
+                                AutovalidateMode.onUserInteraction,
                             validator: (email) {
                               if (email?.length == 0) {
                                 return "Vui lòng nhập email!";
@@ -152,9 +148,9 @@ class _AddUserPageState extends State<AddUserPage> {
                                     borderSide: BorderSide(
                                         color: Color(0xffCED0D2), width: 1),
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(6)))),
+                                        BorderRadius.all(Radius.circular(6)))),
                             autovalidateMode:
-                            AutovalidateMode.onUserInteraction,
+                                AutovalidateMode.onUserInteraction,
                             validator: (val) {
                               String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
                               RegExp regExp = new RegExp(pattern);
@@ -193,7 +189,7 @@ class _AddUserPageState extends State<AddUserPage> {
                             controller: controllerPW,
                             obscureText: true,
                             autovalidateMode:
-                            AutovalidateMode.onUserInteraction,
+                                AutovalidateMode.onUserInteraction,
                             style: TextStyle(fontSize: 14, color: Colors.black),
                             decoration: InputDecoration(
                                 labelText: "Password",
@@ -201,7 +197,7 @@ class _AddUserPageState extends State<AddUserPage> {
                                     borderSide: BorderSide(
                                         color: Color(0xffCED0D2), width: 1),
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(6)))),
+                                        BorderRadius.all(Radius.circular(6)))),
                             validator: (val) {
                               if (val?.length == 0) {
                                 return "Vui lòng nhập mật khẩu!";
@@ -240,9 +236,7 @@ class _AddUserPageState extends State<AddUserPage> {
                                     state.errorText ?? '',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      color: Theme
-                                          .of(context)
-                                          .errorColor,
+                                      color: Theme.of(context).errorColor,
                                       fontSize: 12,
                                     ),
                                   ),
@@ -260,7 +254,6 @@ class _AddUserPageState extends State<AddUserPage> {
                         ),
                         Container(
                           child: Padding(
-
                               padding: const EdgeInsets.fromLTRB(0, 30, 0, 40),
                               child: SizedBox(
                                   width: double.infinity,
@@ -278,7 +271,7 @@ class _AddUserPageState extends State<AddUserPage> {
                                         register(user);
                                       }
                                     },
-                                    child: Text("Thêm tài khoản",
+                                    child: Text("Resgister",
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 18)
                                     ),
@@ -290,7 +283,113 @@ class _AddUserPageState extends State<AddUserPage> {
                                     ),
                                   ))),
                         ),
-
+                        SizedBox(height: 30.0),
+                        // Text( "Do you have an accout?",  style: TextStyle(color: Colors.grey),),
+                        // Text("Login"),
+                        Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: RichText(
+                              text: TextSpan(
+                                  text: "Do you have an account?",
+                                  style: TextStyle(
+                                      color: Color(0xff606470), fontSize: 16),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = widget.onClickedSignIn
+                                              as GestureTapCallback?,
+                                        text: " Sign up",
+                                        style: TextStyle(
+                                            color: Color(0xff3277D8),
+                                            fontSize: 16))
+                                  ]),
+                            )),
+                        SizedBox(height: 30.0),
+                        Text(
+                          "Or create account using social media",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        SizedBox(height: 25.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              child: FaIcon(
+                                FontAwesomeIcons.googlePlus,
+                                size: 35,
+                                color: HexColor("#EC2D2F"),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return ThemeHelper().alartDialog(
+                                          "Google Plus",
+                                          "You tap on GooglePlus social icon.",
+                                          context);
+                                    },
+                                  );
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 30.0,
+                            ),
+                            GestureDetector(
+                              child: Container(
+                                padding: EdgeInsets.all(0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  border: Border.all(
+                                      width: 5, color: HexColor("#40ABF0")),
+                                  color: HexColor("#40ABF0"),
+                                ),
+                                child: FaIcon(
+                                  FontAwesomeIcons.twitter,
+                                  size: 23,
+                                  color: HexColor("#FFFFFF"),
+                                ),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return ThemeHelper().alartDialog(
+                                          "Twitter",
+                                          "You tap on Twitter social icon.",
+                                          context);
+                                    },
+                                  );
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 30.0,
+                            ),
+                            GestureDetector(
+                              child: FaIcon(
+                                FontAwesomeIcons.facebook,
+                                size: 35,
+                                color: HexColor("#3E529C"),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return ThemeHelper().alartDialog(
+                                          "Facebook",
+                                          "You tap on Facebook social icon.",
+                                          context);
+                                    },
+                                  );
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -300,11 +399,15 @@ class _AddUserPageState extends State<AddUserPage> {
           ],
         ),
       ),
-
     );
-
   }
+
   Future register(Users user) async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(child: CircularProgressIndicator(),)
+    );
     final docUser = FirebaseFirestore.instance.collection('users').doc(user.email);
     final json = user.toJson();
     try {
@@ -313,14 +416,12 @@ class _AddUserPageState extends State<AddUserPage> {
           password: controllerPW.text.trim());
       await docUser.set(json);
     } on FirebaseAuthException catch (e) {
-      // print(e);
+      print(e);
+
       // Utils.showSnackBar(e.message);
+
     }
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: 'projectticketbook@gmail.com', password: '123456');
-    // navigatorKey.currentState!.popUntil((route) => route.isFirst);
-    Navigator.push(context, MaterialPageRoute(
-        builder: (context)=>ManageTicket()
-    ));
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
 

@@ -6,9 +6,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/main.dart';
-import 'package:project_cnpm/page/forgot_passwork_page.dart';
-import 'package:project_cnpm/page/registration_page.dart';
-import 'package:project_cnpm/page/utils.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/forgot_passwork_page.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/registration_page.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
 
 class Login extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -27,6 +27,7 @@ class _LoginState extends State<Login> {
   final controllerEmail = TextEditingController();
   final controllerPW = TextEditingController();
   @override
+
   void dispose() {
     controllerPW.dispose();
     controllerEmail.dispose();
@@ -179,11 +180,11 @@ class _LoginState extends State<Login> {
   Future signIn() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-    // showDialog(
-    //     context: context,
-    //     barrierDismissible: false,
-    //     builder: (context) => Center(child: CircularProgressIndicator(),)
-    // );
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(child: CircularProgressIndicator(),)
+    );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: controllerEmail.text.trim(),

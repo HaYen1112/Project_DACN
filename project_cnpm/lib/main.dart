@@ -2,24 +2,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:project_cnpm/page/add_trip_manager.dart';
+import 'package:project_cnpm/page/manager_trips/add_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
-import 'package:project_cnpm/page/Manager_trip.dart';
-import 'package:project_cnpm/page/auth_page.dart';
+import 'package:project_cnpm/page/manager_trips/Manager_trip.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/auth_page.dart';
 
 import 'package:project_cnpm/page/payment/home_pay.dart';
 
 import 'package:project_cnpm/page/search_page.dart';
-import 'package:project_cnpm/page/utils.dart';
-import 'package:project_cnpm/page/verify_email_page.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/verify_email_page.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/page/viewTicketBooked.dart';
-import 'package:project_cnpm/page/view_ticketbook.dart';
+import 'package:project_cnpm/page/viewTicketBooked/view_ticketbook.dart';
 import 'package:project_cnpm/widget/navigation_drawer.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project_cnpm/page/login.dart';
-import 'package:project_cnpm/page/manager_users.dart';
+import 'package:project_cnpm/page/manager_users/manager_user.dart';
 
 
 

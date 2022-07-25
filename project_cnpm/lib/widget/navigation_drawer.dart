@@ -6,12 +6,12 @@ import 'package:project_cnpm/DAO/Users.dart';
 import 'package:project_cnpm/page/TicketBook.dart';
 import 'package:project_cnpm/page/search_page.dart';
 import 'package:project_cnpm/page/ticket_detail.dart';
-import 'package:project_cnpm/page/view_ticketbook.dart';
+import 'package:project_cnpm/page/viewTicketBooked/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
 
-import '../page/verify_email_page.dart';
+import '../page/login_register_forgotpassword/verify_email_page.dart';
 
 class MainPageCustomer extends StatefulWidget {
   @override
@@ -127,7 +127,7 @@ class NavigationDrawerWidget extends StatelessWidget{
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ViewTicket(),
+            builder: (context) => ViewTicket('idViewTicket'),
         ));
         break;
       case 2:

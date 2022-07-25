@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/main.dart';
-import 'package:project_cnpm/page/Manager_trip.dart';
-import 'package:project_cnpm/page/utils.dart';
+import 'package:project_cnpm/page/manager_trips/Manager_trip.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
-import '../widget/header_widget.dart';
-import '../widget/theme_helper.dart';
+import '../../widget/header_widget.dart';
+import '../../widget/theme_helper.dart';
 
 class AddTrip extends StatefulWidget {
   @override
