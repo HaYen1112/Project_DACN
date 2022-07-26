@@ -12,7 +12,10 @@ import 'package:project_cnpm/page/login_register_forgotpassword/registration_pag
 import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
 
 import 'TicketBook.dart';
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 class ListTrip extends StatefulWidget {
   ListTrip({Key? key, required this.diemBatDau, required this.diemKetThuc,required this.date}) : super(key: key);
   String? diemBatDau;
@@ -421,5 +424,4 @@ class _ListTripState extends State<ListTrip> {
   }
 
 }
-
 
