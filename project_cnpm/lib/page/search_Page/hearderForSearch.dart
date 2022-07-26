@@ -1,18 +1,13 @@
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project_cnpm/page/edit_trip_manager.dart';
 import 'package:project_cnpm/page/listTripPage.dart';
-import 'package:project_cnpm/page/registPage.dart';
-import 'package:project_cnpm/page/search_Page/type.dart';
 import 'package:intl/intl.dart';
 
 import '../../DAO/Trips.dart';
+import '../manager_trips/edit_trip_manager.dart';
 import 'constants.dart';
-import 'depart.dart';
-import 'destinate.dart';
+
 
 class Header extends StatefulWidget {
   const Header({Key? k, required this.size}) : super(key: k);
@@ -389,6 +384,7 @@ class _HeaderState extends State<Header> {
                         width: 40,
                         child: Image.asset('calendar.png'),
                       ),
+                      //phần thêm vào để cân bằng khoảng cahs
                       Expanded(
                         child: Container(
                           color: Colors.white,
@@ -397,6 +393,7 @@ class _HeaderState extends State<Header> {
 
                         ),
                       ),
+                      //phần ngày về
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
@@ -411,6 +408,7 @@ class _HeaderState extends State<Header> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  //text field ngày về
                                   const Positioned(
                                     left: 0,
                                     child: Padding(
@@ -424,6 +422,7 @@ class _HeaderState extends State<Header> {
                                       ),
                                     ),
                                   ),
+                                  // button ngày về
                                   FlatButton(
                                       onPressed: () async  {
                                         DateTime? newDate = await showDatePicker(
@@ -502,7 +501,7 @@ class _HeaderState extends State<Header> {
               ),
             ),
           ),
-
+          //button chuyến đi
           Positioned(
             top: 150,
             left: -8,
@@ -524,6 +523,7 @@ class _HeaderState extends State<Header> {
               ),
             ),
           ),
+          //button đổi chỗ
           Positioned(
             top: 150,
             right: 0,
@@ -558,6 +558,7 @@ class _HeaderState extends State<Header> {
 
             ),
           ),
+          //button tìm kiếm
           Positioned(
             bottom: 15,
             right: 0,

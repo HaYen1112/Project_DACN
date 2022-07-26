@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/main.dart';
-import 'package:project_cnpm/page/Manager_trip.dart';
-import 'package:project_cnpm/page/utils.dart';
+import 'package:project_cnpm/page/manager_trips/Manager_trip.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
 import 'package:project_cnpm/widget/navigation_manage_drawer.dart';
-import '../widget/header_widget.dart';
-import '../widget/theme_helper.dart';
+
+import '../../widget/header_widget.dart';
+import '../../widget/theme_helper.dart';
+
+
 
 class EditTrip extends StatefulWidget {
   String? country_id1;
@@ -258,6 +261,8 @@ class EditTripState extends State<EditTrip> {
                           ),
                         ),
                         SizedBox(height: 10),
+
+                        // hiển thị đồng hồ tg
                         ElevatedButton(
                             onPressed: () async {
                               TimeOfDay? newTimeS = await showTimePicker(
@@ -411,6 +416,7 @@ class EditTripState extends State<EditTrip> {
                             Container(
                               child: ElevatedButton(
                                   onPressed: () {
+                                    // tính tổng tg đi xe
                                     late int? h;
                                     if ((timeE?.hour)! < (timeS?.hour)!) {
                                       h = ((timeE?.hour)! - (timeS?.hour)!);
@@ -433,7 +439,7 @@ class EditTripState extends State<EditTrip> {
                                         this.amountOfTime = '${h}:${m}';
                                       }
                                     }
-                                    late String days='${date?.day}';; late String month= '0${date?.month}';
+                                    late String days='${date?.day}';; late String month= '${date?.month}';
                                     if((date?.day)!<10) days ='0${date?.day}';
                                     if((date?.month)!<10) month = '0${date?.month}';
                                     final trip = Trips(
@@ -449,7 +455,7 @@ class EditTripState extends State<EditTrip> {
                                       quantityStatus: amountTicket!,
                                       //int.parse(controllerQuantity.text),
                                     );
-                                    createTrip(trip, this.amountOfTime);
+                                    editTrip(trip, this.amountOfTime);
                                   },
                                   child: Icon(
                                     Icons.save,
@@ -490,9 +496,12 @@ class EditTripState extends State<EditTrip> {
       print(e);
       Utils.showSnackBar(e.message);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => managerTrip()));
   }
-  Future createTrip(Trips trip, String amount) async {
+  // edit trip
+  // amount tổng tg đi bao lâu
+  Future editTrip(Trips trip, String amount) async {
     showDialog(
         barrierDismissible: false,
         context: context,
@@ -527,6 +536,7 @@ class EditTripState extends State<EditTrip> {
       await docTrip.update(json);
     } on FirebaseException catch (e) {
       print(e);
+      // show lỗi
       Utils.showSnackBar(e.message);
     }
     Navigator.push(

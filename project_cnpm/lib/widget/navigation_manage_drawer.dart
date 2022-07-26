@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_cnpm/page/search_result.dart';
 import 'package:project_cnpm/page/manager_users.dart';
 import 'package:project_cnpm/page/view_ticketbook.dart';
 import 'package:project_cnpm/page/promotion.dart';
 import 'package:project_cnpm/page/user_page.dart';
 import 'package:project_cnpm/main.dart';
-import '../page/Manager_trip.dart';
+import '../page/manager_trips/Manager_trip.dart';
 
 class MainPageManager extends StatefulWidget {
   @override

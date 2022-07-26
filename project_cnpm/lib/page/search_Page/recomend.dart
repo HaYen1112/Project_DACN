@@ -4,7 +4,7 @@ import 'package:project_cnpm/DAO/Trips.dart';
 
 import '../../DAO/Tickets.dart';
 import '../TicketBook.dart';
-import '../utils.dart';
+import '../login_register_forgotpassword/utils.dart';
 import 'constants.dart';
 
 
@@ -100,7 +100,9 @@ class _ListTripHOTState extends State<ListTripHOT> {
                   ),
 
                   Text(
+       
                     '${trip.price} VNĐ',
+
                     style: Theme.of(context)
                         .textTheme
                         .button
