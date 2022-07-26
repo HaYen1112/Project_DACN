@@ -387,6 +387,7 @@ class _HeaderState extends State<Header> {
                         width: 40,
                         child: Image.asset('calendar.png'),
                       ),
+                      //phần thêm vào để cân bằng khoảng cahs
                       Expanded(
                         child: Container(
                           color: Colors.white,
@@ -394,6 +395,7 @@ class _HeaderState extends State<Header> {
                           width: 250,
                         ),
                       ),
+                      //phần ngày về
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
@@ -407,6 +409,7 @@ class _HeaderState extends State<Header> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  //text field ngày về
                                   const Positioned(
                                     left: 0,
                                     child: Padding(
@@ -419,6 +422,7 @@ class _HeaderState extends State<Header> {
                                       ),
                                     ),
                                   ),
+                                  // button ngày về
                                   FlatButton(
                                       onPressed: () async {
                                         DateTime? newDate =
@@ -505,6 +509,10 @@ class _HeaderState extends State<Header> {
               ),
             ),
           ),
+<<<<<<< HEAD
+          //button chuyến đi
+=======
+>>>>>>> main
           Positioned(
             top: 150,
             left: -8,
@@ -524,6 +532,7 @@ class _HeaderState extends State<Header> {
               ),
             ),
           ),
+          //button đổi chỗ
           Positioned(
             top: 150,
             right: 0,
@@ -551,6 +560,7 @@ class _HeaderState extends State<Header> {
               )),
             ),
           ),
+          //button tìm kiếm
           Positioned(
             bottom: 15,
             right: 0,

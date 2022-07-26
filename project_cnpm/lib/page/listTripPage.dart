@@ -1,16 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_cnpm/DAO/Tickets.dart';
 import 'package:project_cnpm/DAO/Trips.dart';
 import 'package:project_cnpm/page/search_page.dart';
 
-import '../widget/item_Ticket.dart';
+import 'package:project_cnpm/DAO/Users.dart';
+import 'package:project_cnpm/main.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/forgot_passwork_page.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/registration_page.dart';
+import 'package:project_cnpm/page/login_register_forgotpassword/utils.dart';
+
 import 'TicketBook.dart';
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
 class ListTrip extends StatefulWidget {
   ListTrip({Key? key, required this.diemBatDau, required this.diemKetThuc,required this.date}) : super(key: key);
   String? diemBatDau;
   String? diemKetThuc;
   String date;
+
 
 
   @override
@@ -22,6 +33,9 @@ class _ListTripState extends State<ListTrip> {
   String diemBatDau;
   String diemKetThuc;
   String date;
+  final formKey = GlobalKey<FormState>();
+  final controllerEmail = TextEditingController();
+  final controllerPW = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +43,7 @@ class _ListTripState extends State<ListTrip> {
       body: Container(
         color: Colors.blue,
         child: SingleChildScrollView(
+
           child: Stack(
             children: <Widget>[
               Container(
@@ -69,6 +84,7 @@ class _ListTripState extends State<ListTrip> {
 
 
                       ],
+
                     ),
                     SizedBox(height: 13),
                     Row(
@@ -376,7 +392,36 @@ class _ListTripState extends State<ListTrip> {
       .map((event) => event.docs.map((doc) => Trips.fromJson(doc.data())));
 
 
+  Future signIn() async {
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) return;
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(child: CircularProgressIndicator(),)
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: controllerEmail.text.trim(),
+          password: controllerPW.text.trim());
+      final userDoc = FirebaseFirestore.instance.collection('users').doc(controllerEmail.text.trim());
+      final snapshot = await userDoc.get();
+      Users user = Users.fromJson(snapshot.data()!);
+      if (user.password != controllerPW.text.trim()) {
+        user.updatePassword(controllerPW.text.trim());
+        userDoc.update(user.toJson());
+      }
 
+    } on FirebaseAuthException catch (e) {
+      print(e);
+
+
+      Utils.showSnackBar(e.message);
+
+
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  }
 
 }
 
